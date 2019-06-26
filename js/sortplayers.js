@@ -15,12 +15,24 @@ var team = require('./rosters/0.json');
 //Save the team roster to a variable 
 var teamRoster = team['teams'][0]['roster']['roster'];
 
-//console.log(typeof teamRoster);
-//console.log(teamRoster.length);
+//Instantiate array to hold Defensemen
+var centers = [];
+var lwings = [];
+var rwings = [];
+var defensemen = [];
+var goalies = [];
 
 for (let i = 0; i < teamRoster.length; i++){
 
     if (teamRoster[i]['position']['name'] == 'Defenseman') {
-        console.log(teamRoster[i]);
+        player = {
+            "name" : teamRoster[i]['person']['fullName'],
+            "number" : teamRoster[i]['jerseyNumber'],
+            "position" : teamRoster[i]['position']['name'],
+            "currentTeam" : team['teams'][0]['name']
+        };
+        console.log(player);
+        //defensemen.push(teamRoster[i]);
     }
 } 
+//console.log(defensemen);

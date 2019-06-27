@@ -5,48 +5,8 @@
 //TODO: change JS objects to JSON? 
 //TODO: figure out what to do with arrays -- DB? write to file?
 
-class Player {
-    constructor(name, number, position, currentTeam) {
-        this.name = name;
-        this.number = number;
-        this.position = position;
-        this.currentTeam = currentTeam;
-    }
-
-    getName() {
-        return this.name;
-    }
-
-    getNumber() {
-        return this.number;
-    }
-
-    getPosition() {
-        return this.position;
-    }
-
-    getCurrentTeam() {
-        return this.currentTeam;
-    }
-
-    setName(value) {
-        this._name = value;
-    }
-
-    setNumber(value) {
-        this._number = value;
-    }
-
-    setPosition(value) {
-        this._position = value;
-    }
-
-    setCurrentTeam(value) {
-        this._team = value;
-    }
-
-}
-
+//Require instance of the Player class
+const Player = require('./playerclass.js');
 
 //Require teams files and store in an array
 var allTeams = [];
@@ -61,8 +21,6 @@ for (let i = 0; i < allTeams.length; i++) {
     allRosters.push(allTeams[i]['teams'][0]['roster']['roster']);
 }
 
-console.log(allRosters.length);
-
 //Use require to load JSON object from file
 var team = require('./rosters/0.json');
 //Save the team roster to a variable 
@@ -76,7 +34,8 @@ var rwings = [];
 var defensemen = [];
 var goalies = [];
 
-//TODO: update loop
+//Loop through roster to sort players into arrays according to position 
+//TODO: change to allRosters
 for (let i = 0; i < teamRoster.length; i++){
 
     let playerName = teamRoster[i]['person']['fullName'];
@@ -85,20 +44,20 @@ for (let i = 0; i < teamRoster.length; i++){
     let playerCurrentTeam = team['teams'][0]['name'];
 
     if (teamRoster[i]['position']['name'] == 'Left Wing') {
-        let player = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        lwings.push(player);
+        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+        lwings.push(currentPlayer);
     } else if (teamRoster[i]['position']['name'] == 'Center') {
-        let player = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        centers.push(player);
+        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+        centers.push(currentPlayer);
     } else if (teamRoster[i]['position']['name'] == 'Right Wing') {
-        let player = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        rwings.push(player);
+        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+        rwings.push(currentPlayer);
     } else if (teamRoster[i]['position']['name'] == 'Defenseman') {
-        let player = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        defensemen.push(player);
+        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+        defensemen.push(currentPlayer);
     } else if (teamRoster[i]['position']['name'] == 'Goalie') {
-        let player = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        goalies.push(player);
+        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+        goalies.push(currentPlayer);
     }
 
 }

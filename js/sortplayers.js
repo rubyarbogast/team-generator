@@ -10,7 +10,6 @@
       //If position == G, save to G
     //Store arrays in DB? Write to file?
 
-//Will need to change this to loops
 //Require teams files
 var allTeams = [];
 for (let i = 0; i < 31; i++) {
@@ -18,13 +17,19 @@ for (let i = 0; i < 31; i++) {
     allTeams.push(currentRoster);
 }
 
-console.log(allTeams);
+//Store all rosters to an array
+var allRosters = [];
+for (let i = 0; i < allTeams.length; i++) {
+    allRosters.push(allTeams[i]['teams'][0]['roster']['roster']);
+}
 
+console.log(allRosters.length);
 //Use require to load JSON object from file
 var team = require('./rosters/0.json');
 //Save the team roster to a variable 
 var teamRoster = team['teams'][0]['roster']['roster'];
 
+//console.log(team);
 //Instantiate array to hold Defensemen
 var centers = [];
 var lwings = [];

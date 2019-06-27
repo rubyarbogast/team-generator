@@ -1,7 +1,5 @@
-//TODO: write player class to use in loop
 //TODO: remove P Kane, E Kane, A Watson, N Cousins, D Doughty, S Varlamov, C DeSmith
 //TODO: change Hawks names to just "Chicago"
-//TODO: separate into model, view, controller, data and rewrite code to reflect file locations
 //TODO: change JS objects to JSON? 
 //TODO: figure out what to do with arrays -- DB? write to file?
 
@@ -14,6 +12,8 @@ for (let i = 0; i < 31; i++) {
     var currentRoster = require('./rosters/' + i + '.json');
     allTeams.push(currentRoster);
 }
+
+//console.log(allTeams);
 
 //Store all rosters to an array
 var allRosters = [];
@@ -34,35 +34,38 @@ var rwings = [];
 var defensemen = [];
 var goalies = [];
 
-//Loop through roster to sort players into arrays according to position 
-//TODO: change to allRosters
-for (let i = 0; i < teamRoster.length; i++){
+//TODO: test results to make sure values are correct
 
-    let playerName = teamRoster[i]['person']['fullName'];
-    let playerNumber = teamRoster[i]['jerseyNumber'];
-    let playerPosition = teamRoster[i]['position']['name'];
-    let playerCurrentTeam = team['teams'][0]['name'];
+//Loop through rosters to sort players into arrays according to position 
+for (let i = 0; i < allRosters.length; i++){
+    for (let j = 0; j < allRosters[i].length; j++){
 
-    if (teamRoster[i]['position']['name'] == 'Left Wing') {
-        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        lwings.push(currentPlayer);
-    } else if (teamRoster[i]['position']['name'] == 'Center') {
-        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        centers.push(currentPlayer);
-    } else if (teamRoster[i]['position']['name'] == 'Right Wing') {
-        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        rwings.push(currentPlayer);
-    } else if (teamRoster[i]['position']['name'] == 'Defenseman') {
-        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        defensemen.push(currentPlayer);
-    } else if (teamRoster[i]['position']['name'] == 'Goalie') {
-        let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
-        goalies.push(currentPlayer);
+        let playerName = allRosters[i][j]['person']['fullName'];
+        let playerNumber = allRosters[i][j]['jerseyNumber'];
+        let playerPosition = allRosters[i][j]['position']['name'];
+        let playerCurrentTeam = allTeams[i]['teams'][0]['name'];
+
+        if (allRosters[i][j]['position']['name'] == 'Left Wing') {
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            lwings.push(currentPlayer);
+        } else if (allRosters[i][j]['position']['name'] == 'Center') {
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            centers.push(currentPlayer);
+        } else if (allRosters[i][j]['position']['name'] == 'Right Wing') {
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            rwings.push(currentPlayer);
+        } else if (allRosters[i][j]['position']['name'] == 'Defenseman') {
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            defensemen.push(currentPlayer);
+        } else if (allRosters[i][j]['position']['name'] == 'Goalie') {
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            goalies.push(currentPlayer);
+        }
     }
 
 }
-console.log(defensemen);
-console.log(centers);
-console.log(rwings);
-console.log(lwings);
-console.log(goalies); 
+console.log(defensemen.length);
+console.log(centers.length);
+console.log(rwings.length);
+console.log(lwings.length);
+console.log(goalies.length); 

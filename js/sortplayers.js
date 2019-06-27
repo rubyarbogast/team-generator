@@ -11,6 +11,15 @@
     //Store arrays in DB? Write to file?
 
 //Will need to change this to loops
+//Require teams files
+var allTeams = [];
+for (let i = 0; i < 31; i++) {
+    var currentRoster = require('./rosters/' + i + '.json');
+    allTeams.push(currentRoster);
+}
+
+console.log(allTeams);
+
 //Use require to load JSON object from file
 var team = require('./rosters/0.json');
 //Save the team roster to a variable 
@@ -68,8 +77,8 @@ for (let i = 0; i < teamRoster.length; i++){
     }
 
 }
-console.log(defensemen);
+/* console.log(defensemen);
 console.log(centers);
 console.log(rwings);
 console.log(lwings);
-console.log(goalies);
+console.log(goalies); */

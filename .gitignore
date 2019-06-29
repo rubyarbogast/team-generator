@@ -5,3 +5,5 @@ package-lock.json
 rosters/
 
 npm
+
+generatetables.js

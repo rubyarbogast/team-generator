@@ -16,6 +16,48 @@ for (let i = 0; i < teamIds.length; i++){
         .on('error', function(err) {
             console.error(err)
         })
-        .pipe(fs.createWriteStream('./rosters/' + teamIds[i] + '.json'));
+        .pipe(fs.createWriteStream('./rosters/' + [i] + '.json'));
 
 }
+
+/* let promise = new Promise(function(resolve, reject) {
+
+    //For each team, get the roster and write it to a file
+    for (let i = 0; i < teamIds.length; i++){
+
+        var requestURL = 'https://statsapi.web.nhl.com/api/v1/teams/' + teamIds[i] + '?expand=team.roster';
+
+            request
+            .get(requestURL)
+            .on('error', function(err) {
+                console.error(err)
+            })
+            .pipe(fs.createWriteStream('./rosters/' + [i] + '.json'));
+
+    }
+
+    //After 3 seconds, signal that the job is done with the result "done"
+    setTimeout(() => resolve("done"), 3000);
+});
+
+
+promise.then(
+    function(result){
+        //For file in folder, append to file rosters.json
+        for (let i = 0; i < 31; i++){
+            var currentRoster = require('./rosters/' + [i] + '.json');
+
+            var stringRosters = JSON.stringify(currentRoster);
+
+            fs.appendFile('./rosters/rosters.txt', stringRosters, (err) => {
+                if (err) throw err;
+                console.log('The "data to append" was appended to file!');
+              });
+                            
+        }
+    },
+    function(error){
+        console.log("Operation failed");
+    }
+) */
+

@@ -6,6 +6,4 @@ rosters/
 
 npm
 
-generate-tables.js
-
-sort-players.js
+config.json

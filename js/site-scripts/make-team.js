@@ -1,0 +1,1 @@
+//TODO: generate random team when user clicks button

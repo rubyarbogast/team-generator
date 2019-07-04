@@ -1,4 +1,22 @@
-//TODO: move DB stuff to PHP
+function makeTeam() {
+
+jQuery.ajax({
+    url:  my_ajax_object.ajax_url,
+    type: "POST",
+    data: {
+        action: 'get_team',
+    },
+    dataType: "html",
+    success: function(data) {
+        // This outputs the result of the ajax request
+        document.getElementById("showTeam").innerHTML = data;
+    },
+    error: function(errorThrown){
+        console.log(errorThrown);
+}
+});
+}
+/* //TODO: move DB stuff to PHP
 function makeTeam() {
     var mysql = require('../player-data/node_modules/mysql');
     //Require config file to log in to DB
@@ -44,7 +62,7 @@ function makeTeam() {
         if (err) throw err;
         team.push(result);
     });
-}
+} */
 
 
 //TODO: prevent spam requests

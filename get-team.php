@@ -1,14 +1,5 @@
-<?php
-// Enqueue scripts
-
-//TODO: change values
-function my_enqueue() {
-    wp_enqueue_script( 'makeTeam', get_template_directory_uri() . '/js/site-scripts/site-scripts.js', array('jquery') );
-    wp_localize_script( 'makeTeam', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-}
-add_action( 'wp_enqueue_scripts', 'my_enqueue' );
-
-
+<?php 
+// TODO: on upload, place config files in private folder 
 function get_team() {
     $ini = parse_ini_file('config.ini');
 
@@ -34,9 +25,5 @@ function get_team() {
     echo "<p>";
     echo $name . $number . $currentTeam . $position;
     echo "</p>";
-
-    wp_die();
 }
-
-add_action('wp_ajax_nopriv_get_team', 'get_team');
-add_action('wp_ajax_get_team', 'get_team');
+?>

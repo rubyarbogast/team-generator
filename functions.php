@@ -23,19 +23,119 @@ function get_team() {
     $dQuery = "SELECT d.name, d.number, d.currentTeam, d.position FROM defenseman AS d ORDER BY rand() LIMIT 6";
     $gQuery = "SELECT g.name, g.number, g.currentTeam, g.position FROM goalie AS g ORDER BY rand() LIMIT 2";
 
-    $stmt = $mysqli->prepare($lwQuery);
-    $stmt->bind_param("s", $_GET['q']);
-    $stmt->execute();
-    $stmt->store_result();
-    $stmt->bind_result($name, $number, $currentTeam, $position);
-    $stmt->fetch();
-    $stmt->close();
+    $lw_result_array = array();
 
-    echo "<p>";
-    echo $name . $number . $currentTeam . $position;
-    echo "</p>";
+    $result = mysqli_query($mysqli, $lwQuery);
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $lw_result_array[] = $row;
+        }
+    } else {
+        echo "0 results";
+    }
 
-    wp_die();
+    $c_result_array = array();
+
+    $result = mysqli_query($mysqli, $cQuery);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $c_result_array[] = $row;
+        }
+    } else {
+        echo "0 results";
+    }
+
+    $rw_result_array = array();
+
+    $result = mysqli_query($mysqli, $rwQuery);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $rw_result_array[] = $row;
+        }
+    } else {
+        echo "0 results";
+    }
+
+    $d_result_array = array();
+
+    $result = mysqli_query($mysqli, $dQuery);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $d_result_array[] = $row;
+        }
+    } else {
+        echo "0 results";
+    }
+
+    $g_result_array = array();
+
+    $result = mysqli_query($mysqli, $gQuery);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $g_result_array[] = $row;
+        }
+    } else {
+        echo "0 results";
+    }
+
+    echo "<div>";
+
+    echo "<div>";
+    echo $lw_result_array[0][name] . " " . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $c_result_array[0][name] . " " . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $rw_result_array[0][name] . " " . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam];
+    echo "</div>";
+    
+    echo "</div>";
+
+    echo "<div>";
+
+    echo "<div>";
+    echo $lw_result_array[1][name] . " " . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $c_result_array[1][name] . " " . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $rw_result_array[1][name] . " " . $rw_result_array[1][number] . " " . $rw_result_array[1][currentTeam];
+    echo "</div>";
+
+    echo "</div>";
+
+    echo "<div>";
+
+    echo "<div>";
+    echo $lw_result_array[2][name] . " " . $lw_result_array[2][number] . " " . $lw_result_array[2][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $c_result_array[2][name] . " " . $c_result_array[2][number] . " " . $c_result_array[2][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $rw_result_array[2][name] . " " . $rw_result_array[2][number] . " " . $rw_result_array[2][currentTeam];
+    echo "</div>";
+
+    echo "</div>";
+
+    echo "<div>";
+
+    echo "<div>";
+    echo $lw_result_array[3][name] . " " . $lw_result_array[3][number] . " " . $lw_result_array[3][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $c_result_array[3][name] . " " . $c_result_array[3][number] . " " . $c_result_array[3][currentTeam];
+    echo "</div>";
+    echo "<div>";
+    echo $rw_result_array[3][name] . " " . $rw_result_array[3][number] . " " . $rw_result_array[3][currentTeam];
+    echo "</div>";
+
+    echo "</div>";
+
+    wp_die(); 
 }
 
 add_action('wp_ajax_nopriv_get_team', 'get_team');

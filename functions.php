@@ -9,6 +9,10 @@ function my_enqueue() {
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 
 
+//TODO: put in own file; update 
+//TODO: create new class
+//TODO: use objects instead
+//TODO: consider data structure. array (team) of arrays (position? another layer: lines and pairs?) of player objects? 
 function get_team() {
     $ini = parse_ini_file('config.ini');
 

@@ -19,6 +19,48 @@ function removePlayer(roster) {
             });
             console.log(probPlayer);
         }
+        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Evander Kane") {
+            var theRoster = currentRoster['teams'][0]['roster']['roster'];
+            var probPlayer = _.remove(theRoster, function(e) {
+                return e.person.fullName == "Evander Kane";
+            });
+            console.log(probPlayer);
+        }
+        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Austin Watson") {
+            var theRoster = currentRoster['teams'][0]['roster']['roster'];
+            var probPlayer = _.remove(theRoster, function(e) {
+                return e.person.fullName == "Austin Watson";
+            });
+            console.log(probPlayer);
+        }
+        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Nick Cousins") {
+            var theRoster = currentRoster['teams'][0]['roster']['roster'];
+            var probPlayer = _.remove(theRoster, function(e) {
+                return e.person.fullName == "Nick Cousins";
+            });
+            console.log(probPlayer);
+        }
+        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Drew Doughty") {
+            var theRoster = currentRoster['teams'][0]['roster']['roster'];
+            var probPlayer = _.remove(theRoster, function(e) {
+                return e.person.fullName == "Drew Doughty";
+            });
+            console.log(probPlayer);
+        }
+        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Semyon Varlamov") {
+            var theRoster = currentRoster['teams'][0]['roster']['roster'];
+            var probPlayer = _.remove(theRoster, function(e) {
+                return e.person.fullName == "Semyon Varlamov";
+            });
+            console.log(probPlayer);
+        }
+        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Casey DeSmith") {
+            var theRoster = currentRoster['teams'][0]['roster']['roster'];
+            var probPlayer = _.remove(theRoster, function(e) {
+                return e.person.fullName == "Casey DeSmith";
+            });
+            console.log(probPlayer);
+        }
 
     }
 }

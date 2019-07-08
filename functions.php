@@ -7,6 +7,12 @@ function my_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 
+function theme_styles() {	
+
+	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
+}
+add_action( 'wp_enqueue_scripts', 'theme_styles' );
+
 function get_team() {
     $ini = parse_ini_file('config.ini');
 
@@ -74,21 +80,15 @@ function get_team() {
         echo "0 results";
     }
 
-    echo "<div class='line'>";
+    echo "<div class='flex-container'>";
 
-    echo "<div class='player'>";
-    echo $lw_result_array[0][name] . " #" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam];
-    echo "</div>";
-    echo "<div class='player'>";
-    echo $c_result_array[0][name] . " #" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam];
-    echo "</div>";
-    echo "<div class='player'>";
-    echo $rw_result_array[0][name] . " #" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam];
-    echo "</div>";
+    echo "<div class='player'>" . $lw_result_array[0][name] . " #" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . "</div>";
+    echo "<div class='player'>" . $c_result_array[0][name] . " #" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . "</div>";
+    echo "<div class='player'>". $rw_result_array[0][name] . " #" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>";
     
     echo "</div>";
 
-    echo "<div class='line'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $lw_result_array[1][name] . " #" . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam];
@@ -102,7 +102,7 @@ function get_team() {
 
     echo "</div>";
 
-    echo "<div class='line'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $lw_result_array[2][name] . " #" . $lw_result_array[2][number] . " " . $lw_result_array[2][currentTeam];
@@ -116,7 +116,7 @@ function get_team() {
 
     echo "</div>";
 
-    echo "<div class='line'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $lw_result_array[3][name] . " #" . $lw_result_array[3][number] . " " . $lw_result_array[3][currentTeam];
@@ -130,7 +130,7 @@ function get_team() {
 
     echo "</div>";
 
-    echo "<div class='pair'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $d_result_array[0][name] . " #" . $d_result_array[0][number] . " " . $d_result_array[0][currentTeam];
@@ -141,7 +141,7 @@ function get_team() {
 
     echo "</div>";
 
-    echo "<div class='pair'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $d_result_array[2][name] . " #" . $d_result_array[2][number] . " " . $d_result_array[2][currentTeam];
@@ -152,7 +152,7 @@ function get_team() {
 
     echo "</div>";
 
-    echo "<div class='pair'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $d_result_array[4][name] . " #" . $d_result_array[4][number] . " " . $d_result_array[4][currentTeam];
@@ -163,7 +163,7 @@ function get_team() {
 
     echo "</div>";
 
-    echo "<div class='pair'>";
+    echo "<div class='flex-container'>";
 
     echo "<div class='player'>";
     echo $g_result_array[0][name] . " #" . $g_result_array[0][number] . " " . $g_result_array[0][currentTeam];

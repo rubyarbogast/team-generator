@@ -1,5 +1,4 @@
 <?php
-// Enqueue scripts
 
 //TODO: change values
 function my_enqueue() {
@@ -8,11 +7,6 @@ function my_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 
-
-//TODO: put in own file; update 
-//TODO: create new class
-//TODO: use objects instead
-//TODO: consider data structure. array (team) of arrays (position? another layer: lines and pairs?) of player objects? 
 function get_team() {
     $ini = parse_ini_file('config.ini');
 
@@ -27,7 +21,12 @@ function get_team() {
     $dQuery = "SELECT d.name, d.number, d.currentTeam, d.position FROM defenseman AS d ORDER BY rand() LIMIT 6";
     $gQuery = "SELECT g.name, g.number, g.currentTeam, g.position FROM goalie AS g ORDER BY rand() LIMIT 2";
 
+    //Instantiate arrays to hold players
     $lw_result_array = array();
+    $c_result_array = array();
+    $rw_result_array = array();
+    $d_result_array = array();
+    $g_result_array = array();
 
     $result = mysqli_query($mysqli, $lwQuery);
     if (mysqli_num_rows($result) > 0) {
@@ -39,8 +38,6 @@ function get_team() {
         echo "0 results";
     }
 
-    $c_result_array = array();
-
     $result = mysqli_query($mysqli, $cQuery);
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
@@ -49,8 +46,6 @@ function get_team() {
     } else {
         echo "0 results";
     }
-
-    $rw_result_array = array();
 
     $result = mysqli_query($mysqli, $rwQuery);
     if (mysqli_num_rows($result) > 0) {
@@ -61,8 +56,6 @@ function get_team() {
         echo "0 results";
     }
 
-    $d_result_array = array();
-
     $result = mysqli_query($mysqli, $dQuery);
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
@@ -71,8 +64,6 @@ function get_team() {
     } else {
         echo "0 results";
     }
-
-    $g_result_array = array();
 
     $result = mysqli_query($mysqli, $gQuery);
     if (mysqli_num_rows($result) > 0) {

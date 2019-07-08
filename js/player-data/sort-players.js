@@ -61,12 +61,24 @@ function removePlayer(roster) {
             });
             console.log(probPlayer);
         }
-
     }
 }
 
+//Function to change team names as necessary
+function changeName(playerArray) {
+    for (let i = 0; i < playerArray.length; i++) {
+        if (playerArray[i].getCurrentTeam() == "Chicago Blackhawks") {
+            playerArray[i].setCurrentTeam("Chicago");
+            console.log(playerArray[i]);
+        }
+        if (playerArray[i].getCurrentTeam() == "Montréal Canadiens") {
+            playerArray[i].setCurrentTeam("Montreal Canadiens");
+            console.log(playerArray[i]);
+        }
+    }
+}
 
-//Require team files and store in an array
+//Require team JSON and store in an array
 var allTeams = [];
 for (let i = 0; i < 31; i++) {
     var currentRoster = require('./rosters/' + i + '.json');
@@ -75,13 +87,11 @@ for (let i = 0; i < 31; i++) {
     allTeams.push(currentRoster);
 }
 
-
 //Store all rosters to an array
 var allRosters = [];
 for (let i = 0; i < allTeams.length; i++) {
     allRosters.push(allTeams[i]['teams'][0]['roster']['roster']);
 }
-
 
 //Instantiate arrays to hold player objects
 var centers = [];
@@ -118,19 +128,11 @@ for (let i = 0; i < allRosters.length; i++){
     } 
 }
 
-/* console.log(lWings.length, centers.length, rWings.length, defensemen.length, goalies.length);
-
-//Remove problematic players from arrays
-//Potential issue with this approach is players may change position. Print results to console to check
-var probLWing = _.remove(lWings, function(p) {return p.name == "Evander Kane";});
-var probLWing2 = _.remove(lWings, function(p) {return p.name == "Austin Watson";});
-var probCenter = _.remove(centers, function(p) {return p.name == "Nick Cousins";});
-var probRWing = _.remove(rWings, function(p) {return p.name == "Patrick Kane";});
-var probDMan = _.remove(defensemen, function(p) {return p.name == "Drew Doughty";});
-var probGoalie1 = _.remove(goalies, function(p) {return p.name == "Semyon Varlamov";});
-var probGoalie2 = _.remove(goalies, function(p) {return p.name == "Casey DeSmith";});
-
-console.log(probLWing, probLWing2, probCenter, probRWing, probDMan, probGoalie1, probGoalie2); */
+changeName(lWings);
+changeName(rWings);
+changeName(centers);
+changeName(defensemen);
+changeName(goalies);
 
 //Create new connection pool to DB
 var pool  = mysql.createPool({
@@ -157,7 +159,7 @@ function addRow(data) {
     });
 }
 
-/* lWings.forEach(function(Player) {
+lWings.forEach(function(Player) {
 //Set a timeout to avoid sending query before connection is made
     setTimeout(() => {
         tableName = "lwing";
@@ -216,5 +218,5 @@ goalies.forEach(function(Player) {
             "playerCurrentTeam": Player.currentTeam
         });
     },5000);
-}); */
+}); 
 

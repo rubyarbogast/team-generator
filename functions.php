@@ -79,63 +79,66 @@ function get_team() {
         echo "0 results";
     }
 
-    echo "<div class='flex-container'>";
+    echo "<h2>Forwards</h2>";
+    echo "<div class='flex-container row'>";
 
-    echo "<div class='player col-4'>" . $lw_result_array[0][name] . " #" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>" . $c_result_array[0][name] . " #" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>". $rw_result_array[0][name] . " #" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>";
+    echo "<div class='player forward col-4'>" . $lw_result_array[0][name] . " #" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>" . $c_result_array[0][name] . " #" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>". $rw_result_array[0][name] . " #" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>";
     
     echo "</div>";
 
-    echo "<div class='flex-container'>";
+    echo "<div class='flex-container row'>";
 
-    echo "<div class='player col-4'>" . $lw_result_array[1][name] . " #" . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>" . $c_result_array[1][name] . " #" . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>". $rw_result_array[1][name] . " #" . $rw_result_array[1][number] . " " . $rw_result_array[1][currentTeam] . "</div>";
-
-    echo "</div>";
-
-    echo "<div class='flex-container'>";
-
-    echo "<div class='player col-4'>" . $lw_result_array[2][name] . " #" . $lw_result_array[2][number] . " " . $lw_result_array[2][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>" . $c_result_array[2][name] . " #" . $c_result_array[2][number] . " " . $c_result_array[2][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>". $rw_result_array[2][name] . " #" . $rw_result_array[2][number] . " " . $rw_result_array[2][currentTeam] . "</div>";
+    echo "<div class='player forward col-4'>" . $lw_result_array[1][name] . " #" . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>" . $c_result_array[1][name] . " #" . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>". $rw_result_array[1][name] . " #" . $rw_result_array[1][number] . " " . $rw_result_array[1][currentTeam] . "</div>";
 
     echo "</div>";
 
-    echo "<div class='flex-container'>";
+    echo "<div class='flex-container row'>";
 
-    echo "<div class='player col-4'>" . $lw_result_array[3][name] . " #" . $lw_result_array[3][number] . " " . $lw_result_array[3][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>" . $c_result_array[3][name] . " #" . $c_result_array[3][number] . " " . $c_result_array[3][currentTeam] . " " . "</div>";
-    echo "<div class='player col-4'>". $rw_result_array[3][name] . " #" . $rw_result_array[3][number] . " " . $rw_result_array[3][currentTeam] . "</div>";
+    echo "<div class='player forward col-4'>" . $lw_result_array[2][name] . " #" . $lw_result_array[2][number] . " " . $lw_result_array[2][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>" . $c_result_array[2][name] . " #" . $c_result_array[2][number] . " " . $c_result_array[2][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>". $rw_result_array[2][name] . " #" . $rw_result_array[2][number] . " " . $rw_result_array[2][currentTeam] . "</div>";
+
+    echo "</div>";
+
+    echo "<div class='flex-container row'>";
+
+    echo "<div class='player forward col-4'>" . $lw_result_array[3][name] . " #" . $lw_result_array[3][number] . " " . $lw_result_array[3][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>" . $c_result_array[3][name] . " #" . $c_result_array[3][number] . " " . $c_result_array[3][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>". $rw_result_array[3][name] . " #" . $rw_result_array[3][number] . " " . $rw_result_array[3][currentTeam] . "</div>";
     
     echo "</div>";
 
-    echo "<div class='flex-container'>";
+    echo "<h2>Defensemen</h2>";
+    echo "<div class='flex-container row'>";
 
-    echo "<div class='player col-6'>" . $d_result_array[0][name] . " #" . $d_result_array[0][number] . " " . $d_result_array[0][currentTeam] . " ". "</div>";
-    echo "<div class='player col-6'>" . $d_result_array[1][name] . " #" . $d_result_array[1][number] . " " . $d_result_array[1][currentTeam] . "</div>";
-
-    echo "</div>";
-
-    echo "<div class='flex-container'>";
-
-    echo "<div class='player col-6'>" . $d_result_array[2][name] . " #" . $d_result_array[2][number] . " " . $d_result_array[2][currentTeam] . " ". "</div>";
-    echo "<div class='player col-6'>" . $d_result_array[3][name] . " #" . $d_result_array[3][number] . " " . $d_result_array[3][currentTeam] . "</div>";
+    echo "<div class='player dman col-6'>" . $d_result_array[0][name] . " #" . $d_result_array[0][number] . " " . $d_result_array[0][currentTeam] . " ". "</div>";
+    echo "<div class='player dman col-6'>" . $d_result_array[1][name] . " #" . $d_result_array[1][number] . " " . $d_result_array[1][currentTeam] . "</div>";
 
     echo "</div>";
 
-    echo "<div class='flex-container'>";
+    echo "<div class='flex-container row'>";
 
-    echo "<div class='player col-6'>" . $d_result_array[4][name] . " #" . $d_result_array[4][number] . " " . $d_result_array[4][currentTeam] . " ". "</div>";
-    echo "<div class='player col-6'>" . $d_result_array[5][name] . " #" . $d_result_array[5][number] . " " . $d_result_array[5][currentTeam] . "</div>";
+    echo "<div class='player dman col-6'>" . $d_result_array[2][name] . " #" . $d_result_array[2][number] . " " . $d_result_array[2][currentTeam] . " ". "</div>";
+    echo "<div class='player dman col-6'>" . $d_result_array[3][name] . " #" . $d_result_array[3][number] . " " . $d_result_array[3][currentTeam] . "</div>";
 
     echo "</div>";
 
-    echo "<div class='flex-container'>";
+    echo "<div class='flex-container row'>";
 
-    echo "<div class='player col-6'>" . $g_result_array[0][name] . " #" . $g_result_array[0][number] . " " . $g_result_array[0][currentTeam] . " " . "</div>";
-    echo "<div class='player col-6'>" . $g_result_array[1][name] . " #" . $g_result_array[1][number] . " " . $g_result_array[1][currentTeam] . " " . "</div>";
+    echo "<div class='player dman col-6'>" . $d_result_array[4][name] . " #" . $d_result_array[4][number] . " " . $d_result_array[4][currentTeam] . " ". "</div>";
+    echo "<div class='player dman col-6'>" . $d_result_array[5][name] . " #" . $d_result_array[5][number] . " " . $d_result_array[5][currentTeam] . "</div>";
+
+    echo "</div>";
+
+    echo "<h2>Goalies</h2>";
+    echo "<div class='flex-container row'>";
+
+    echo "<div class='player goalie col-6'>" . $g_result_array[0][name] . " #" . $g_result_array[0][number] . " " . $g_result_array[0][currentTeam] . " " . "</div>";
+    echo "<div class='player goalie col-6'>" . $g_result_array[1][name] . " #" . $g_result_array[1][number] . " " . $g_result_array[1][currentTeam] . " " . "</div>";
 
     echo "</div>";
 

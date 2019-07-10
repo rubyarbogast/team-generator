@@ -109,8 +109,6 @@ for (let i = 0; i < allRosters.length; i++){
     } 
 }
 
-console.log(lWings);
-
 changeName(lWings);
 changeName(rWings);
 changeName(centers);
@@ -131,8 +129,8 @@ var tableName = "";
 
 function addRow(data) {
     //Escape MySQL so that names with apostrophes can be written to the DB
-    let insertQuery = 'INSERT INTO ?? (??,??,??,??) VALUES (?,?,?,?)';
-    let query = mysql.format(insertQuery,[tableName,"name","number","position","currentTeam",data.playerName,data.playerNumber,data.playerPosition,data.playerCurrentTeam]);
+    let insertQuery = 'INSERT INTO ?? (??,??,??,??,??) VALUES (?,?,?,?,?)';
+    let query = mysql.format(insertQuery,[tableName,"name","number","position","currentTeam","teamAbbr",data.playerName,data.playerNumber,data.playerPosition,data.playerCurrentTeam,data.playerTeamAbbr]);
 
     pool.query(query,(err, response) => {
         if(err) {
@@ -142,64 +140,24 @@ function addRow(data) {
     });
 }
 
-lWings.forEach(function(Player) {
-//Set a timeout to avoid sending query before connection is made
-    setTimeout(() => {
-        tableName = "lwing";
-        addRow({
-            "playerName": Player.name,
-            "playerNumber": Player.number,
-            "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam,
+function writeArrayToDB(playersArray, positionTable) {
+    playersArray.forEach(function(Player) {
+        //Set a timeout to avoid sending query before connection is made
+            setTimeout(() => {
+                tableName = positionTable;
+                addRow({
+                    "playerName": Player.name,
+                    "playerNumber": Player.number,
+                    "playerPosition": Player.position,
+                    "playerCurrentTeam": Player.currentTeam,
+                    "playerTeamAbbr": Player.teamAbbr
+                });
+            },5000);
         });
-    },5000);
-});
+}
 
-centers.forEach(function(Player) {
-    setTimeout(() => {
-        tableName = "center";
-        addRow({
-            "playerName": Player.name,
-            "playerNumber": Player.number,
-            "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam,
-        });
-    },5000);
-}); 
-
-rWings.forEach(function(Player) {
-    setTimeout(() => {
-        tableName = "rwing";
-        addRow({
-            "playerName": Player.name,
-            "playerNumber": Player.number,
-            "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam,
-        });
-    },5000);
-});
-
-defensemen.forEach(function(Player) {
-    setTimeout(() => {
-        tableName = "defenseman";
-        addRow({
-            "playerName": Player.name,
-            "playerNumber": Player.number,
-            "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam,
-        });
-    },5000);
-}); 
-
-goalies.forEach(function(Player) {
-    setTimeout(() => {
-        tableName = "goalie";
-        addRow({
-            "playerName": Player.name,
-            "playerNumber": Player.number,
-            "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam,
-        });
-    },5000);
-}); 
-
+writeArrayToDB(lWings, "lwing");
+writeArrayToDB(centers, "center");
+writeArrayToDB(rWings, "rwing");
+writeArrayToDB(defensemen, "defenseman");
+writeArrayToDB(goalies, "goalie");

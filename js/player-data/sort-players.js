@@ -88,25 +88,28 @@ for (let i = 0; i < allRosters.length; i++){
         let playerNumber = allRosters[i][j]['jerseyNumber'];
         let playerPosition = allRosters[i][j]['position']['name'];
         let playerCurrentTeam = allTeams[i]['teams'][0]['name'];
+        let playerTeamAbbr = allTeams[i]['teams'][0]['abbreviation'];
 
         if (allRosters[i][j]['position']['name'] == 'Left Wing') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             lWings.push(currentPlayer); 
         } else if (allRosters[i][j]['position']['name'] == 'Center') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             centers.push(currentPlayer);
         } else if (allRosters[i][j]['position']['name'] == 'Right Wing') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             rWings.push(currentPlayer);
         } else if (allRosters[i][j]['position']['name'] == 'Defenseman') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             defensemen.push(currentPlayer);
         } else if (allRosters[i][j]['position']['name'] == 'Goalie') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam);
+            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             goalies.push(currentPlayer);
         }  
     } 
 }
+
+console.log(lWings);
 
 changeName(lWings);
 changeName(rWings);
@@ -147,7 +150,7 @@ lWings.forEach(function(Player) {
             "playerName": Player.name,
             "playerNumber": Player.number,
             "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam
+            "playerCurrentTeam": Player.currentTeam,
         });
     },5000);
 });
@@ -159,10 +162,10 @@ centers.forEach(function(Player) {
             "playerName": Player.name,
             "playerNumber": Player.number,
             "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam
+            "playerCurrentTeam": Player.currentTeam,
         });
     },5000);
-});
+}); 
 
 rWings.forEach(function(Player) {
     setTimeout(() => {
@@ -171,7 +174,7 @@ rWings.forEach(function(Player) {
             "playerName": Player.name,
             "playerNumber": Player.number,
             "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam
+            "playerCurrentTeam": Player.currentTeam,
         });
     },5000);
 });
@@ -183,7 +186,7 @@ defensemen.forEach(function(Player) {
             "playerName": Player.name,
             "playerNumber": Player.number,
             "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam
+            "playerCurrentTeam": Player.currentTeam,
         });
     },5000);
 }); 
@@ -195,7 +198,7 @@ goalies.forEach(function(Player) {
             "playerName": Player.name,
             "playerNumber": Player.number,
             "playerPosition": Player.position,
-            "playerCurrentTeam": Player.currentTeam
+            "playerCurrentTeam": Player.currentTeam,
         });
     },5000);
 }); 

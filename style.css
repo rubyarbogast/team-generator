@@ -63,6 +63,10 @@ body {
     margin: 3px;
 }
 
+.player > p {
+    margin: 0px;
+}
+
 .forward {
     background-color: #69A2A8;
 }

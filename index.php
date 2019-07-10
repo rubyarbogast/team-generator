@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<?php get_header(); ?> 
 
-    <title>Teams</title>
-
-    <link rel="stylesheet" href="style.css">
-    <?php wp_head(); ?>
-  </head>
-
-  </html>
+  <!-- TODO: button to create team -->
+  <!-- TODO: on click, create and display team -->
+  <!-- TODO: buttons: create a new team, submit the team to blog (catch errors), save team as image -->
+  
+<?php get_footer(); ?>

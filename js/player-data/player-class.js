@@ -6,8 +6,6 @@ class Player {
         this.currentTeam = currentTeam;
     }
 
-    //TODO: add delete function? or just delete from array?
-
     getName() {
         return this.name;
     }
@@ -25,19 +23,19 @@ class Player {
     }
 
     setName(value) {
-        this._name = value;
+        this.name = value;
     }
 
     setNumber(value) {
-        this._number = value;
+        this.number = value;
     }
 
     setPosition(value) {
-        this._position = value;
+        this.position = value;
     }
 
     setCurrentTeam(value) {
-        this._team = value;
+        this.currentTeam = value;
     }
 }
 

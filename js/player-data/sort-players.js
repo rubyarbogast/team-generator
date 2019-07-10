@@ -1,5 +1,3 @@
-//TODO: change Hawks names to just "Chicago" -- where? 
-
 //Require instance of the Player class
 const Player = require('./player-class.js');
 //Require Lodash library in order to use array methods
@@ -9,71 +7,53 @@ var mysql = require('mysql');
 //Require config file to log in to DB
 var config = require('../config.json');
 
-//Function to remove problematic players from the arrays
+//Delete player by name
+function deletePlayer(name) {
+    var theRoster = currentRoster['teams'][0]['roster']['roster'];
+    var probPlayer = _.remove(theRoster, function(e) {
+        return e.person.fullName == name;
+    });
+    console.log(probPlayer);
+}
+
+//Remove players accused of DV or SA from rosters
 function removePlayer(roster) {
     for (let i = 0; i < (currentRoster['teams'][0]['roster']['roster']).length; i++) {
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Patrick Kane") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Patrick Kane";
-            });
-            console.log(probPlayer);
+
+        var currentPlayer = currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'];
+
+        if (currentPlayer == "Patrick Kane") {
+            deletePlayer("Patrick Kane");
         }
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Evander Kane") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Evander Kane";
-            });
-            console.log(probPlayer);
+        if (currentPlayer == "Evander Kane") {
+            deletePlayer("Evander Kane");
         }
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Austin Watson") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Austin Watson";
-            });
-            console.log(probPlayer);
+        if (currentPlayer == "Austin Watson") {
+            deletePlayer("Austin Watson");
         }
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Nick Cousins") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Nick Cousins";
-            });
-            console.log(probPlayer);
+        if (currentPlayer == "Nick Cousins") {
+            deletePlayer("Nick Cousins");
         }
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Drew Doughty") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Drew Doughty";
-            });
-            console.log(probPlayer);
+        if (currentPlayer == "Drew Doughty") {
+            deletePlayer("Drew Doughty");
         }
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Semyon Varlamov") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Semyon Varlamov";
-            });
-            console.log(probPlayer);
+        if (currentPlayer == "Semyon Varlamov") {
+            deletePlayer("Semyon Varlamov");
         }
-        if (currentRoster['teams'][0]['roster']['roster'][i]['person']['fullName'] == "Casey DeSmith") {
-            var theRoster = currentRoster['teams'][0]['roster']['roster'];
-            var probPlayer = _.remove(theRoster, function(e) {
-                return e.person.fullName == "Casey DeSmith";
-            });
-            console.log(probPlayer);
+        if (currentPlayer == "Casey DeSmith") {
+            deletePlayer("Casey DeSmith");
         }
     }
 }
 
-//Function to change team names as necessary
+//Change team names as necessary
 function changeName(playerArray) {
     for (let i = 0; i < playerArray.length; i++) {
         if (playerArray[i].getCurrentTeam() == "Chicago Blackhawks") {
             playerArray[i].setCurrentTeam("Chicago");
-            console.log(playerArray[i]);
         }
         if (playerArray[i].getCurrentTeam() == "Montréal Canadiens") {
             playerArray[i].setCurrentTeam("Montreal Canadiens");
-            console.log(playerArray[i]);
         }
     }
 }

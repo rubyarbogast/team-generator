@@ -1,9 +1,10 @@
 class Player {
-    constructor(name, number, position, currentTeam) {
+    constructor(name, number, position, currentTeam, teamAbbr) {
         this.name = name;
         this.number = number;
         this.position = position;
         this.currentTeam = currentTeam;
+        this.teamAbbr = teamAbbr;
     }
 
     getName() {
@@ -22,6 +23,10 @@ class Player {
         return this.currentTeam;
     }
 
+    getTeamAbbr() {
+        return this.teamAbbr;
+    }
+
     setName(value) {
         this.name = value;
     }
@@ -36,6 +41,10 @@ class Player {
 
     setCurrentTeam(value) {
         this.currentTeam = value;
+    }
+
+    setTeamAbbr(value) {
+        this.teamAbbr = value;
     }
 }
 

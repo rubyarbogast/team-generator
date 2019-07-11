@@ -13,6 +13,11 @@ a,
 .player {
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
+    margin: 5px;
+}
+
+h2 {
+    font-size: 1.25em;
 }
 
 body {
@@ -52,7 +57,21 @@ body {
     display: table;
 }
 
-/* TODO: set max-width */
+.team {
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.group {
+    background-color: #E8F3F1;
+    max-width: 350px;
+    padding: 8px;
+    margin: auto;
+    margin-bottom: 8px;
+}
+
 .player {
     color: white;
     max-width: 100px;

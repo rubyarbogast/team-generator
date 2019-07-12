@@ -13,5 +13,5 @@
   <body <?php body_class(); ?>>
 
 <!--TODO: add navigation-->
-
+  <div id="page-container">
   <h1><?php bloginfo('name'); ?></h1>

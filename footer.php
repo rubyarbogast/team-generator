@@ -1,10 +1,11 @@
-        <footer>
-        
-            &copy; Ruby Arbogast 2019
+            <footer id="footer">
             
-        </footer>
-  
-        <?php wp_footer(); ?>
+                &copy; Ruby Arbogast 2019
+                
+            </footer>
+    
+            <?php wp_footer(); ?>
 
+        </div>
     </body>
 </html>

@@ -121,7 +121,21 @@ body {
     background-color: #406574;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
 
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem; 
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+} 
 
 /* TODO: create mobile styles */
     /* TODO: style players: define size. add hidden div for team name -- or grab team abbreviation instead? */

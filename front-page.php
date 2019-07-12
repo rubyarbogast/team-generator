@@ -5,7 +5,9 @@
 
     <section>
 
-        <button onclick="makeTeam()">Make a Team</button>
+        <div class="flex-container button-container">
+            <button class="main-button" onclick="makeTeam()">Create a Random Team!</button>
+        </div>
         <div id="showTeam"></div>
 
     </section>

@@ -57,6 +57,29 @@ body {
     display: table;
 }
 
+.button-container {
+    background-color: #E8F3F1;
+    max-width: 295px;
+    height: 120px;
+    align-items: center;
+    margin: auto;
+}
+
+.main-button {
+    font-size: 1em;
+    color: white;
+    background-color: #2F4858;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    height: 65px;
+    margin: auto;
+}
+
+.main-button:hover {
+    background-color: #1b2932;
+}
+
 .team {
     border: 1px solid black;
     border-radius: 5px;

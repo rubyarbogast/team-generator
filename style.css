@@ -85,17 +85,17 @@ body {
 }
 
 .team {
+    background-color: #E8F3F1;
     border: 1px solid black;
     border-radius: 5px;
-    max-width: 400px;
+    max-width: 350px;
     margin: auto;
     margin-bottom: 2.5rem;
 }
 
 .group {
-    background-color: #E8F3F1;
-    max-width: 350px;
-    padding: 8px;
+    max-width: 325px;
+    padding: 4px;
     margin: auto;
     margin-bottom: 8px;
 }
@@ -106,7 +106,7 @@ body {
     text-align: center;
     font-size: 0.875em;
     border-radius: 4px;
-    padding: 8px;
+    padding: 4px;
     margin: 3px;
 }
 
@@ -146,10 +146,29 @@ body {
 } 
 
 /* TODO: create mobile styles */
-    /* TODO: style players: define size. add hidden div for team name -- or grab team abbreviation instead? */
+    /* TODO: style players */
 
 /* TODO: create tablet styles */
     /* TODO: style players */
 
 /* TODO: create desktop styles */
     /* TODO: style players */
+@media only screen and (min-width: 768px) {
+    .team {
+        background-color: white;
+        max-width: 550px;
+    }
+    
+    .group {
+        background-color: #E8F3F1;
+        max-width: 520px;
+        padding: 8px;
+    }
+    
+    .player {
+        max-width: 170px;
+        font-size: 0.875em;
+        padding: 8px;
+        margin: 4px;
+    }
+}

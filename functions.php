@@ -82,7 +82,6 @@ function get_team() {
     echo "<div class='team'>";
 
     echo "<h2>Forwards</h2>";
-    echo "<div class='line'>";
 
     echo "<div class='flex-container row'>";
 
@@ -115,10 +114,8 @@ function get_team() {
     echo "<div class='player forward col-4'>". $rw_result_array[3][name][0] . ". " . strstr(($rw_result_array[3][name]), ' ') . "<p>#" . $rw_result_array[3][number] . " " . $rw_result_array[3][teamAbbr] . "</div>";
     
     echo "</div>";
-    echo "</div>";
 
     echo "<h2>Defensemen</h2>";
-    echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
 
@@ -140,10 +137,8 @@ function get_team() {
     echo "<div class='player dman col-6'>" . $d_result_array[5][name][0] . ". " . strstr(($d_result_array[5][name]), ' ') . "<p>#" . $d_result_array[5][number] . " " . $d_result_array[5][teamAbbr] . "</div>";
 
     echo "</div>";
-    echo "</div>";
 
     echo "<h2>Goalies</h2>";
-    echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
 
@@ -151,7 +146,7 @@ function get_team() {
     echo "<div class='player goalie col-6'>" . $g_result_array[1][name][0] . ". " . strstr(($g_result_array[1][name]), ' ') . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][teamAbbr] . " " . "</div>";
 
     echo "</div>";
-    echo "</div>";
+    echo "<p></p>";
 
     echo "</div>";
 
@@ -302,7 +297,7 @@ function get_team_desktop() {
 
     echo "</div>";
     echo "</div>";
-
+    echo "<p></p>";
     echo "</div>";
 
     wp_die(); 

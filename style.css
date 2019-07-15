@@ -13,15 +13,16 @@ a,
 .player {
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
-    margin: 5px;
 }
 
-h1{
+h1 {
+    font-size: 1.5em;
     margin: 1em;
 }
 
 h2 {
     font-size: 1.25em;
+    margin: 0.25em;
 }
 
 body {
@@ -90,21 +91,19 @@ body {
     border-radius: 5px;
     max-width: 350px;
     margin: auto;
-    margin-bottom: 2.5rem;
 }
 
-.line {
+/* .line {
     max-width: 325px;
     padding: 4px;
     margin: auto;
-    margin-bottom: 8px;
 }
 
 .pairing {
     max-width: 210px;
     padding: 4px;
     margin: auto;
-}
+} */
 
 .player {
     color: white;
@@ -160,6 +159,15 @@ body {
 /* TODO: create desktop styles */
     /* TODO: style players */
 @media only screen and (min-width: 768px) {
+    h1 {
+        font-size: 1.75em;
+    }
+
+    h2 {
+        font-size: 1.33em;
+        margin: 0.5em;
+    }
+
     .button-container {
         max-width: 400px;
         height: 150px;
@@ -173,23 +181,25 @@ body {
 
     .team {
         background-color: white;
-        max-width: 570px;
+        max-width: 600px;
     }
     
     .line {
         background-color: #E8F3F1;
-        max-width: 520px;
+        max-width: 550px;
         padding: 8px;
+        margin: auto;
     }
 
     .pairing {
         background-color: #E8F3F1;
-        max-width: 350px;
+        max-width: 370px;
         padding: 8px;
+        margin: auto;
     }
     
     .player {
-        max-width: 170px;
+        max-width: 180px;
         font-size: 0.875em;
         padding: 8px;
         margin: 4px;

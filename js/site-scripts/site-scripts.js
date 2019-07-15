@@ -8,11 +8,12 @@ function makeTeam() {
         x.style.display = "none";
     }
 
+    //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
     var windowSize = window.matchMedia("(max-width: 767px)")
-    teamDisplaySize(windowSize) // Call listener function at run time
-    windowSize.addListener(teamDisplaySize) // Attach listener function on state changes 
+    teamDisplaySize(windowSize) //Call listener function at runtime
+    windowSize.addListener(teamDisplaySize) //Attach listener function on state changes 
 
-    //NB: drawback to this approach is that it won't change if window is resized 
+    //NB: drawback to this approach is that it sends a new request when window hits breakpoint 
     function teamDisplaySize() {
     if (windowSize.matches) {
         jQuery.ajax({
@@ -23,7 +24,7 @@ function makeTeam() {
             },
             dataType: "html",
             success: function(data) {
-                // This outputs the result of the ajax request
+                //Output the result of the AJAX request
                 document.getElementById("showTeam").innerHTML = data;
             },
             error: function(errorThrown){
@@ -39,7 +40,7 @@ function makeTeam() {
             },
             dataType: "html",
             success: function(data) {
-                // This outputs the result of the ajax request
+                //Output the result of the AJAX request
                 document.getElementById("showTeam").innerHTML = data;
             },
             error: function(errorThrown){

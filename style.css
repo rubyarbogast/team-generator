@@ -93,11 +93,17 @@ body {
     margin-bottom: 2.5rem;
 }
 
-.group {
+.line {
     max-width: 325px;
     padding: 4px;
     margin: auto;
     margin-bottom: 8px;
+}
+
+.pairing {
+    max-width: 210px;
+    padding: 4px;
+    margin: auto;
 }
 
 .player {
@@ -154,14 +160,31 @@ body {
 /* TODO: create desktop styles */
     /* TODO: style players */
 @media only screen and (min-width: 768px) {
-    .team {
-        background-color: white;
-        max-width: 550px;
+    .button-container {
+        max-width: 400px;
+        height: 150px;
     }
     
-    .group {
+    .main-button {
+        font-size: 1.5em;
+        width: 300px;
+        height: 90px;
+    }
+
+    .team {
+        background-color: white;
+        max-width: 570px;
+    }
+    
+    .line {
         background-color: #E8F3F1;
         max-width: 520px;
+        padding: 8px;
+    }
+
+    .pairing {
+        background-color: #E8F3F1;
+        max-width: 350px;
         padding: 8px;
     }
     

@@ -82,7 +82,7 @@ function get_team() {
     echo "<div class='team'>";
 
     echo "<h2>Forwards</h2>";
-    echo "<div class='group'>";
+    echo "<div class='line'>";
 
     echo "<div class='flex-container row'>";
 
@@ -118,7 +118,7 @@ function get_team() {
     echo "</div>";
 
     echo "<h2>Defensemen</h2>";
-    echo "<div class='group'>";
+    echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
 
@@ -143,7 +143,7 @@ function get_team() {
     echo "</div>";
 
     echo "<h2>Goalies</h2>";
-    echo "<div class='group'>";
+    echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
 
@@ -232,7 +232,7 @@ function get_team_desktop() {
     echo "<div class='team'>";
 
     echo "<h2>Forwards</h2>";
-    echo "<div class='group'>";
+    echo "<div class='line'>";
 
     echo "<div class='flex-container row'>";
 
@@ -268,7 +268,7 @@ function get_team_desktop() {
     echo "</div>";
 
     echo "<h2>Defensemen</h2>";
-    echo "<div class='group'>";
+    echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
 
@@ -293,7 +293,7 @@ function get_team_desktop() {
     echo "</div>";
 
     echo "<h2>Goalies</h2>";
-    echo "<div class='group'>";
+    echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
 

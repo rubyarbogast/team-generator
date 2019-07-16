@@ -55,6 +55,8 @@ function makeTeam() {
 
 }
 
+
 //TODO: prevent spam requests
 
 //TODO: save team as image
+

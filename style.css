@@ -168,6 +168,14 @@ h2 {
     margin: 10px 3px 5px 3px;
 }
 
+.secondary-button:hover {
+    background-color: #75d5bf;
+}
+
+.entries {
+    background-color: #def5f0;
+}
+
 #pageContainer {
     min-height: 85vh;
     display: flex;
@@ -245,7 +253,7 @@ h2 {
     }
 
     .secondary-button {
-        width: 120px;
+        width: 150px;
         height: 60px;
         padding: 4px;
         margin: 15px 8px 10px 8px;

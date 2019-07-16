@@ -11,7 +11,7 @@
         </div>
         <div id="showTeam"></div>
         <div class="flex-container" id="optionButtons">
-            <button class="secondary-button">New Team</button>
+            <button class="secondary-button" onclick="makeTeam()">New Team</button>
             <button class="secondary-button">Post Team to Blog</button>
             <button class="secondary-button">Save Team as Image</button>
         </div>

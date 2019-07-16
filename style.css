@@ -152,7 +152,7 @@ h2 {
 }
 
 #page-container {
-    min-height: 80vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
 }
@@ -175,7 +175,7 @@ h2 {
 
 @media only screen and (min-width: 768px) {
     h1 {
-        font-size: 2em;
+        font-size: 2.5em;
     }
 
     h2 {
@@ -192,11 +192,11 @@ h2 {
 
     .button-container {
         width: 400px;
-        height: 150px;
+        height: 170px;
     }
     
     .main-button {
-        font-size: 1.5em;
+        font-size: 1.25em;
         width: 300px;
         height: 90px;
     }
@@ -208,14 +208,14 @@ h2 {
     
     .line {
         background-color: #E8F3F1;
-        max-width: 550px;
+        max-width: 575px;
         padding: 8px;
         margin: auto;
     }
 
     .pairing {
         background-color: #E8F3F1;
-        max-width: 370px;
+        max-width: 375px;
         padding: 8px;
         margin: auto;
     }

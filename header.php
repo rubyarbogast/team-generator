@@ -12,6 +12,14 @@
   
   <body <?php body_class(); ?>>
 
-<!--TODO: add navigation-->
-  <div id="page-container">
-  <h1><?php bloginfo('name'); ?></h1>
+    <div class="menu">
+      <?php 
+            $args = array(
+              'menu'        => 'primary'
+            );
+            wp_nav_menu( $args );
+      ?> 
+    </div>
+
+    <div id="page-container">
+      <h1><?php bloginfo('name'); ?></h1>

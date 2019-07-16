@@ -1,5 +1,7 @@
 <?php
 
+add_theme_support( 'menus' );
+
 function my_enqueue() {
     wp_enqueue_script( 'makeTeam', get_template_directory_uri() . '/js/site-scripts/site-scripts.js', array('jquery') );
     wp_localize_script( 'makeTeam', 'nhl_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
@@ -10,6 +12,12 @@ function theme_styles() {
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
+
+//Register custom navigation menu
+function register_my_menu() {
+	register_nav_menu( 'primary', __( 'Primary Menu', 'theme-slug' ) );
+}
+add_action( 'init', 'register_my_menu' );
 
 function get_team() {
     $ini = parse_ini_file('config.ini');

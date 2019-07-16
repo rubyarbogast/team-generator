@@ -1,5 +1,5 @@
 </div>
-            <footer id="footer">
+            <footer class="flex-container" id="footer">
             
                 &copy; Ruby Arbogast 2019
                 

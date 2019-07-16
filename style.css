@@ -151,6 +151,9 @@ h2 {
     background-color: #406574;
 }
 
+#optionButtons {
+    display: none;
+}
 #page-container {
     min-height: 85vh;
     display: flex;

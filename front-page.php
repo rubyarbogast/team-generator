@@ -10,6 +10,10 @@
             </div>
         </div>
         <div id="showTeam"></div>
-
+        <div class="flex-container" id="optionButtons">
+            <button>New Team</button>
+            <button>Post Team to Blog</button>
+            <button>Save Team as Image</button>
+        </div>
     </section>
 <?php get_footer(); ?>

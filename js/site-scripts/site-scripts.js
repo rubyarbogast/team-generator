@@ -8,6 +8,10 @@ function makeTeam() {
         x.style.display = "none";
     }
 
+    var el = document.getElementById("optionButtons");
+
+    el.style.display = 'flex';
+
     //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
     var windowSize = window.matchMedia("(max-width: 767px)")
     teamDisplaySize(windowSize) //Call listener function at runtime

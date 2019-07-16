@@ -18,7 +18,8 @@ h2,
 h3,
 p,
 a,
-.player {
+.player,
+footer {
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
 }
@@ -32,8 +33,6 @@ h2 {
     font-size: 1.25em;
     margin: 0.25em;
 }
-
-/* TODO: create navigation menu styles */
 
 .flex-container {
     display: flex;
@@ -87,11 +86,18 @@ h2 {
     background-color: #1b2932;
 }
 
+/* Generate team button styles */
+#buttonDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vw;
+}
+
 .button-container {
     background-color: #E8F3F1;
-    max-width: 295px;
+    width: 295px;
     height: 120px;
-    align-items: center;
     margin: auto;
 }
 
@@ -110,6 +116,7 @@ h2 {
     background-color: #1b2932;
 }
 
+/* Team and player styles */
 .team {
     background-color: #E8F3F1;
     border: 1px solid black;
@@ -145,7 +152,7 @@ h2 {
 }
 
 #page-container {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
 }
@@ -166,17 +173,9 @@ h2 {
     margin-bottom: 0px;
 } 
 
-/* TODO: create mobile styles */
-    /* TODO: style players */
-
-/* TODO: create tablet styles */
-    /* TODO: style players */
-
-/* TODO: create desktop styles */
-    /* TODO: style players */
 @media only screen and (min-width: 768px) {
     h1 {
-        font-size: 1.75em;
+        font-size: 2em;
     }
 
     h2 {
@@ -184,8 +183,15 @@ h2 {
         margin: 0.5em;
     }
 
+    #buttonDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 20vw;
+    }
+
     .button-container {
-        max-width: 400px;
+        width: 400px;
         height: 150px;
     }
     

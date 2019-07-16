@@ -21,5 +21,5 @@
       ?> 
     </div>
 
-    <div id="page-container">
+    <div id="pageContainer">
       <h1><?php bloginfo('name'); ?></h1>

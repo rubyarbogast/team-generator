@@ -11,9 +11,8 @@ function makeTeam() {
     //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
     var windowSize = window.matchMedia("(max-width: 767px)")
     teamDisplaySize(windowSize) //Call listener function at runtime
-    windowSize.addListener(teamDisplaySize) //Attach listener function on state changes 
 
-    //NB: drawback to this approach is that it sends a new request when window hits breakpoint 
+    //TODO: output error messages to client 
     function teamDisplaySize() {
     if (windowSize.matches) {
         jQuery.ajax({

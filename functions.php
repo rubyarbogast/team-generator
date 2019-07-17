@@ -243,10 +243,16 @@ function get_team_desktop() {
         exit;
     }
 
+    echo "<div class='flex-container row'>";
+
+    echo "<div class='player forward col-4'>" . Forward . "</div>";
+    echo "<div class='player dman col-4'>" . Defenseman . "</div>";
+    echo "<div class='player goalie col-4'>" . Goalie . "</div>";
+
+    echo "</div><p></p>";
 
     echo "<div class='team'>";
 
-    echo "<h2>Forwards</h2>";
     echo "<div class='line'>";
 
     echo "<div class='flex-container row'>";
@@ -282,7 +288,6 @@ function get_team_desktop() {
     echo "</div>";
     echo "</div>";
 
-    echo "<h2>Defensemen</h2>";
     echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
@@ -307,7 +312,6 @@ function get_team_desktop() {
     echo "</div>";
     echo "</div>";
 
-    echo "<h2>Goalies</h2>";
     echo "<div class='pairing'>";
 
     echo "<div class='flex-container row'>";
@@ -317,7 +321,6 @@ function get_team_desktop() {
 
     echo "</div>";
     echo "</div>";
-    echo "<p></p>";
     echo "</div>";
 
     wp_die(); 

@@ -205,8 +205,7 @@ h2 {
     }
 
     h2 {
-        font-size: 1.33em;
-        margin: 0.5em;
+        font-size: 1.25em;
     }
 
     #buttonDiv {
@@ -229,21 +228,21 @@ h2 {
 
     .team {
         background-color: white;
-        max-width: 630px;
+        max-width: 610px;
     }
     
     .line {
         background-color: #E8F3F1;
         max-width: 585px;
         padding: 8px;
-        margin: auto;
+        margin: 8px auto 8px auto;
     }
 
     .pairing {
         background-color: #E8F3F1;
         max-width: 390px;
         padding: 8px;
-        margin: auto;
+        margin: 8px auto 8px auto;
     }
     
     .player {

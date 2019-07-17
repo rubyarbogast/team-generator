@@ -8,15 +8,14 @@ function makeTeam() {
         x.style.display = "none";
     }
 
+    //Toggle show/hide secondary buttons
     var el = document.getElementById("optionButtons");
-
     el.style.display = 'flex';
 
     //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
     var windowSize = window.matchMedia("(max-width: 767px)")
     teamDisplaySize(windowSize) //Call listener function at runtime
-
-    //TODO: output error messages to client 
+ 
     function teamDisplaySize() {
     if (windowSize.matches) {
         jQuery.ajax({
@@ -54,9 +53,3 @@ function makeTeam() {
     }
 
 }
-
-
-//TODO: prevent spam requests
-
-//TODO: save team as image
-

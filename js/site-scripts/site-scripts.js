@@ -1,16 +1,11 @@
 function makeTeam() {
-
-    var x = document.getElementById("buttonDiv");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-
-    } else {
-        x.style.display = "none";
-    }
+    //Toggle show/hide main button to create team
+    var mainButton = document.getElementById("buttonDiv");
+    mainButton.style.display = "none";
 
     //Toggle show/hide secondary buttons
-    var el = document.getElementById("optionButtons");
-    el.style.display = 'flex';
+    var secondaryButtons = document.getElementById("optionButtons");
+    secondaryButtons.style.display = "flex";
 
     //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
     var windowSize = window.matchMedia("(max-width: 767px)")
@@ -22,7 +17,7 @@ function makeTeam() {
             url:  nhl_ajax_object.ajax_url,
             type: "POST",
             data: {
-                action: 'get_team',
+                action: "get_team",
             },
             dataType: "html",
             success: function(data) {
@@ -38,7 +33,7 @@ function makeTeam() {
             url:  nhl_ajax_object.ajax_url,
             type: "POST",
             data: {
-                action: 'get_team_desktop',
+                action: "get_team_desktop",
             },
             dataType: "html",
             success: function(data) {

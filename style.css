@@ -20,19 +20,32 @@ p,
 a,
 .player,
 footer,
-.error-message {
+li {
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
 }
 
 h1 {
     font-size: 1.5em;
-    margin: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
 }
 
 h2 {
     font-size: 1.25em;
     margin: 0.25em;
+}
+
+a {
+    color: #2F4858;
+}
+
+p {
+    margin: 0.25em;
+}
+
+a:visited {
+    color: #1b2932;
 }
 
 .flex-container {
@@ -175,6 +188,7 @@ h2 {
 
 .entries {
     background-color: #def5f0;
+    margin: 8px;
 }
 
 #pageContainer {
@@ -212,7 +226,7 @@ h2 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 20vw;
+        height: 25vw;
     }
 
     .button-container {
@@ -257,5 +271,11 @@ h2 {
         height: 60px;
         padding: 4px;
         margin: 15px 8px 10px 8px;
+    }
+
+    .entries {
+        max-width: 650px;
+        padding: 10px;
+        margin: auto;
     }
 }

@@ -19,10 +19,12 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
+//Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
     $ini = parse_ini_file('config.ini');
 
     $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
+
     if($mysqli->connect_error) {
         exit('Could not connect');
         }
@@ -42,12 +44,13 @@ function get_team() {
 
     $result = mysqli_query($mysqli, $lwQuery);
     if (mysqli_num_rows($result) > 0) {
-        // output data of each row
+        //Save data from each row to array
         while($row = mysqli_fetch_assoc($result)) {
             $lw_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $cQuery);
@@ -56,7 +59,8 @@ function get_team() {
             $c_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $rwQuery);
@@ -65,7 +69,8 @@ function get_team() {
             $rw_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $dQuery);
@@ -74,7 +79,8 @@ function get_team() {
             $d_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $gQuery);
@@ -83,7 +89,8 @@ function get_team() {
             $g_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
 
@@ -192,7 +199,8 @@ function get_team_desktop() {
             $lw_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $cQuery);
@@ -201,7 +209,8 @@ function get_team_desktop() {
             $c_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $rwQuery);
@@ -210,7 +219,8 @@ function get_team_desktop() {
             $rw_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $dQuery);
@@ -219,7 +229,8 @@ function get_team_desktop() {
             $d_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
     $result = mysqli_query($mysqli, $gQuery);
@@ -228,7 +239,8 @@ function get_team_desktop() {
             $g_result_array[] = $row;
         }
     } else {
-        echo "0 results";
+        echo "<h2>Oops! Something went wrong ...</h2>";
+        exit;
     }
 
 

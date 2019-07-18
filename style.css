@@ -382,3 +382,61 @@ a:visited {
     }
 }
 
+@media only screen and (min-width: 1366px) {
+    #buttonDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 25vw;
+    }
+
+    .button-container {
+        width: 450px;
+        height: 200px;
+    }
+    
+    #mainButton {
+        font-size: 1.5em;
+        width: 325px;
+        height: 110px;
+    }
+
+    .team {
+        background-color: white;
+        max-width: 650px;
+    }
+    
+    .line {
+        background-color: #E8F3F1;
+        max-width: 630px;
+        padding: 10px;
+        margin: 12px auto 12px auto;
+    }
+
+    .pairing {
+        background-color: #E8F3F1;
+        max-width: 410px;
+        padding: 10px;
+        margin: 12px auto 12px auto;
+    }
+    
+    .player {
+        max-width: 180px;
+        font-size: 1em;
+        padding: 8px;
+        margin: 4px;
+    }
+
+    #secondaryButton {
+        width: 150px;
+        height: 60px;
+        padding: 4px;
+        margin: 15px 8px 10px 8px;
+    }
+
+    .entries {
+        max-width: 660px;
+        padding: 10px;
+        margin: auto;
+    }
+}

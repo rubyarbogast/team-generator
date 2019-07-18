@@ -12,7 +12,6 @@
             <div id="content">
                 <div id="showTeam"></div>
                 <div class="flex-container" id="optionButtons">
-                    <button class="secondary-button">New Team</button>
                 </div>
             </div>
 

@@ -18,9 +18,9 @@ h2,
 h3,
 p,
 a,
-.player,
 footer,
-li {
+li,
+.player {
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
 }
@@ -53,7 +53,7 @@ a:visited {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  }
+}
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -151,11 +151,6 @@ a:visited {
 
 .main-button:hover {
     background-color: #1b2932;
-}
-
-/* By default, don't display secondary buttons. JS toggles buttons on after main button clicked */
-#optionButtons {
-    display: none;
 }
 
 .secondary-button {
@@ -385,3 +380,4 @@ a:visited {
         margin: auto;
     }
 }
+

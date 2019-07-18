@@ -39,12 +39,14 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
+                        $('#showTeam').hide();
                         $('#secondaryButton').hide();
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
+                        $('#showTeam').show();
                         $('#secondaryButton').show();
                     }
                 });

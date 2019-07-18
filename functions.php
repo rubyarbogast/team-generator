@@ -3,8 +3,8 @@
 add_theme_support( 'menus' );
 
 function my_enqueue() {
-    wp_enqueue_script( 'makeTeam', get_template_directory_uri() . '/js/site-scripts/site-scripts.js', array('jquery') );
-    wp_localize_script( 'makeTeam', 'nhl_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    wp_enqueue_script( 'ajax-team', get_template_directory_uri() . '/js/site-scripts/ajax-team.js', array('jquery') );
+    wp_localize_script( 'ajax-team', 'nhl_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 

@@ -5,13 +5,15 @@
 
             <div id="buttonDiv">
                 <div class="flex-container button-container">
-                    <button class="main-button">Create a Random Team!</button>
+                    <button class="get-team-button" id="mainButton">Create a Random Team!</button>
                 </div>
             </div>
             
             <div id="content">
-                <div id="showTeam"></div>
+                <div id="showTeam">
+                </div>
                 <div class="flex-container" id="optionButtons">
+                    <button class="get-team-button" id="secondaryButton">New Team</button>
                 </div>
             </div>
 

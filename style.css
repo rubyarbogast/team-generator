@@ -138,7 +138,7 @@ a:visited {
     margin: auto;
 }
 
-.main-button {
+#mainButton {
     font-size: 1em;
     color: white;
     background-color: #2F4858;
@@ -149,11 +149,12 @@ a:visited {
     margin: auto;
 }
 
-.main-button:hover {
+#mainButton:hover {
     background-color: #1b2932;
 }
 
-.secondary-button {
+#secondaryButton {
+    display: none;
     background-color: #A2E3D4;
     width: 100px;
     height: 50px;
@@ -165,7 +166,7 @@ a:visited {
     margin: 10px 3px 5px 3px;
 }
 
-.secondary-button:hover {
+#secondaryButton:hover {
     background-color: #75d5bf;
 }
 
@@ -335,7 +336,7 @@ a:visited {
         height: 170px;
     }
     
-    .main-button {
+    .get-team-button {
         font-size: 1.25em;
         width: 300px;
         height: 90px;
@@ -367,7 +368,7 @@ a:visited {
         margin: 4px;
     }
 
-    .secondary-button {
+    #secondaryButton {
         width: 150px;
         height: 60px;
         padding: 4px;

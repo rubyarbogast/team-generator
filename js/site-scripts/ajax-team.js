@@ -1,9 +1,8 @@
-//TODO: remove button after click (second $(document) function w second button ID)
-//TODO: get loader code; customize
+
 
 (function($) {
 
-    $(document).on( 'click', '.main-button', function( event ) {
+    $(document).on( 'click', '.get-team-button', function( event ) {
 
         event.preventDefault();
 
@@ -26,8 +25,8 @@
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
-                        $('#showTeam').append( html );
-                        $('#optionButtons').append( '<button class="secondary-button">New Team</button>' );
+                        $('#main #showTeam').replaceWith( html );
+                        $('#main #content #optionButtons').append( '<button class="secondary-button">New Team</button>' );
                     }
                 });
             } else {
@@ -40,20 +39,19 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
+                        $('#secondaryButton').hide();
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
-                        $('#showTeam').append( html );
-                        $('#main #content #optionButtons').append( '<button class="secondary-button">New Team</button>' );
+                        document.getElementById('showTeam').innerHTML = html;
+                        $('#secondaryButton').show();
                     }
                 });
             }
 
         } 
     });
-
-
 
 
 })(jQuery);

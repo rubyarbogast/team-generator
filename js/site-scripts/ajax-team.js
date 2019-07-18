@@ -1,5 +1,3 @@
-
-
 (function($) {
 
     $(document).on( 'click', '.get-team-button', function( event ) {
@@ -21,12 +19,15 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
+                        $('#showTeam').hide();
+                        $('#secondaryButton').hide();
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
-                        $('#main #showTeam').replaceWith( html );
-                        $('#main #content #optionButtons').append( '<button class="secondary-button">New Team</button>' );
+                        document.getElementById('showTeam').innerHTML = html;
+                        $('#showTeam').show();
+                        $('#secondaryButton').show();
                     }
                 });
             } else {

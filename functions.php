@@ -243,13 +243,7 @@ function get_team_desktop() {
         exit;
     }
 
-    echo "<div class='flex-container row'>";
-
-    echo "<div class='player forward col-4'>" . Forward . "</div>";
-    echo "<div class='player dman col-4'>" . Defenseman . "</div>";
-    echo "<div class='player goalie col-4'>" . Goalie . "</div>";
-
-    echo "</div><p></p>";
+    echo "<p></p>";
 
     echo "<div class='team'>";
 

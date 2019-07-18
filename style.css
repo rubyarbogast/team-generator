@@ -170,6 +170,10 @@ a:visited {
     background-color: #75d5bf;
 }
 
+#key {
+    display: none;
+}
+
 /* Team and player styles */
 .team {
     background-color: #E8F3F1;

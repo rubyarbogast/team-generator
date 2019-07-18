@@ -10,6 +10,11 @@
             </div>
             
             <div id="content">
+                <div class="flex-container row" id="key">
+                    <div class='player forward col-4'>Forward</div>
+                    <div class='player dman col-4'>Defenseman</div>
+                    <div class='player goalie col-4'>Goalie</div>
+                </div>
                 <div id="showTeam">
                 </div>
                 <div class="flex-container" id="optionButtons">

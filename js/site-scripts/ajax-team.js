@@ -8,6 +8,8 @@
         var windowSize = window.matchMedia("(max-width: 767px)")
         teamDisplaySize(windowSize) //Call listener function at runtime
 
+        var desktop = window.matchMedia("(min-width: 1366px")
+
         function teamDisplaySize() {
             if (windowSize.matches) {
                 $.ajax({
@@ -48,6 +50,7 @@
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
                         $('#showTeam').show();
+                        if (!desktop.matches) {$('#key').css("display","flex");}
                         $('#secondaryButton').show();
                     }
                 });

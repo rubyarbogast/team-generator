@@ -14,7 +14,7 @@
             },
             beforeSend: function() {
                 $('#main').find( 'article' ).remove();
-                $('#main').append( '<div class="page-content" id="loader">Loading ...</div>' );
+                $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
             },
             success: function( html ) {
                 $('#main #loader').remove();

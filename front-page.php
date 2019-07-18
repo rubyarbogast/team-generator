@@ -8,7 +8,7 @@
                     <button class="main-button">Create a Random Team!</button>
                 </div>
             </div>
-
+            
             <div id="content">
                 <div id="showTeam"></div>
                 <div class="flex-container" id="optionButtons">

@@ -8,7 +8,7 @@
         var windowSize = window.matchMedia("(max-width: 767px)")
         teamDisplaySize(windowSize) //Call listener function at runtime
 
-        var desktop = window.matchMedia("(min-width: 1200px")
+        var desktop = window.matchMedia("(min-width: 1366px")
 
         function teamDisplaySize() {
             if (windowSize.matches) {

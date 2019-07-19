@@ -318,6 +318,7 @@ function get_team_desktop() {
 
     echo "</div>";
     echo "</div>";
+    echo "<p class='link-address'>http://rubyarbogast.com/oneforone</p>";
     echo "</div>";
 
     wp_die(); 

@@ -80,7 +80,7 @@ a:visited {
 
 /* Ensure footer won't cover up dynamically loaded content by using a flex column with div for dynamic content set to flex: 1*/
 #pageContainer {
-    min-height: 85vh;
+    min-height: 86vh;
     display: flex;
     flex-direction: column;
 }
@@ -342,7 +342,7 @@ a:visited {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 25vw;
+        height: 27vw;
     }
 
     .button-container {

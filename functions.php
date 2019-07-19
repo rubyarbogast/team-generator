@@ -248,6 +248,7 @@ function get_team_desktop() {
     echo "<div class='team'>";
 
     echo "<div class='line'>";
+    echo "<h2 class='player-type'>Forwards</h2>";
 
     echo "<div class='flex-container row'>";
 
@@ -283,6 +284,7 @@ function get_team_desktop() {
     echo "</div>";
 
     echo "<div class='pairing'>";
+    echo "<h2 class='player-type'>Defensemen</h2>";
 
     echo "<div class='flex-container row'>";
 
@@ -307,6 +309,7 @@ function get_team_desktop() {
     echo "</div>";
 
     echo "<div class='pairing'>";
+    echo "<h2 class='player-type'>Goalies</h2>";
 
     echo "<div class='flex-container row'>";
 

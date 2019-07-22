@@ -161,8 +161,7 @@ function get_team() {
     echo "<div class='player goalie col-6'>" . $g_result_array[1][name][0] . ". " . strstr(($g_result_array[1][name]), ' ') . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][teamAbbr] . " " . "</div>";
 
     echo "</div>";
-    echo "<p></p>";
-
+    echo "<p class='link-address'>http://rubyarbogast.com/oneforone</p>";
     echo "</div>";
 
     wp_die(); 

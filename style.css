@@ -221,7 +221,8 @@ a:visited {
 
 .entries {
     background-color: #def5f0;
-    margin: 8px;
+    margin: 10px;
+    padding: 10px;
 }
 
 /* Loader styles */

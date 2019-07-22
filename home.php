@@ -1,4 +1,3 @@
-<!-- TODO: display entries -->
 <?php get_header(); ?> 
 
 <div class="entries">

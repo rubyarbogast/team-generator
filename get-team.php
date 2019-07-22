@@ -1,5 +1,4 @@
 <?php 
-// TODO: on upload, place config files in private folder 
 function get_team() {
     $ini = parse_ini_file('config.ini');
 

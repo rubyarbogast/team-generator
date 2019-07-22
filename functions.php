@@ -26,7 +26,7 @@ function get_team() {
     $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
 
     if($mysqli->connect_error) {
-        exit('Could not connect');
+        exit('<h2>Oops! Something went wrong ...</h2>');
         }
 
     $lwQuery = "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4";
@@ -161,8 +161,7 @@ function get_team() {
     echo "<div class='player goalie col-6'>" . $g_result_array[1][name][0] . ". " . strstr(($g_result_array[1][name]), ' ') . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][teamAbbr] . " " . "</div>";
 
     echo "</div>";
-    echo "<p></p>";
-
+    echo "<p class='link-address'>http://rubyarbogast.com/oneforone</p>";
     echo "</div>";
 
     wp_die(); 
@@ -174,9 +173,9 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
     $ini = parse_ini_file('config.ini');
 
-    $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
+    $mysqli = new mysqli($ini['db_host'], $ini['db_ user'], $ini['db_password'], $ini['db_name']);
     if($mysqli->connect_error) {
-        exit('Could not connect');
+        exit('<h2>Oops! Something went wrong ...</h2>');
         }
 
     $lwQuery = "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4";

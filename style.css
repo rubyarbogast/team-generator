@@ -179,19 +179,20 @@ a:visited {
     background-color: #E8F3F1;
     border: 1px solid black;
     border-radius: 5px;
-    max-width: 350px;
+    max-width: 390px;
     margin: auto;
 }
 
+/* Don't display player type key on mobile; headings are included here */
 .player-type {
     display: none;
 }
 
 .player {
     color: white;
-    max-width: 100px;
+    max-width: 120px;
     text-align: center;
-    font-size: 0.875em;
+    font-size: 3.75vw;
     border-radius: 4px;
     padding: 4px;
     margin: 3px;
@@ -327,6 +328,12 @@ a:visited {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@media only screen and (min-width: 376px) {
+    .player {
+        font-size: 0.875em;
     }
 }
 

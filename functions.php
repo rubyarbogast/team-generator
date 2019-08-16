@@ -346,30 +346,13 @@ function get_team_desktop() {
     <input type='text' name='lw1number' value='" . $lw_result_array[0][number] . "' >
     <input type='text' name='lw1team' value='" . $lw_result_array[0][currentTeam] . "' >";
     
-    echo "<button id='submitTeamButton' type='submit' value='submit'>Post Team to Blog</button>";
+    echo "<button id='submitTeamButton' type='submit' name='submit' value='submit'>Post Team to Blog</button>";
 
     echo "<button class='get-team-button' id='secondaryButton'>New Team</button>";
 
-    //TODO: try moving the function below back up here and wrapping in an if statement so it only fires when submitted
-/*     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $ini = parse_ini_file('config.ini');
-
-        $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
-        if($mysqli->connect_error) {
-            exit('<h2>Oops! Something went wrong ...</h2>');
-            }
-
-        $lw1name = $lw_result_array[0][name];
-        $lw1number = $_POST['lw1number'];
-        $lw1team = $_POST['lw1team'];
-
-        $sql = "INSERT INTO team (lw_1_name, lw_1_number, lw_1_current_team) VALUES ('$lw1name', '$lw1number', '$lw1team')";
-
-        mysqli_query($mysqli, $sql);
-    } */
-
     echo "</form></div>";
 
+    
     wp_die(); 
 }
 
@@ -378,7 +361,35 @@ add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
 
 function rma_team_post() {
 
-    $ini = parse_ini_file('config.ini');
+        global $wpdb;
+
+/*         $lw1name = $lw_result_array[0][name];
+        $lw1number = $lw_result_array[0][number];
+        $lw1team = $lw_result_array[0][currentTeam]; */
+
+        $lw1name = $_POST['lw1name'];
+        $lw1number = $_POST['lw1number'];
+        $lw1team = $_POST['lw1team'];
+
+        echo $lw1name;
+    
+        $wpdb->insert( 
+            'team', 
+            array( 
+                'lw_1_name' => $lw1name, 
+                'lw_1_number' => $lw1number,
+                'lw_1_current_team' => $lw1team
+            ), 
+            array( 
+                '%s', 
+                '%d',
+                '%s' 
+            ) 
+        );
+    
+}
+
+/*     $ini = parse_ini_file('config.ini');
 
     $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
     if($mysqli->connect_error) {
@@ -392,7 +403,7 @@ function rma_team_post() {
     $sql = "INSERT INTO team (lw_1_name, lw_1_number, lw_1_current_team) VALUES ('$lw1name', '$lw1number', '$lw1team')";
 
     mysqli_query($mysqli, $sql);
-    wp_die(); 
-}
+    wp_die();  */
+//}
 add_action('wp_ajax_nopriv_rma_team_post', 'rma_team_post');
 add_action('wp_ajax_rma_team_post', 'rma_team_post');

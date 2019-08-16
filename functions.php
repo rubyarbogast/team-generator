@@ -8,11 +8,11 @@ function my_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 
-function enqueue_db_post() {
+/* function enqueue_db_post() {
     wp_enqueue_script( 'post-team', get_template_directory_uri() . '/js/site-scripts/post-team.js', array('jquery') );
     wp_localize_script( 'post-team', 'team_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_db_post' );
+add_action( 'wp_enqueue_scripts', 'enqueue_db_post' ); */
 
 function theme_styles() {	
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
@@ -352,14 +352,41 @@ function get_team_desktop() {
 
     echo "</form></div>";
 
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        global $wpdb;
+
+            //Note: this will only work this way -- unable to pull values from $_POST in separate function. Is it possible to pass to AJAX?
+            $lw1name = $lw_result_array[0][name];
+            $lw1number = $lw_result_array[0][number];
+            $lw1team = $lw_result_array[0][currentTeam]; 
     
+            /* $lw1name = $_POST['lw1name'];
+            $lw1number = $_POST['lw1number'];
+            $lw1team = $_POST['lw1team']; */
+    
+            echo $lw1name;
+        
+            $wpdb->insert( 
+                'team', 
+                array( 
+                    'lw_1_name' => $lw1name, 
+                    'lw_1_number' => $lw1number,
+                    'lw_1_current_team' => $lw1team
+                ), 
+                array( 
+                    '%s', 
+                    '%d',
+                    '%s' 
+                ) 
+            );
+        }
     wp_die(); 
 }
 
 add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
 add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
 
-function rma_team_post() {
+/* function rma_team_post() {
 
         global $wpdb;
 
@@ -367,7 +394,7 @@ function rma_team_post() {
         $lw1number = $lw_result_array[0][number];
         $lw1team = $lw_result_array[0][currentTeam]; */
 
-        $lw1name = $_POST['lw1name'];
+/*         $lw1name = $_POST['lw1name'];
         $lw1number = $_POST['lw1number'];
         $lw1team = $_POST['lw1team'];
 
@@ -387,7 +414,7 @@ function rma_team_post() {
             ) 
         );
     
-}
+} */
 
 /*     $ini = parse_ini_file('config.ini');
 
@@ -405,5 +432,5 @@ function rma_team_post() {
     mysqli_query($mysqli, $sql);
     wp_die();  */
 //}
-add_action('wp_ajax_nopriv_rma_team_post', 'rma_team_post');
-add_action('wp_ajax_rma_team_post', 'rma_team_post');
+/* add_action('wp_ajax_nopriv_rma_team_post', 'rma_team_post');
+add_action('wp_ajax_rma_team_post', 'rma_team_post'); */

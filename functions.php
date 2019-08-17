@@ -250,6 +250,7 @@ function get_team_desktop() {
 
     //TODO: 
     //Add columns to table in DB
+    //Add "submitted by" column to DB (make sure to escape to prevent SQL injection!)
     //Finish form (clean up unnecessary fields) (would it be possible to just add IDs to echo statements and avoid extra code?)
     //Remove unnecessary functions and script files
     //Move rosters to WP DB
@@ -257,10 +258,13 @@ function get_team_desktop() {
     //Wrap first part of code in if statement: if request=get? OR if=post, then post to blog, else 
     //Rename variables in ajax-team to be more descriptive
     //Add nonce to ajax-team
+    //Add helpful error message and styling to ajax-team
+    //Update ajax-team mobile function
     //Consider other validation: what is necessary and actually important?
     //Require login: use something of WP's?
     //On successful submission, redirect to blog page
     //Update stylesheet (buttons)
+    //Blog handler function: get team from DB, display 
 
 
     echo "<p></p>";
@@ -272,7 +276,7 @@ function get_team_desktop() {
 
     echo "<div class='flex-container row'>";
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[0][name] . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>" . $lw_result_array[0][name] . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . "</p></div>";
     echo "<div class='player forward col-4'>" . $c_result_array[0][name] . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>";
     echo "<div class='player forward col-4'>". $rw_result_array[0][name] . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>";
     
@@ -344,9 +348,9 @@ function get_team_desktop() {
     echo "<div class='flex-container' id='optionButtons'>";
 
     echo "<form action='' id='postTeam' method='post'>
-    <input id='name' type='text' name='lw1name' value='" . $lw_result_array[0][name] . "' >
-    <input id='number' type='text' name='lw1number' value='" . $lw_result_array[0][number] . "' >
-    <input id='team' type='text' name='lw1team' value='" . $lw_result_array[0][currentTeam] . "' >";
+    <input id='name' type='hidden' name='lw1name' value='" . $lw_result_array[0][name] . "' >
+    <input id='number' type='hidden' name='lw1number' value='" . $lw_result_array[0][number] . "' >
+    <input id='team' type='hidden' name='lw1team' value='" . $lw_result_array[0][currentTeam] . "' >";
     
     echo "<button id='submitTeamButton' class='submit-team' type='submit' name='submit' value='submit'>Post Team to Blog</button>";
 

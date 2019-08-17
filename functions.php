@@ -248,17 +248,19 @@ function get_team_desktop() {
         exit;
     }
 
-    //TODO:
-    //Add form: action, method
-    //When button is clicked:
-    //Show/hide Name field with JS
-    //When submitted:
-    //Validate Name field
-    //Write each player to DB: team number (auto generate ... how?), position, number, current team
-    //Or should this ^ just be part of the post?? yes, probably
-    //Call function to submit post (custom or wp's???)
-    //Use plugin or something to make sure IP address isn't submitting too many posts (25/hour; 100/day)
-    //Redirect to blog page (to specific entry on blog page? what if multiple entries submitted at once?)
+    //TODO: 
+    //Add columns to table in DB
+    //Finish form (clean up unnecessary fields) (would it be possible to just add IDs to echo statements and avoid extra code?)
+    //Remove unnecessary functions and script files
+    //Move rosters to WP DB
+    //Refactor to use $wpdb
+    //Wrap first part of code in if statement: if request=get? OR if=post, then post to blog, else 
+    //Rename variables in ajax-team to be more descriptive
+    //Add nonce to ajax-team
+    //Consider other validation: what is necessary and actually important?
+    //Require login: use something of WP's?
+    //On successful submission, redirect to blog page
+    //Update stylesheet (buttons)
 
 
     echo "<p></p>";

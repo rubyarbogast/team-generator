@@ -342,27 +342,27 @@ function get_team_desktop() {
     echo "<div class='flex-container' id='optionButtons'>";
 
     echo "<form action='' id='postTeam' method='post'>
-    <input type='text' name='lw1name' value='" . $lw_result_array[0][name] . "' >
-    <input type='text' name='lw1number' value='" . $lw_result_array[0][number] . "' >
-    <input type='text' name='lw1team' value='" . $lw_result_array[0][currentTeam] . "' >";
+    <input id='name' type='text' name='lw1name' value='" . $lw_result_array[0][name] . "' >
+    <input id='number' type='text' name='lw1number' value='" . $lw_result_array[0][number] . "' >
+    <input id='team' type='text' name='lw1team' value='" . $lw_result_array[0][currentTeam] . "' >";
     
-    echo "<button id='submitTeamButton' type='submit' name='submit' value='submit'>Post Team to Blog</button>";
+    echo "<button id='submitTeamButton' class='submit-team' type='submit' name='submit' value='submit'>Post Team to Blog</button>";
 
     echo "<button class='get-team-button' id='secondaryButton'>New Team</button>";
 
     echo "</form></div>";
 
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
         global $wpdb;
 
             //Note: this will only work this way -- unable to pull values from $_POST in separate function. Is it possible to pass to AJAX?
-            $lw1name = $lw_result_array[0][name];
+/*             $lw1name = $lw_result_array[0][name];
             $lw1number = $lw_result_array[0][number];
-            $lw1team = $lw_result_array[0][currentTeam]; 
+            $lw1team = $lw_result_array[0][currentTeam];   */
     
-            /* $lw1name = $_POST['lw1name'];
+            $lw1name = $_POST['lw1name'];
             $lw1number = $_POST['lw1number'];
-            $lw1team = $_POST['lw1team']; */
+            $lw1team = $_POST['lw1team'];  
     
             echo $lw1name;
         
@@ -379,26 +379,23 @@ function get_team_desktop() {
                     '%s' 
                 ) 
             );
-        }
+        } 
     wp_die(); 
 }
-
 add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
 add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
 
-/* function rma_team_post() {
+function rma_team_post() {
 
         global $wpdb;
 
-/*         $lw1name = $lw_result_array[0][name];
+        $lw1name = $lw_result_array[0][name];
         $lw1number = $lw_result_array[0][number];
-        $lw1team = $lw_result_array[0][currentTeam]; */
+        $lw1team = $lw_result_array[0][currentTeam];
 
 /*         $lw1name = $_POST['lw1name'];
         $lw1number = $_POST['lw1number'];
-        $lw1team = $_POST['lw1team'];
-
-        echo $lw1name;
+        $lw1team = $_POST['lw1team']; */
     
         $wpdb->insert( 
             'team', 
@@ -414,7 +411,7 @@ add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
             ) 
         );
     
-} */
+} 
 
 /*     $ini = parse_ini_file('config.ini');
 
@@ -432,5 +429,5 @@ add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
     mysqli_query($mysqli, $sql);
     wp_die();  */
 //}
-/* add_action('wp_ajax_nopriv_rma_team_post', 'rma_team_post');
-add_action('wp_ajax_rma_team_post', 'rma_team_post'); */
+add_action('wp_ajax_nopriv_rma_team_post', 'rma_team_post');
+add_action('wp_ajax_rma_team_post', 'rma_team_post'); 

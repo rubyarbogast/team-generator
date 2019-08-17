@@ -35,7 +35,7 @@
             } else {
                 $.ajax({
                     url: nhl_ajax_object.ajax_url,
-                    type: 'post',
+                    type: 'get',
                     data: {
                         action: 'get_team_desktop'
                     },
@@ -59,6 +59,34 @@
 
         } 
     });
+
+    $(document).on( 'click', '.submit-team', function( event ) {
+
+        event.preventDefault();
+        //define variables
+        var val1 = $('#name').val();
+        var val2 = $('#number').val();
+        var val3 = $('#team').val();
+
+    $.ajax( {
+        url: nhl_ajax_object.ajax_url,
+        method: 'post',
+        data: {
+          action: 'get_team_desktop',
+          lw1name: val1,
+          lw1number: val2,
+          lw1team: val3
+        },
+        dataType: "text",
+        success: function(strMessage) {
+            $("#main").text('Better');
+        },
+        error: function() {
+          console.log('Error');
+        }
+    });
+});
+
 
 
 })(jQuery);

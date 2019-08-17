@@ -1,17 +1,21 @@
 (function($) {
 
-    $(document).on( 'click', '#submitTeamButton', function( event ) {
-    
-          event.preventDefault();
+    $(document).on( 'click', '.submit-team', function( event ) {
+
+              event.preventDefault();
+
           $.ajax( {
               url: team_ajax_object.ajax_url,
-              method: "post",
+              method: 'post',
               data: {
                 action: 'rma_team_post',
             },
               dataType: "text",
               success: function(strMessage) {
-                  $("#main").text('Give er a shot');
+                  $("#main").text('Better');
+              },
+              error: function() {
+                console.log('Error');
               }
           });
       });

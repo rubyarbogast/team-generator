@@ -8,6 +8,12 @@ function my_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 
+/* function enqueue_db_post() {
+    wp_enqueue_script( 'post-team', get_template_directory_uri() . '/js/site-scripts/post-team.js', array('jquery') );
+    wp_localize_script( 'post-team', 'team_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_db_post' ); */
+
 function theme_styles() {	
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
 }

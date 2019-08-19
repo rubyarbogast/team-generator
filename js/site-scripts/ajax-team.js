@@ -14,7 +14,7 @@
             if (windowSize.matches) {
                 $.ajax({
                     url: nhl_ajax_object.ajax_url,
-                    type: 'post',
+                    type: 'get',
                     data: {
                         action: 'get_team'
                     },
@@ -35,7 +35,7 @@
             } else {
                 $.ajax({
                     url: nhl_ajax_object.ajax_url,
-                    type: 'post',
+                    type: 'get',
                     data: {
                         action: 'get_team_desktop'
                     },
@@ -58,6 +58,33 @@
             }
 
         } 
+    });
+
+    $(document).on( 'click', '.submit-team', function( event ) {
+
+        event.preventDefault();
+        //define variables
+        var lw1name = $('#lw1name').val();
+        var lw1number = $('#lw1number').val();
+        var lw1team = $('#lw1team').val();
+
+        $.ajax( {
+            url: nhl_ajax_object.ajax_url,
+            method: 'post',
+            data: {
+                action: 'get_team_desktop',
+                lw1name: lw1name,
+                lw1number: lw1number,
+                lw1team: lw1team
+            },
+            dataType: "text",
+            success: function(strMessage) {
+                $("#main").text('Better');
+            },
+            error: function() {
+                console.log('Error');
+            }
+        });
     });
 
 

@@ -8,12 +8,6 @@ function my_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue' );
 
-/* function enqueue_db_post() {
-    wp_enqueue_script( 'post-team', get_template_directory_uri() . '/js/site-scripts/post-team.js', array('jquery') );
-    wp_localize_script( 'post-team', 'team_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_db_post' ); */
-
 function theme_styles() {	
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
 }
@@ -115,12 +109,10 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
-    //Add columns to table in DB
     //Add "submitted by" column to DB (make sure to escape to prevent SQL injection!)
-    //Finish form (clean up unnecessary fields) (would it be possible to just add IDs to echo statements and avoid extra code?)
+    //Add team abbreviation column to DB
+    //Finish form (clean up unnecessary fields) 
     //Remove unnecessary functions and script files
-    //Move rosters to WP DB
-    //Refactor to use $wpdb
     //Wrap first part of code in if statement: if request=get? OR if=post, then post to blog, else 
     //Rename variables in ajax-team to be more descriptive
     //Add nonce to ajax-team
@@ -141,6 +133,7 @@ function get_team_desktop() {
     $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
     $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
 
+    //TODO: add conditional: if have the arrays, then echo. otherwise, return error message 
 
     echo "<p></p>";
 
@@ -223,11 +216,11 @@ function get_team_desktop() {
     echo "<div class='flex-container' id='optionButtons'>";
 
     echo "<form action='' id='postTeam' method='post'>
-    <input id='name' type='hidden' name='lw1name' value='" . $lw_result_array[0][name] . "' >
-    <input id='number' type='hidden' name='lw1number' value='" . $lw_result_array[0][number] . "' >
-    <input id='team' type='hidden' name='lw1team' value='" . $lw_result_array[0][currentTeam] . "' >";
+    <input id='lw1name' type='hidden' value='" . $lw_result_array[0][name] . "' >
+    <input id='lw1number' type='hidden' value='" . $lw_result_array[0][number] . "' >
+    <input id='lw1team' type='hidden' value='" . $lw_result_array[0][currentTeam] . "' >";
     
-    echo "<button id='submitTeamButton' class='submit-team' type='submit' name='submit' value='submit'>Post Team to Blog</button>";
+    echo "<button id='submitTeamButton' class='submit-team'>Post Team to Blog</button>";
 
     echo "<button class='get-team-button' id='secondaryButton'>New Team</button>";
 
@@ -235,48 +228,12 @@ function get_team_desktop() {
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         global $wpdb;
-
-            //Note: this will only work this way -- unable to pull values from $_POST in separate function. Is it possible to pass to AJAX?
-/*             $lw1name = $lw_result_array[0][name];
-            $lw1number = $lw_result_array[0][number];
-            $lw1team = $lw_result_array[0][currentTeam];   */
     
-            $lw1name = $_POST['lw1name'];
-            $lw1number = $_POST['lw1number'];
-            $lw1team = $_POST['lw1team'];  
-    
-            echo $lw1name;
-        
-            $wpdb->insert( 
-                'team', 
-                array( 
-                    'lw_1_name' => $lw1name, 
-                    'lw_1_number' => $lw1number,
-                    'lw_1_current_team' => $lw1team
-                ), 
-                array( 
-                    '%s', 
-                    '%d',
-                    '%s' 
-                ) 
-            );
-        } 
-    wp_die(); 
-}
-add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
-add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
-
-function rma_team_post() {
-
-        global $wpdb;
-
-        $lw1name = $lw_result_array[0][name];
-        $lw1number = $lw_result_array[0][number];
-        $lw1team = $lw_result_array[0][currentTeam];
-
-/*         $lw1name = $_POST['lw1name'];
+        $lw1name = $_POST['lw1name'];
         $lw1number = $_POST['lw1number'];
-        $lw1team = $_POST['lw1team']; */
+        $lw1team = $_POST['lw1team'];  
+
+        echo $lw1name;
     
         $wpdb->insert( 
             'team', 
@@ -291,24 +248,8 @@ function rma_team_post() {
                 '%s' 
             ) 
         );
-    
-} 
-
-/*     $ini = parse_ini_file('config.ini');
-
-    $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
-    if($mysqli->connect_error) {
-        exit('<h2>Oops! Something went wrong ...</h2>');
-        }
-
-    $lw1name = 'John';
-    $lw1number = 1;
-    $lw1team = 'Wheat Kings';
-
-    $sql = "INSERT INTO team (lw_1_name, lw_1_number, lw_1_current_team) VALUES ('$lw1name', '$lw1number', '$lw1team')";
-
-    mysqli_query($mysqli, $sql);
-    wp_die();  */
-//}
-add_action('wp_ajax_nopriv_rma_team_post', 'rma_team_post');
-add_action('wp_ajax_rma_team_post', 'rma_team_post'); 
+        } 
+    wp_die(); 
+}
+add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
+add_action('wp_ajax_get_team_desktop', 'get_team_desktop');

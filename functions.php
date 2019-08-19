@@ -27,78 +27,14 @@ add_action( 'init', 'register_my_menu' );
 
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
-    $ini = parse_ini_file('config.ini');
+    global $wpdb;
 
-    $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
-
-    if($mysqli->connect_error) {
-        exit('<h2>Oops! Something went wrong ...</h2>');
-        }
-
-    $lwQuery = "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4";
-    $cQuery = "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4";
-    $rwQuery = "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4";
-    $dQuery = "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6";
-    $gQuery = "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2";
-
-    //Instantiate arrays to hold players
-    $lw_result_array = array();
-    $c_result_array = array();
-    $rw_result_array = array();
-    $d_result_array = array();
-    $g_result_array = array();
-
-    $result = mysqli_query($mysqli, $lwQuery);
-    if (mysqli_num_rows($result) > 0) {
-        //Save data from each row to array
-        while($row = mysqli_fetch_assoc($result)) {
-            $lw_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $cQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $c_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $rwQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $rw_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $dQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $d_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $gQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $g_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
+    //ARRAY_A outputs numerically indexed array of associative arrays with column names as keys
+    $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4", ARRAY_A );
+    $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4", ARRAY_A );
+    $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4", ARRAY_A );
+    $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
+    $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
 
     echo "<div class='team'>";
 
@@ -177,76 +113,6 @@ add_action('wp_ajax_nopriv_get_team', 'get_team');
 add_action('wp_ajax_get_team', 'get_team');
 
 function get_team_desktop() {
-   /*  $ini = parse_ini_file('config.ini');
-
-    $mysqli = new mysqli($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']);
-    if($mysqli->connect_error) {
-        exit('<h2>Oops! Something went wrong ...</h2>');
-        }
-
-    $lwQuery = "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4";
-    $cQuery = "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4";
-    $rwQuery = "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4";
-    $dQuery = "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6";
-    $gQuery = "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2";
-
-    //Instantiate arrays to hold players
-    $lw_result_array = array();
-    $c_result_array = array();
-    $rw_result_array = array();
-    $d_result_array = array();
-    $g_result_array = array();
-
-    $result = mysqli_query($mysqli, $lwQuery);
-    if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
-            $lw_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $cQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $c_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $rwQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $rw_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $dQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $d_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    }
-
-    $result = mysqli_query($mysqli, $gQuery);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $g_result_array[] = $row;
-        }
-    } else {
-        echo "<h2>Oops! Something went wrong ...</h2>";
-        exit;
-    } */
 
     //TODO: 
     //Add columns to table in DB
@@ -268,14 +134,13 @@ function get_team_desktop() {
 
     global $wpdb;
 
-    $lw_result_array = array();
-    $lwQuery = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4", ARRAY_A );
+    //ARRAY_A outputs numerically indexed array of associative arrays with column names as keys
+    $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4", ARRAY_A );
+    $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4", ARRAY_A );
+    $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4", ARRAY_A );
+    $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
+    $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
 
-    //$lw_result_array = $wpdb->get_row("SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4");
-
-    foreach($lwQuery as $row){
-        $lw_result_array[] = $row;
-    }
 
     echo "<p></p>";
 
@@ -287,15 +152,15 @@ function get_team_desktop() {
     echo "<div class='flex-container row'>";
 
     echo "<div class='player forward col-4'>" . $lw_result_array[0][name] . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . "</p></div>";
-/*     echo "<div class='player forward col-4'>" . $c_result_array[0][name] . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[0][name] . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>"; */
+    echo "<div class='player forward col-4'>" . $c_result_array[0][name] . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>";
+    echo "<div class='player forward col-4'>". $rw_result_array[0][name] . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>";
     
     echo "</div>";
 
-/*     echo "<div class='flex-container row'>";
+    echo "<div class='flex-container row'>";
 
     echo "<div class='player forward col-4'>" . $lw_result_array[1][name] . "<p>#" . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[1][name] . "<p>#" . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam] . " " . "</div>";
+   echo "<div class='player forward col-4'>" . $c_result_array[1][name] . "<p>#" . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam] . " " . "</div>";
     echo "<div class='player forward col-4'>". $rw_result_array[1][name] . "<p>#" . $rw_result_array[1][number] . " " . $rw_result_array[1][currentTeam] . "</div>";
 
     echo "</div>";
@@ -349,7 +214,7 @@ function get_team_desktop() {
 
     echo "<div class='player goalie col-6'>" . $g_result_array[0][name] . "<p>#" . $g_result_array[0][number] . " " . $g_result_array[0][currentTeam] . " " . "</div>";
     echo "<div class='player goalie col-6'>" . $g_result_array[1][name] . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][currentTeam] . " " . "</div>";
- */
+
     echo "</div>";
     echo "</div>";
     echo "<p class='link-address'>http://rubyarbogast.com/oneforone</p>";

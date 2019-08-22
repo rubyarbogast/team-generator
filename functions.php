@@ -1,5 +1,4 @@
 <?php
-
 add_theme_support( 'menus' );
 
 function my_enqueue() {
@@ -112,12 +111,11 @@ function get_team_desktop() {
     //Add "submitted by" column to DB (make sure to escape to prevent SQL injection!)
     //Wrap first part of code in if statement: if request=get? OR if=post, then post to blog, else 
     //Add nonce to ajax-team
-    //Update ajax-team mobile function
     //Consider other validation: what is necessary and actually important?
     //Require login: use something of WP's?
     //On successful submission, redirect to blog page
     //Update stylesheet (buttons)
-    //Blog handler function: get team from DB, display 
+    //In future, possibly use custom post type. For now, assume all posts will be teams
 
     global $wpdb;
 
@@ -130,85 +128,87 @@ function get_team_desktop() {
 
     //TODO: add conditional: if have the arrays, then echo. otherwise, return error message 
 
-    echo "<p></p>";
+    //TODO: add conditional: if method = get
 
-    echo "<div class='team'>";
+    echo "<p></p>
 
-    echo "<div class='line'>";
-    echo "<h2 class='player-type'>Forwards</h2>";
+    <div class='team'>
 
-    echo "<div class='flex-container row'>";
+    <div class='line'>
+    <h2 class='player-type'>Forwards</h2>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[0][name] . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . "</p></div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[0][name] . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[0][name] . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>";
+    <div class='flex-container row'>
+
+    <div class='player forward col-4'>" . $lw_result_array[0][name] . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][currentTeam] . "</p></div>
+    <div class='player forward col-4'>" . $c_result_array[0][name] . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>". $rw_result_array[0][name] . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][currentTeam] . "</div>
     
-    echo "</div>";
+    </div>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[1][name] . "<p>#" . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[1][name] . "<p>#" . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[1][name] . "<p>#" . $rw_result_array[1][number] . " " . $rw_result_array[1][currentTeam] . "</div>";
+    <div class='player forward col-4'>" . $lw_result_array[1][name] . "<p>#" . $lw_result_array[1][number] . " " . $lw_result_array[1][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>" . $c_result_array[1][name] . "<p>#" . $c_result_array[1][number] . " " . $c_result_array[1][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>". $rw_result_array[1][name] . "<p>#" . $rw_result_array[1][number] . " " . $rw_result_array[1][currentTeam] . "</div>
 
-    echo "</div>";
+    </div>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[2][name] . "<p>#" . $lw_result_array[2][number] . " " . $lw_result_array[2][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[2][name] . "<p>#" . $c_result_array[2][number] . " " . $c_result_array[2][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[2][name] . "<p>#" . $rw_result_array[2][number] . " " . $rw_result_array[2][currentTeam] . "</div>";
+    <div class='player forward col-4'>" . $lw_result_array[2][name] . "<p>#" . $lw_result_array[2][number] . " " . $lw_result_array[2][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>" . $c_result_array[2][name] . "<p>#" . $c_result_array[2][number] . " " . $c_result_array[2][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>". $rw_result_array[2][name] . "<p>#" . $rw_result_array[2][number] . " " . $rw_result_array[2][currentTeam] . "</div>
 
-    echo "</div>";
+    </div>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[3][name] . "<p>#" . $lw_result_array[3][number] . " " . $lw_result_array[3][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[3][name] . "<p>#" . $c_result_array[3][number] . " " . $c_result_array[3][currentTeam] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[3][name] . "<p>#" . $rw_result_array[3][number] . " " . $rw_result_array[3][currentTeam] . "</div>";
+    <div class='player forward col-4'>" . $lw_result_array[3][name] . "<p>#" . $lw_result_array[3][number] . " " . $lw_result_array[3][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>" . $c_result_array[3][name] . "<p>#" . $c_result_array[3][number] . " " . $c_result_array[3][currentTeam] . " " . "</div>
+    <div class='player forward col-4'>". $rw_result_array[3][name] . "<p>#" . $rw_result_array[3][number] . " " . $rw_result_array[3][currentTeam] . "</div>
     
-    echo "</div>";
-    echo "</div>";
+    </div>
+    </div>
 
-    echo "<div class='pairing'>";
-    echo "<h2 class='player-type'>Defensemen</h2>";
+    <div class='pairing'>
+    <h2 class='player-type'>Defensemen</h2>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player dman col-6'>" . $d_result_array[0][name] . "<p>#" . $d_result_array[0][number] . " " . $d_result_array[0][currentTeam] . " ". "</div>";
-    echo "<div class='player dman col-6'>" . $d_result_array[1][name] . "<p>#" . $d_result_array[1][number] . " " . $d_result_array[1][currentTeam] . "</div>";
+    <div class='player dman col-6'>" . $d_result_array[0][name] . "<p>#" . $d_result_array[0][number] . " " . $d_result_array[0][currentTeam] . " ". "</div>
+    <div class='player dman col-6'>" . $d_result_array[1][name] . "<p>#" . $d_result_array[1][number] . " " . $d_result_array[1][currentTeam] . "</div>
 
-    echo "</div>";
+    </div>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player dman col-6'>" . $d_result_array[2][name] . "<p>#" . $d_result_array[2][number] . " " . $d_result_array[2][currentTeam] . " ". "</div>";
-    echo "<div class='player dman col-6'>" . $d_result_array[3][name] . "<p>#" . $d_result_array[3][number] . " " . $d_result_array[3][currentTeam] . "</div>";
+    <div class='player dman col-6'>" . $d_result_array[2][name] . "<p>#" . $d_result_array[2][number] . " " . $d_result_array[2][currentTeam] . " ". "</div>
+    <div class='player dman col-6'>" . $d_result_array[3][name] . "<p>#" . $d_result_array[3][number] . " " . $d_result_array[3][currentTeam] . "</div>
 
-    echo "</div>";
+    </div>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player dman col-6'>" . $d_result_array[4][name] . "<p>#" . $d_result_array[4][number] . " " . $d_result_array[4][currentTeam] . " ". "</div>";
-    echo "<div class='player dman col-6'>" . $d_result_array[5][name] . "<p>#" . $d_result_array[5][number] . " " . $d_result_array[5][currentTeam] . "</div>";
+    <div class='player dman col-6'>" . $d_result_array[4][name] . "<p>#" . $d_result_array[4][number] . " " . $d_result_array[4][currentTeam] . " ". "</div>
+    <div class='player dman col-6'>" . $d_result_array[5][name] . "<p>#" . $d_result_array[5][number] . " " . $d_result_array[5][currentTeam] . "</div>
 
-    echo "</div>";
-    echo "</div>";
+    </div>
+    </div>
 
-    echo "<div class='pairing'>";
-    echo "<h2 class='player-type'>Goalies</h2>";
+    <div class='pairing'>
+    <h2 class='player-type'>Goalies</h2>
 
-    echo "<div class='flex-container row'>";
+    <div class='flex-container row'>
 
-    echo "<div class='player goalie col-6'>" . $g_result_array[0][name] . "<p>#" . $g_result_array[0][number] . " " . $g_result_array[0][currentTeam] . " " . "</div>";
-    echo "<div class='player goalie col-6'>" . $g_result_array[1][name] . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][currentTeam] . " " . "</div>";
+    <div class='player goalie col-6'>" . $g_result_array[0][name] . "<p>#" . $g_result_array[0][number] . " " . $g_result_array[0][currentTeam] . " " . "</div>
+    <div class='player goalie col-6'>" . $g_result_array[1][name] . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][currentTeam] . " " . "</div>
 
-    echo "</div>";
-    echo "</div>";
-    echo "<p class='link-address'>http://rubyarbogast.com/oneforone</p>";
-    echo "</div>";
+    </div>
+    </div>
+    <p class='link-address'>http://rubyarbogast.com/oneforone</p>
+    </div>
 
-    echo "<div class='flex-container' id='optionButtons'>";
+    <div class='flex-container' id='optionButtons'>";
 
     echo "<form action='' id='postTeam' method='post'>
     <input id='submittedby' type='text'>";
@@ -332,16 +332,16 @@ function get_team_desktop() {
     <input id='g2abbr' type='hidden' value='" . $g_result_array[1][teamAbbr] . "' >
     ";
 
-    echo "<button id='submitTeamButton' class='submit-team'>Post Team to Blog</button>";
-
-    echo "<button class='get-team-button' id='secondaryButton'>New Team</button>";
-
-    echo "</form></div>";
+    echo "<button id='submitTeamButton' class='submit-team'>Post Team to Blog</button>
+    <button class='get-team-button' id='secondaryButton'>New Team</button>
+    
+    </form></div>";
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         global $wpdb;
     
         $submittedby = $_POST['submittedby'];
+
         //First line
         $lw1name = $_POST['lw1name'];
         $lw1number = $_POST['lw1number'];
@@ -780,3 +780,4 @@ function get_team_desktop() {
 }
 add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
 add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
+

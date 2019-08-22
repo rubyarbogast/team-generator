@@ -65,6 +65,7 @@
         event.preventDefault();
         //Get values from submitted form
         var submittedby = $('#submittedby').val();
+        var team = $('#teamContent').val();
 
         //First line
         var lw1name = $('#lw1name').val();
@@ -180,6 +181,7 @@
             data: {
                 action: 'get_team_desktop',
                 submittedby: submittedby,
+
                 lw1name: lw1name,
                 lw1number: lw1number,
                 lw1team: lw1team,

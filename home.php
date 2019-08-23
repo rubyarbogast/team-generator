@@ -5,10 +5,11 @@
 <?php 
 global $wpdb;
 $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
+$newest_first_team_list = array_reverse($team_id_list);
 ?>
 
 <h2 class='blog-header'>User-Submitted Teams</h2>
-<?php foreach ($team_id_list as $team_id): ?>
+<?php foreach ($newest_first_team_list as $team_id): ?>
     <?php 
     global $wpdb;
 

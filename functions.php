@@ -109,13 +109,15 @@ function get_team_desktop() {
 
     //TODO: 
     //Add "submitted by" column to DB (make sure to escape to prevent SQL injection!)
+    //Look into OAuth login methods
     //Wrap first part of code in if statement: if request=get? OR if=post, then post to blog, else 
     //Add nonce to ajax-team
     //Consider other validation: what is necessary and actually important?
-    //Require login: use something of WP's?
     //On successful submission, redirect to blog page
     //Update stylesheet (buttons)
     //In future, possibly use custom post type. For now, assume all posts will be teams
+
+    //Refactor post handler below; update mobile function 
 
     global $wpdb;
 

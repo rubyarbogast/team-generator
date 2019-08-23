@@ -1,6 +1,7 @@
 <?php get_header(); ?> 
 
 <!--TODO: query DB and add styles-->
+<!--TODO: add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice -->
 <?php 
 global $wpdb;
 $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
@@ -13,12 +14,40 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
 
     //Get player IDs (returns a string; has to be cast to int)
     $lw_id_array = $wpdb->get_col( "SELECT lw_id FROM rma_line WHERE team_id = $team_id" );
-
+    $c_id_array = $wpdb->get_col( "SELECT c_id FROM rma_line WHERE team_id = $team_id" );
+    $rw_id_array = $wpdb->get_col( "SELECT rw_id FROM rma_line WHERE team_id = $team_id" );
+    $ld_id_array = $wpdb->get_col( "SELECT ld_id FROM rma_pair WHERE team_id = $team_id" );
+    $rd_id_array = $wpdb->get_col( "SELECT rd_id FROM rma_pair WHERE team_id = $team_id" );
+    $g1_str_id = $wpdb->get_col( "SELECT g1_id FROM rma_tandem WHERE team_id = $team_id" );
+    $g2_str_id = $wpdb->get_col( "SELECT g2_id FROM rma_tandem WHERE team_id = $team_id" );
 
     $lw_id1 = (int)$lw_id_array[0];
     $lw_id2 = (int)$lw_id_array[1];
     $lw_id3 = (int)$lw_id_array[2];
     $lw_id4 = (int)$lw_id_array[3];
+
+    $c_id1 = (int)$c_id_array[0];
+    $c_id2 = (int)$c_id_array[1];
+    $c_id3 = (int)$c_id_array[2];
+    $c_id4 = (int)$c_id_array[3];
+
+    $rw_id1 = (int)$rw_id_array[0];
+    $rw_id2 = (int)$rw_id_array[1];
+    $rw_id3 = (int)$rw_id_array[2];
+    $rw_id4 = (int)$rw_id_array[3];
+
+    $ld_id1 = (int)$ld_id_array[0];
+    $ld_id2 = (int)$ld_id_array[1];
+    $ld_id3 = (int)$ld_id_array[2];
+
+    $rd_id1 = (int)$rd_id_array[0];
+    $rd_id2 = (int)$rd_id_array[1];
+    $rd_id3 = (int)$rd_id_array[2];
+
+/*     echo $lw_id4;
+    echo $c_id4; */
+    $g1_id = (int)$g1_str_id[0];
+    $g2_id = (int)$g2_str_id[0];
 
     //From the players table, select the player with the id from the position array
     $lw1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $lw_id1", ARRAY_A );
@@ -26,15 +55,134 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
     $lw3 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $lw_id3", ARRAY_A );
     $lw4 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $lw_id4", ARRAY_A );
 
-    ?>
+    $c1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $c_id1", ARRAY_A );
+    $c2 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $c_id2", ARRAY_A );
+    $c3 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $c_id3", ARRAY_A );
+    $c4 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $c_id4", ARRAY_A );
 
-    <div class="entries">
-        <p>A team</p>
-        <?php echo $lw1['name'] ?>
-        <?php echo $lw2['name'] ?>
-        <?php echo $lw3['name'] ?>
-        <?php echo $lw4['name'] ?>
+    $rw1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rw_id1", ARRAY_A );
+    $rw2 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rw_id2", ARRAY_A );
+    $rw3 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rw_id3", ARRAY_A );
+    $rw4 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rw_id4", ARRAY_A );
+
+    $ld1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $ld_id1", ARRAY_A );
+    $ld2 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $ld_id2", ARRAY_A );
+    $ld3 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $ld_id3", ARRAY_A );
+
+    $rd1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rd_id1", ARRAY_A );
+    $rd2 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rd_id2", ARRAY_A );
+    $rd3 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $rd_id3", ARRAY_A );
+
+    $g1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $g1_id", ARRAY_A );
+    $g2 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $g2_id", ARRAY_A );
+
+    echo $lw_id4;
+    echo $c_id4;
+    
+    echo $lw4['name'];
+    echo $c4['name'];
+
+    ?>
+    <div class='entries'>
+         <!-- Forwards -->
+            <div>
+                <h2>Forwards</h2>
+                <!-- First line -->
+                <div class='flex-container row'>
+                    <div class='player forward col-4'>
+                        <?php echo $lw1['name'] ?><p> #<?php echo $lw1['number'] ?>  <?php echo $lw1['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $c1['name'] ?><p> #<?php echo $c1['number'] ?>  <?php echo $c1['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $rw1['name'] ?><p> #<?php echo $rw1['number'] ?>  <?php echo $rw1['current_team'] ?></p>
+                    </div>
+                </div>
+                <!-- Second line -->
+                <div class='flex-container row'>
+                    <div class='player forward col-4'>
+                        <?php echo $lw2['name'] ?><p> #<?php echo $lw2['number'] ?>  <?php echo $lw2['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $c2['name'] ?><p> #<?php echo $c2['number'] ?>  <?php echo $c2['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $rw2['name'] ?><p> #<?php echo $rw2['number'] ?>  <?php echo $rw2['current_team'] ?></p>
+                    </div>
+                </div>
+                <!-- Third line -->
+                <div class='flex-container row'>
+                    <div class='player forward col-4'>
+                        <?php echo $lw3['name'] ?><p> #<?php echo $lw3['number'] ?>  <?php echo $lw3['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $c3['name'] ?><p> #<?php echo $c3['number'] ?>  <?php echo $c3['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $rw3['name'] ?><p> #<?php echo $rw3['number'] ?>  <?php echo $rw3['current_team'] ?></p>
+                    </div>
+                </div>
+                <!-- Fourth line -->
+                <div class='flex-container row'>
+                    <div class='player forward col-4'>
+                        <?php echo $lw4['name'] ?><p> #<?php echo $lw4['number'] ?>  <?php echo $lw4['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $c4['name'] ?><p> #<?php echo $c4['number'] ?>  <?php echo $c4['current_team'] ?></p>
+                    </div>
+                    <div class='player forward col-4'>
+                        <?php echo $rw4['name'] ?><p> #<?php echo $rw4['number'] ?>  <?php echo $rw4['current_team'] ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Defensemen -->
+            <div>
+                <h2>Defensemen</h2>
+                <!-- First pair -->
+                <div class='flex-container row'>
+                    <div class='player dman col-6'>
+                        <?php echo $ld1['name'] ?><p> #<?php echo $ld1['number'] ?>  <?php echo $ld1['current_team'] ?></p>
+                    </div>
+                    <div class='player dman col-6'>
+                        <?php echo $rd1['name'] ?><p> #<?php echo $rd1['number'] ?>  <?php echo $rd1['current_team'] ?></p>
+                    </div>
+                </div>
+                <!-- Second pair -->
+                <div class='flex-container row'>
+                    <div class='player dman col-6'>
+                        <?php echo $ld2['name'] ?><p> #<?php echo $ld2['number'] ?>  <?php echo $ld2['current_team'] ?></p>
+                    </div>
+                    <div class='player dman col-6'>
+                        <?php echo $rd2['name'] ?><p> #<?php echo $rd2['number'] ?>  <?php echo $rd2['current_team'] ?></p>
+                    </div>
+                </div>
+                <!-- Third pair -->
+                <div class='flex-container row'>
+                    <div class='player dman col-6'>
+                        <?php echo $ld3['name'] ?><p> #<?php echo $ld3['number'] ?>  <?php echo $ld3['current_team'] ?></p>
+                    </div>
+                    <div class='player dman col-6'>
+                        <?php echo $rd3['name'] ?><p> #<?php echo $rd3['number'] ?>  <?php echo $rd3['current_team'] ?></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Goalie tandem --> 
+            <div>
+                <h2>Goalies</h2>
+                <div class='flex-container row'>
+                    <div class='player goalie col-6'>
+                        <?php echo $g1['name'] ?><p> #<?php echo $g1['number'] ?>  <?php echo $g1['current_team'] ?></p>
+                    </div>
+                    <div class='player goalie col-6'>
+                        <?php echo $g2['name'] ?><p> #<?php echo $g2['number'] ?>  <?php echo $g2['current_team'] ?></p>
+                    </div>
+                </div>
+            </div>
     </div>
+<p></p>
+
 <?php endforeach; ?>
 
 

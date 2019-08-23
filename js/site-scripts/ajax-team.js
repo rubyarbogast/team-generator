@@ -271,10 +271,10 @@
             },
             dataType: "text",
             success: function(strMessage) {
-                $("#main").text('Team added!');
+                window.location='blog';
             },
             error: function() {
-                $("#main").text('<h2>Oops! Something went wrong ...</h2>');
+                $('#main').append('<h2>Oops! Something went wrong ...</h2>');
             }
         });
     });

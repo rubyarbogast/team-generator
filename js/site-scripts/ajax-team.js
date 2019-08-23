@@ -65,7 +65,6 @@
         event.preventDefault();
         //Get values from submitted form
         var submittedby = $('#submittedby').val();
-        var team = $('#teamContent').val();
 
         //First line
         var lw1name = $('#lw1name').val();
@@ -116,15 +115,15 @@
         var rw3abbr = $('#rw3abbr').val();
 
         //Fourth line
-        var lw4name = $('#lw1name').val();
-        var lw4number = $('#lw1number').val();
-        var lw4team = $('#lw1team').val();
-        var lw4abbr = $('#lw1abbr').val();
+        var lw4name = $('#lw4name').val();
+        var lw4number = $('#lw4number').val();
+        var lw4team = $('#lw4team').val();
+        var lw4abbr = $('#lw4abbr').val();
 
-        var c4name = $('#c1name').val();
-        var c4number = $('#c1number').val();
-        var c4team = $('#c1team').val();
-        var c4abbr = $('#c1abbr').val();
+        var c4name = $('#c4name').val();
+        var c4number = $('#c4number').val();
+        var c4team = $('#c4team').val();
+        var c4abbr = $('#c4abbr').val();
 
         var rw4name = $('#rw4name').val();
         var rw4number = $('#rw4number').val();
@@ -272,7 +271,7 @@
             },
             dataType: "text",
             success: function(strMessage) {
-                $("#main").text('<h2>Team added!</h2>');
+                $("#main").text('Team added!');
             },
             error: function() {
                 $("#main").text('<h2>Oops! Something went wrong ...</h2>');

@@ -393,15 +393,15 @@ function get_team_desktop() {
         $rw3abbr = $_POST['rw3abbr'];
 
         //Fourth line
-        $lw4name = $_POST['lw1name'];
-        $lw4number = $_POST['lw1number'];
-        $lw4team = $_POST['lw1team'];  
-        $lw4abbr = $_POST['lw1abbr'];
+        $lw4name = $_POST['lw4name'];
+        $lw4number = $_POST['lw4number'];
+        $lw4team = $_POST['lw4team'];  
+        $lw4abbr = $_POST['lw4abbr'];
 
-        $c4name = $_POST['c1name'];
-        $c4number = $_POST['c1number'];
-        $c4team = $_POST['c1team'];
-        $c4abbr = $_POST['c1abbr'];
+        $c4name = $_POST['c4name'];
+        $c4number = $_POST['c4number'];
+        $c4team = $_POST['c4team'];
+        $c4abbr = $_POST['c4abbr'];
 
         $rw4name = $_POST['rw4name'];
         $rw4number = $_POST['rw4number'];

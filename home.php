@@ -5,9 +5,9 @@
 <?php 
 global $wpdb;
 $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
-//echo "Team IDs: {$team_id_list[0]}, {$team_id_list[1]}, {$team_id_list[2]}";
 ?>
 
+<h2 class='blog-header'>User-Submitted Teams</h2>
 <?php foreach ($team_id_list as $team_id): ?>
     <?php 
     global $wpdb;
@@ -20,6 +20,8 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
     $rd_id_array = $wpdb->get_col( "SELECT rd_id FROM rma_pair WHERE team_id = $team_id" );
     $g1_str_id = $wpdb->get_col( "SELECT g1_id FROM rma_tandem WHERE team_id = $team_id" );
     $g2_str_id = $wpdb->get_col( "SELECT g2_id FROM rma_tandem WHERE team_id = $team_id" );
+    $submitted_by_name = $wpdb->get_col( "SELECT submitted_by FROM rma_team WHERE id = $team_id" );
+
 
     $lw_id1 = (int)$lw_id_array[0];
     $lw_id2 = (int)$lw_id_array[1];
@@ -44,10 +46,10 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
     $rd_id2 = (int)$rd_id_array[1];
     $rd_id3 = (int)$rd_id_array[2];
 
-/*     echo $lw_id4;
-    echo $c_id4; */
     $g1_id = (int)$g1_str_id[0];
     $g2_id = (int)$g2_str_id[0];
+
+    $submitted_by = $submitted_by_name[0];
 
     //From the players table, select the player with the id from the position array
     $lw1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $lw_id1", ARRAY_A );
@@ -76,17 +78,12 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
     $g1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $g1_id", ARRAY_A );
     $g2 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $g2_id", ARRAY_A );
 
-    echo $lw_id4;
-    echo $c_id4;
-    
-    echo $lw4['name'];
-    echo $c4['name'];
-
     ?>
-    <div class='entries'>
+
+    <div class='entries show-desktop'>
          <!-- Forwards -->
             <div>
-                <h2>Forwards</h2>
+                <h3>Forwards</h3>
                 <!-- First line -->
                 <div class='flex-container row'>
                     <div class='player forward col-4'>
@@ -139,7 +136,7 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
 
             <!-- Defensemen -->
             <div>
-                <h2>Defensemen</h2>
+                <h3>Defensemen</h3>
                 <!-- First pair -->
                 <div class='flex-container row'>
                     <div class='player dman col-6'>
@@ -170,7 +167,7 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
             </div>
             <!-- Goalie tandem --> 
             <div>
-                <h2>Goalies</h2>
+                <h3>Goalies</h3>
                 <div class='flex-container row'>
                     <div class='player goalie col-6'>
                         <?php echo $g1['name'] ?><p> #<?php echo $g1['number'] ?>  <?php echo $g1['current_team'] ?></p>
@@ -180,11 +177,10 @@ $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
                     </div>
                 </div>
             </div>
+            <p>Submitted by <?php echo $submitted_by; ?></p>
+            <p class='link-address'>http://rubyarbogast.com/oneforone</p>
     </div>
-<p></p>
 
 <?php endforeach; ?>
-
-
 
 <?php get_footer(); ?>

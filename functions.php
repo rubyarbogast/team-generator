@@ -108,12 +108,12 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
-    //Add "submitted by" column to DB (make sure to escape to prevent SQL injection!)
-    //Look into OAuth login methods
-    //Wrap first part of code in if statement: if request=get? OR if=post, then post to blog, else 
+    //Review accessibility issues? 
+    //When button clicked, show/hide name input and show/hide buttons
+    //Add date field to blog submission
+    //Client-side validation: Make sure user submits a name
+    //Server-side validation: escape name field, check against regex for bad language
     //Add nonce to ajax-team
-    //Consider other validation: what is necessary and actually important?
-    //On successful submission, redirect to blog page
     //Update stylesheet (buttons)
     //In future, possibly use custom post type. For now, assume all posts will be teams
 

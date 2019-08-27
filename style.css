@@ -413,9 +413,11 @@ a:visited {
     }
 
     .entries {
-        width: 650px;
+        width: 610px;
         padding: 10px;
         margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 

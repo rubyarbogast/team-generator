@@ -60,6 +60,10 @@
                         $('#submitTeamButton').hide();
                         $('#submittedBy').hide();
                         $('#cancelPost').hide();
+                        $('#logInButton').hide();
+                        $('#registerButton').hide();
+
+                        $('#login').hide();
                     }
                 });
             }
@@ -71,15 +75,36 @@
 
         event.preventDefault();
 
-        //Show user name field, submit and cancel buttons
-        $('#submittedBy').show();
-        $('#submitTeamButton').show();
-        $('#cancelPost').show();
+        var loggedIn = $('#loggedIn').val();
+
+        if (loggedIn == 'true'){
+            //Show user name field, submit and cancel buttons
+            $('#submitTeamButton').show();
+            $('#submittedBy').show();
+            $('#cancelPost').show();
+
+        } else {
+            $('#logInButton').show();
+            $('#registerButton').show();
+        }
 
         $('#secondaryButton').hide();
         $('#showHideSubmitButton').hide();
 
     });
+
+    //If click log in
+    $(document).on( 'click', '#logInButton', function( event ){
+        event.preventDefault();
+
+        $('#logInButton').hide();
+        $('#registerButton').hide();
+
+        $('#login').show();
+    });
+
+    //If click register
+
 
     $(document).on( 'click', '#cancelPost', function( event ){
 
@@ -95,10 +120,6 @@
     $(document).on( 'click', '.submit-team', function( event ) {
 
         event.preventDefault();
-        //Import list of banned words
-        var bannedWords = $.getJSON("./banned-words.json");
-
-        //If banned phrases show up in user entry, add an error message asking user to try a different name
 
         //Get values from submitted form
         var submittedby = $('#submittedBy').val();
@@ -211,6 +232,8 @@
         var g2team = $('#g2team').val();
         var g2abbr = $('#g2abbr').val();
 
+
+
         $.ajax( {
             url: nhl_ajax_object.ajax_url,
             method: 'post',
@@ -313,7 +336,9 @@
             error: function() {
                 $('#main').append('<h2>Oops! Something went wrong ...</h2>');
             }
+        
         });
+    
     });
 
 

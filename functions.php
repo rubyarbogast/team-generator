@@ -18,6 +18,8 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
+
+
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
     global $wpdb;
@@ -337,13 +339,51 @@ function get_team_desktop() {
             ";
 
             echo "<button id='showHideSubmitButton'>Post Team to Blog</button>
-            <button class='get-team-button' id='secondaryButton'>New Team</button>
+            <button class='get-team-button' id='secondaryButton'>New Team</button>";
 
-            <input id='submittedBy' type='text'>
+            if(is_user_logged_in()){
+                echo "<input id='loggedIn' type='hidden' value='true'>";
+            } else {
+                echo "<input id='loggedIn' type='hidden' value='false'>";
+            };
+
+            echo "<input id='submittedBy' type='text'>
             <button id='submitTeamButton' class='submit-team'>Post!</button>
-            <button id='cancelPost'>Cancel</button>
-            
-            </form></div>";
+            <button id='cancelPost'>Cancel</button>";
+
+            echo "<button id='logInButton'>Log In</button>
+            <button id='registerButton'>Register</button>
+            ";
+
+            echo "<div id='login'>";
+                $args = array(
+                    'echo'           => true,
+                    'remember'       => true,
+                    //'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+                    'form_id'        => 'loginform',
+                    'id_username'    => 'user_login',
+                    'id_password'    => 'user_pass',
+                    'id_remember'    => 'rememberme',
+                    'id_submit'      => 'wp-submit',
+                    'label_username' => __( 'Username' ),
+                    'label_password' => __( 'Password' ),
+                    'label_remember' => __( 'Remember Me' ),
+                    'label_log_in'   => __( 'Log In and Post' ),
+                    'value_username' => ''
+                );
+                wp_login_form( $args );
+            echo "</div>";
+
+/*             echo "<div id='register'>
+                <label for='username'>Username</label>
+                <input id='username' type='text' />
+                <p>The name that will appear with your posts</p>
+                <label for='password'>Password</label>
+                <input id='password' type='password' />
+                <button id='registerAndPost'>Register and Post!</button>
+            </div>"; */
+
+            echo "</form></div>";
         }
     }
 

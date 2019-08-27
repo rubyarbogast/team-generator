@@ -44,17 +44,21 @@
                         $('#main #buttonDiv').remove();
                         $('#showTeam').hide();
                         $('#secondaryButton').hide();
+
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
+
                         $('#showTeam').show();
                         $('#secondaryButton').show();
+
                         if (!desktop.matches) {$('#key').css("display","flex");}
                         if (desktop.matches) {$('.player-type').css("display", "block");}
+
                         $('#submitTeamButton').hide();
-                        $('#submittedby').hide();
+                        $('#submittedBy').hide();
                         $('#cancelPost').hide();
                     }
                 });
@@ -68,7 +72,7 @@
         event.preventDefault();
 
         //Show user name field, submit and cancel buttons
-        $('#submittedby').show();
+        $('#submittedBy').show();
         $('#submitTeamButton').show();
         $('#cancelPost').show();
 
@@ -84,7 +88,7 @@
         $('#secondaryButton').show();
         $('#showHideSubmitButton').show();
 
-        $('#submittedby').hide();
+        $('#submittedBy').hide();
         $('#submitTeamButton').hide();
     });
 
@@ -97,7 +101,7 @@
         //If banned phrases show up in user entry, add an error message asking user to try a different name
 
         //Get values from submitted form
-        var submittedby = $('#submittedby').val();
+        var submittedby = $('#submittedBy').val();
 
         //First line
         var lw1name = $('#lw1name').val();

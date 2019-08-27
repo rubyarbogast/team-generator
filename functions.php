@@ -339,7 +339,7 @@ function get_team_desktop() {
             echo "<button id='showHideSubmitButton'>Post Team to Blog</button>
             <button class='get-team-button' id='secondaryButton'>New Team</button>
 
-            <input id='submittedby' type='text'>
+            <input id='submittedBy' type='text'>
             <button id='submitTeamButton' class='submit-team'>Post!</button>
             <button id='cancelPost'>Cancel</button>
             

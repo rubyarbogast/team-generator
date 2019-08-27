@@ -214,8 +214,8 @@ function get_team_desktop() {
 
             <div class='flex-container' id='optionButtons'>";
 
-            echo "<form action='' id='postTeam' method='post'>
-            <input id='submittedby' type='text'>";
+            //Form to submit team
+            echo "<form action='' id='postTeam' method='post'>";
 
             //First line
             echo "<input id='lw1name' type='hidden' value='" . $lw_result_array[0][name] . "' >
@@ -336,8 +336,12 @@ function get_team_desktop() {
             <input id='g2abbr' type='hidden' value='" . $g_result_array[1][teamAbbr] . "' >
             ";
 
-            echo "<button id='submitTeamButton' class='submit-team'>Post Team to Blog</button>
+            echo "<button id='showHideSubmitButton'>Post Team to Blog</button>
             <button class='get-team-button' id='secondaryButton'>New Team</button>
+
+            <input id='submittedby' type='text'>
+            <button id='submitTeamButton' class='submit-team'>Post!</button>
+            <button id='cancelPost'>Cancel</button>
             
             </form></div>";
         }
@@ -347,6 +351,7 @@ function get_team_desktop() {
         global $wpdb;
     
         $submittedby = $_POST['submittedby'];
+        //TODO: escape string data
 
         //First line
         $lw1name = $_POST['lw1name'];

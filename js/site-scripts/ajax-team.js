@@ -50,9 +50,12 @@
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
                         $('#showTeam').show();
+                        $('#secondaryButton').show();
                         if (!desktop.matches) {$('#key').css("display","flex");}
                         if (desktop.matches) {$('.player-type').css("display", "block");}
-                        $('#secondaryButton').show();
+                        $('#submitTeamButton').hide();
+                        $('#submittedby').hide();
+                        $('#cancelPost').hide();
                     }
                 });
             }
@@ -60,9 +63,39 @@
         } 
     });
 
+    $(document).on( 'click', '#showHideSubmitButton', function( event ) {
+
+        event.preventDefault();
+
+        //Show user name field, submit and cancel buttons
+        $('#submittedby').show();
+        $('#submitTeamButton').show();
+        $('#cancelPost').show();
+
+        $('#secondaryButton').hide();
+        $('#showHideSubmitButton').hide();
+
+    });
+
+    $(document).on( 'click', '#cancelPost', function( event ){
+
+        event.preventDefault();
+
+        $('#secondaryButton').show();
+        $('#showHideSubmitButton').show();
+
+        $('#submittedby').hide();
+        $('#submitTeamButton').hide();
+    });
+
     $(document).on( 'click', '.submit-team', function( event ) {
 
         event.preventDefault();
+        //Import list of banned words
+        var bannedWords = $.getJSON("./banned-words.json");
+
+        //If banned phrases show up in user entry, add an error message asking user to try a different name
+
         //Get values from submitted form
         var submittedby = $('#submittedby').val();
 

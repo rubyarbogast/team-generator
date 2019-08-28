@@ -2,6 +2,7 @@
 
     $(document).on( 'click', '.get-team-button', function( event ) {
 
+        //Stop the page from loading the default view
         event.preventDefault();
 
         //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
@@ -64,6 +65,7 @@
                         $('#registerButton').hide();
 
                         $('#login').hide();
+                        $('#register').hide();
                     }
                 });
             }
@@ -93,18 +95,39 @@
 
     });
 
-    //If click log in
+    //Show login form
     $(document).on( 'click', '#logInButton', function( event ){
         event.preventDefault();
 
         $('#logInButton').hide();
         $('#registerButton').hide();
 
-        $('#login').show();
+        $('#loginFromTeamView').show();
+
     });
 
-    //If click register
+    //When the user clicks the button to log in
+    //Get the data from the form to pass to the form handler
+    //Check to see if there's an error object? -- not sure if this is where to do that
+    //If not, return a confirmation message, hide the form and button, and show the "Post" button
+    //If data does not validate:
+    //Show error messages; reload form
 
+    //Show register form
+    $(document).on( 'click', '#registerButton', function( event ){
+        event.preventDefault();
+
+        $('#logInButton').hide();
+        $('#registerButton').hide();
+
+        $('#registerFromTeamView').show();
+    });
+
+    //When the user clicks the button to register
+    //If data validates:
+    //Use wp create user to insert a new user into the db
+    //Otherwise:
+    //Show error messages (using plugin for banned words)
 
     $(document).on( 'click', '#cancelPost', function( event ){
 
@@ -121,6 +144,7 @@
 
         event.preventDefault();
 
+        //TODO: get the user ID from the form 
         //Get values from submitted form
         var submittedby = $('#submittedBy').val();
 

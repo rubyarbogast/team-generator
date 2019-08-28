@@ -18,6 +18,15 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
+//TODO: Write handler function for login form
+    //Get data from ajax-team
+    //TODO: review WP security and validation
+    //If data validates:
+    //Set the current user without logging them in
+    //Return a confirmation message, hide the form and button, and show the "Post" button
+    //If data does not validate:
+    //Show error messages
+
 
 
 //Send an AJAX query to the DB; save and output the results to the browser
@@ -110,14 +119,16 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
+    //Finish WPF setup
+    //Finish username plugin setup
+    //Add, customize login and registration forms
     //Review accessibility issues? 
     //When button clicked, show/hide name input and show/hide buttons
     //Add date field to blog submission
-    //Client-side validation: Make sure user submits a name
-    //Server-side validation: escape name field, check against regex for bad language
     //Add nonce to ajax-team
     //Update stylesheet (buttons)
     //In future, possibly use custom post type. For now, assume all posts will be teams
+    //Testing
 
     //Refactor post handler below; update mobile function 
 
@@ -341,55 +352,55 @@ function get_team_desktop() {
             echo "<button id='showHideSubmitButton'>Post Team to Blog</button>
             <button class='get-team-button' id='secondaryButton'>New Team</button>";
 
+            //Use WP function to see if the user is already logged in
             if(is_user_logged_in()){
                 echo "<input id='loggedIn' type='hidden' value='true'>";
             } else {
                 echo "<input id='loggedIn' type='hidden' value='false'>";
             };
 
-            echo "<input id='submittedBy' type='text'>
-            <button id='submitTeamButton' class='submit-team'>Post!</button>
+            echo "<button id='submitTeamButton' class='submit-team'>Post!</button>
             <button id='cancelPost'>Cancel</button>";
 
             echo "<button id='logInButton'>Log In</button>
             <button id='registerButton'>Register</button>
             ";
 
-            echo "<div id='login'>";
-                $args = array(
-                    'echo'           => true,
-                    'remember'       => true,
-                    //'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
-                    'form_id'        => 'loginform',
-                    'id_username'    => 'user_login',
-                    'id_password'    => 'user_pass',
-                    'id_remember'    => 'rememberme',
-                    'id_submit'      => 'wp-submit',
-                    'label_username' => __( 'Username' ),
-                    'label_password' => __( 'Password' ),
-                    'label_remember' => __( 'Remember Me' ),
-                    'label_log_in'   => __( 'Log In and Post' ),
-                    'value_username' => ''
-                );
-                wp_login_form( $args );
+            echo "</form>";
+
+            //If the user is not logged in, show either the login or register form (depending on what button they cick; handled in ajax-team)
+            echo "
+            <div id='loginFromTeamView'>
+            <form id='loginToPost'>
+            <label for='username'>Username</label>
+            <input id='username' type='text' />
+            <label for='password'>Password</label>
+            <input id='password' type='password' />
+            <button id='processLogin'>Log In!</button>
+            </form>
+            </div>
+            ";
+
+            echo "
+            <div id='registerFromTeamView'>
+            <form id='registerToPost'>
+            <label for='username'>Username</label>
+            <input id='username' type='text' />
+            <label for='password'>Password</label>
+            <input id='password' type='password' />
+            <button id='registerUser'>Register!</button>
+            </form>
+            </div>
+            ";
+
             echo "</div>";
-
-/*             echo "<div id='register'>
-                <label for='username'>Username</label>
-                <input id='username' type='text' />
-                <p>The name that will appear with your posts</p>
-                <label for='password'>Password</label>
-                <input id='password' type='password' />
-                <button id='registerAndPost'>Register and Post!</button>
-            </div>"; */
-
-            echo "</form></div>";
         }
     }
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         global $wpdb;
     
+        //TODO: Get the user id and log them in
         $submittedby = $_POST['submittedby'];
         //TODO: escape string data
 

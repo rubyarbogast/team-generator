@@ -112,14 +112,17 @@
     //If not, return a confirmation message, hide the form and button, and show the "Post" button
     //If data does not validate:
     //Show error messages; reload form
-    $(document).on( 'click', '#processLogin', function ( event ){
+/*     $(document).on( 'click', '#processLogin', function ( event ){
         event.preventDefault();
 
         //TODO: review validation and security. add nonce?
         var username = $('#username').val();
         var password = $('#password').val();
 
-    });
+        $('#secondaryButton').show();
+        $('#showHideSubmitButton').show();
+
+    }); */
 
     //Show register form
     $(document).on( 'click', '#registerButton', function( event ){
@@ -156,7 +159,9 @@
         event.preventDefault();
 
         //Get values from submitted form
-        //var submittedby = $('#submittedBy').val();
+        //TODO: If the login form is displayed, 
+        var username = $('#username').val();
+        var password = $('#password').val();
 
         //First line
         var lw1name = $('#lw1name').val();
@@ -273,6 +278,9 @@
             method: 'post',
             data: {
                 action: 'get_team_desktop',
+
+                username: username,
+                password: password,
 
                 lw1name: lw1name,
                 lw1number: lw1number,

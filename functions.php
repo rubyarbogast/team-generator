@@ -18,31 +18,6 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
-//TODO: Write handler function for login form
-    //Get data from ajax-team
-    //TODO: review WP security and validation
-    //If data validates:
-    //Set the current user without logging them in
-    //Return a confirmation message, hide the form and button, and show the "Post" button
-    //If data does not validate:
-    //Show error messages
-
-function rma_user_login(){
-    $creds = array(
-        'user_login'    => $_POST['username'],
-        'user_password' => $_POST['password'],
-        'remember'      => true
-    );
- 
-    $user = wp_signon( $creds, false );
- 
-    if ( is_wp_error( $user ) ) {
-        echo $user->get_error_message();
-    }
-}
-add_action( 'wp_ajax_nopriv_rma_user_login', 'rma_user_login' );
-add_action( 'wp_ajax_rma_user_login', 'rma_user_login' );
-
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
     global $wpdb;
@@ -391,7 +366,7 @@ function get_team_desktop() {
             <input id='username' type='text' />
             <label for='password'>Password</label>
             <input id='password' type='password' />
-            <button id='processLogin'>Log In!</button>
+            <button id='processLogin' class='submit-team'>Log In!</button>
             </form>
             </div>
             ";
@@ -414,13 +389,29 @@ function get_team_desktop() {
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         global $wpdb;
-    
-        //TODO: Get the user id and log them in
-        $current_user = wp_get_current_user();
-        $current_user_id = $current_user->ID;
 
-        //$submittedby = $_POST['submittedby'];
-        //TODO: escape string data
+        //TODO: Try: if login form is empty, then process the registration form
+        //If the registration form is empty, then process the login form
+        $username = $_POST['username'];
+        $pass = $_POST['password'];
+        $creds = array(
+            'user_login'    => $username,
+            'user_password' => $pass,
+            'remember'      => true
+        );
+
+        //TODO: Get the user id and log them in
+
+        $user = wp_signon( $creds, false );
+
+        if ( is_wp_error( $user ) ) {
+            echo $user->get_error_message();
+        }
+
+        $set_user = wp_set_current_user($user);
+        $current_user = wp_get_current_user();
+
+        $current_user_id = $current_user->ID;
 
         //First line
         $lw1name = $_POST['lw1name'];
@@ -536,7 +527,7 @@ function get_team_desktop() {
             'rma_team',
             array(
                 //'submitted_by' => $submittedby
-                'user_id' => $current_user_id
+                'user' => $current_user_id
             ),
             array ('%s')
         );

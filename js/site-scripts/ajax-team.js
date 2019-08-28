@@ -64,8 +64,8 @@
                         $('#logInButton').hide();
                         $('#registerButton').hide();
 
-                        $('#login').hide();
-                        $('#register').hide();
+                        $('#loginFromTeamView').hide();
+                        $('#registerFromTeamView').hide();
                     }
                 });
             }
@@ -112,6 +112,14 @@
     //If not, return a confirmation message, hide the form and button, and show the "Post" button
     //If data does not validate:
     //Show error messages; reload form
+    $(document).on( 'click', '#processLogin', function ( event ){
+        event.preventDefault();
+
+        //TODO: review validation and security. add nonce?
+        var username = $('#username').val();
+        var password = $('#password').val();
+
+    });
 
     //Show register form
     $(document).on( 'click', '#registerButton', function( event ){
@@ -128,6 +136,9 @@
     //Use wp create user to insert a new user into the db
     //Otherwise:
     //Show error messages (using plugin for banned words)
+    $(document).on( 'click', '#x', function ( event ){
+        event.preventDefault();
+    });
 
     $(document).on( 'click', '#cancelPost', function( event ){
 
@@ -144,9 +155,8 @@
 
         event.preventDefault();
 
-        //TODO: get the user ID from the form 
         //Get values from submitted form
-        var submittedby = $('#submittedBy').val();
+        //var submittedby = $('#submittedBy').val();
 
         //First line
         var lw1name = $('#lw1name').val();
@@ -263,7 +273,6 @@
             method: 'post',
             data: {
                 action: 'get_team_desktop',
-                submittedby: submittedby,
 
                 lw1name: lw1name,
                 lw1number: lw1number,

@@ -21,8 +21,11 @@ $newest_first_team_list = array_reverse($team_id_list);
     $rd_id_array = $wpdb->get_col( "SELECT rd_id FROM rma_pair WHERE team_id = $team_id" );
     $g1_str_id = $wpdb->get_col( "SELECT g1_id FROM rma_tandem WHERE team_id = $team_id" );
     $g2_str_id = $wpdb->get_col( "SELECT g2_id FROM rma_tandem WHERE team_id = $team_id" );
-    $submitted_by_name = $wpdb->get_col( "SELECT submitted_by FROM rma_team WHERE id = $team_id" );
+    $user_id_array = $wpdb->get_col( "SELECT user FROM rma_team WHERE id = $team_id" );
 
+    $user_id = (int)$user_id_array[0];
+    $user_info = get_userdata($user_id);
+    $submitted_by = $user_info->display_name;
 
     $lw_id1 = (int)$lw_id_array[0];
     $lw_id2 = (int)$lw_id_array[1];
@@ -49,8 +52,6 @@ $newest_first_team_list = array_reverse($team_id_list);
 
     $g1_id = (int)$g1_str_id[0];
     $g2_id = (int)$g2_str_id[0];
-
-    $submitted_by = $submitted_by_name[0];
 
     //From the players table, select the player with the id from the position array
     $lw1 = $wpdb->get_row( "SELECT * FROM rma_player WHERE id = $lw_id1", ARRAY_A );

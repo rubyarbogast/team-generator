@@ -27,7 +27,21 @@ add_action( 'init', 'register_my_menu' );
     //If data does not validate:
     //Show error messages
 
-
+function rma_user_login(){
+    $creds = array(
+        'user_login'    => $_POST['username'],
+        'user_password' => $_POST['password'],
+        'remember'      => true
+    );
+ 
+    $user = wp_signon( $creds, false );
+ 
+    if ( is_wp_error( $user ) ) {
+        echo $user->get_error_message();
+    }
+}
+add_action( 'wp_ajax_nopriv_rma_user_login', 'rma_user_login' );
+add_action( 'wp_ajax_rma_user_login', 'rma_user_login' );
 
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
@@ -129,6 +143,7 @@ function get_team_desktop() {
     //Update stylesheet (buttons)
     //In future, possibly use custom post type. For now, assume all posts will be teams
     //Testing
+    //NOTE: will need to change DB name for username when on live site
 
     //Refactor post handler below; update mobile function 
 
@@ -401,7 +416,10 @@ function get_team_desktop() {
         global $wpdb;
     
         //TODO: Get the user id and log them in
-        $submittedby = $_POST['submittedby'];
+        $current_user = wp_get_current_user();
+        $current_user_id = $current_user->ID;
+
+        //$submittedby = $_POST['submittedby'];
         //TODO: escape string data
 
         //First line
@@ -517,7 +535,8 @@ function get_team_desktop() {
             //Insert submitted_by into team 
             'rma_team',
             array(
-                'submitted_by' => $submittedby
+                //'submitted_by' => $submittedby
+                'user_id' => $current_user_id
             ),
             array ('%s')
         );

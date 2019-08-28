@@ -158,6 +158,7 @@
 
         event.preventDefault();
 
+
         //Get values from submitted form
         //TODO: If the login form is displayed, 
         var username = $('#username').val();
@@ -379,7 +380,7 @@
             }
         
         });
-    
+        
     });
 
 

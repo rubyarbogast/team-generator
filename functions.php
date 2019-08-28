@@ -394,21 +394,17 @@ function get_team_desktop() {
         //If the registration form is empty, then process the login form
         $username = $_POST['username'];
         $pass = $_POST['password'];
-        $creds = array(
-            'user_login'    => $username,
-            'user_password' => $pass,
-            'remember'      => true
-        );
 
-        //TODO: Get the user id and log them in
+        $user = get_user_by( 'login', $username );
+        $user_id = $user->id;
 
-        $user = wp_signon( $creds, false );
-
-        if ( is_wp_error( $user ) ) {
-            echo $user->get_error_message();
+        if( $user ) {
+            wp_set_current_user( $user_id, $username );
+            wp_set_auth_cookie( $user_id );
+            do_action( 'wp_login', $username, $user );
         }
 
-        $set_user = wp_set_current_user($user);
+        //If user is logged in
         $current_user = wp_get_current_user();
 
         $current_user_id = $current_user->ID;
@@ -848,6 +844,7 @@ function get_team_desktop() {
             array('%d', '%d', '%d')
         );
         } 
+
     wp_die(); 
 }
 add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');

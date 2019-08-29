@@ -10,7 +10,6 @@ function start_session() {
 }
 
 add_action('wp_logout','end_session');
-add_action('wp_login','end_session');
 add_action('end_session_action','end_session');
 function end_session() {
     session_destroy ();
@@ -399,7 +398,7 @@ function get_team_desktop() {
         //If the registration form is empty, then process the login form
 
         //TODO: error handling doesn't work this way. will have to write separate functions and pass the form
-        $username = $_POST['username'];
+/*         $username = $_POST['username'];
         $pass = $_POST['password'];
 
         $user = get_user_by( 'login', $username );
@@ -409,7 +408,7 @@ function get_team_desktop() {
             wp_set_current_user( $user_id, $username );
             wp_set_auth_cookie( $user_id );
             do_action( 'wp_login', $username, $user );
-        }
+        } */
 
         //If user is logged in
         $current_user = wp_get_current_user();

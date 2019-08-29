@@ -359,6 +359,7 @@ function get_team_desktop() {
             echo "</form>";
 
             //If the user is not logged in, show either the login or register form (depending on what button they cick; handled in ajax-team)
+            //Add fields for the 
             echo "
             <div id='loginFromTeamView'>
             <form id='loginToPost'>

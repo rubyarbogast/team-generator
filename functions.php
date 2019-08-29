@@ -1,5 +1,20 @@
 <?php
+
 add_theme_support( 'menus' );
+
+add_action('init', 'start_session', 1);
+function start_session() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+
+add_action('wp_logout','end_session');
+add_action('wp_login','end_session');
+add_action('end_session_action','end_session');
+function end_session() {
+    session_destroy ();
+}
 
 function my_enqueue() {
     wp_enqueue_script( 'ajax-team', get_template_directory_uri() . '/js/site-scripts/ajax-team.js', array('jquery') );
@@ -131,6 +146,13 @@ function get_team_desktop() {
         $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4", ARRAY_A );
         $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
         $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
+
+        //Save arrays to session to hold data if user wants to post a team and isn't logged in
+        $_SESSION['lw_array'] = $lw_result_array;
+        $_SESSION['c_array'] = $c_result_array;
+        $_SESSION['rw_array'] = $rw_result_array;
+        $_SESSION['d_array'] = $d_result_array;
+        $_SESSION['g_array'] = $g_result_array;
 
         //If the data is missing, show an error message. Otherwise, output the team 
         if(!$lw_result_array || !$c_result_array || !$rw_result_array || !$d_result_array || !$g_result_array) {
@@ -359,28 +381,10 @@ function get_team_desktop() {
             echo "</form>";
 
             //If the user is not logged in, show either the login or register form (depending on what button they cick; handled in ajax-team)
-            //Add fields for the 
-            echo "
-            <div id='loginFromTeamView'>
-            <form id='loginToPost'>
-            <label for='username'>Username</label>
-            <input id='username' type='text' />
-            <label for='password'>Password</label>
-            <input id='password' type='password' />
-            <button id='processLogin' class='submit-team'>Log In!</button>
-            </form>
-            </div>
-            ";
 
             echo "
-            <div id='registerFromTeamView'>
-            <form id='registerToPost'>
-            <label for='username'>Username</label>
-            <input id='username' type='text' />
-            <label for='password'>Password</label>
-            <input id='password' type='password' />
-            <button id='registerUser'>Register!</button>
-            </form>
+            <div id='loginFromTeamView'>
+            <a class='login_button' id='show_login' href='./login'>Login</a>
             </div>
             ";
 
@@ -393,6 +397,8 @@ function get_team_desktop() {
 
         //TODO: Try: if login form is empty, then process the registration form
         //If the registration form is empty, then process the login form
+
+        //TODO: error handling doesn't work this way. will have to write separate functions and pass the form
         $username = $_POST['username'];
         $pass = $_POST['password'];
 
@@ -851,3 +857,22 @@ function get_team_desktop() {
 add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
 add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
 
+function ajax_login_init(){
+
+    wp_register_script('ajax-login-script', get_template_directory_uri() . '/ajax-login-script.js', array('jquery') ); 
+    wp_enqueue_script('ajax-login-script');
+
+    wp_localize_script( 'ajax-login-script', 'ajax_login_object', array( 
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'redirecturl' => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . ('/page-post-team.php'),
+        'loadingmessage' => __('Sending user info, please wait...')
+    ));
+
+    // Enable the user with no privileges to run ajax_login() in AJAX
+    add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
+}
+
+// Execute the action only if the user isn't logged in
+if (!is_user_logged_in()) {
+    add_action('init', 'ajax_login_init');
+}

@@ -109,221 +109,105 @@
 
         event.preventDefault();
 
-
-        //Get values from submitted form
-        //TODO: If the login form is displayed, 
-        var username = $('#username').val();
-        var password = $('#password').val();
-
-        //First line
-        var lw1name = $('#lw1name').val();
-        var lw1number = $('#lw1number').val();
-        var lw1team = $('#lw1team').val();
-        var lw1abbr = $('#lw1abbr').val();
-
-        var c1name = $('#c1name').val();
-        var c1number = $('#c1number').val();
-        var c1team = $('#c1team').val();
-        var c1abbr = $('#c1abbr').val();
-
-        var rw1name = $('#rw1name').val();
-        var rw1number = $('#rw1number').val();
-        var rw1team = $('#rw1team').val();
-        var rw1abbr = $('#rw1abbr').val();
-
-        //Second line
-        var lw2name = $('#lw2name').val();
-        var lw2number = $('#lw2number').val();
-        var lw2team = $('#lw2team').val();
-        var lw2abbr = $('#lw2abbr').val();
-
-        var c2name = $('#c2name').val();
-        var c2number = $('#c2number').val();
-        var c2team = $('#c2team').val();
-        var c2abbr = $('#c2abbr').val();
-
-        var rw2name = $('#rw2name').val();
-        var rw2number = $('#rw2number').val();
-        var rw2team = $('#rw2team').val();
-        var rw2abbr = $('#rw2abbr').val();
-
-        //Third line
-        var lw3name = $('#lw3name').val();
-        var lw3number = $('#lw3number').val();
-        var lw3team = $('#lw3team').val();
-        var lw3abbr = $('#lw3abbr').val();
-
-        var c3name = $('#c3name').val();
-        var c3number = $('#c3number').val();
-        var c3team = $('#c3team').val();
-        var c3abbr = $('#c3abbr').val();
-
-        var rw3name = $('#rw3name').val();
-        var rw3number = $('#rw3number').val();
-        var rw3team = $('#rw3team').val();
-        var rw3abbr = $('#rw3abbr').val();
-
-        //Fourth line
-        var lw4name = $('#lw4name').val();
-        var lw4number = $('#lw4number').val();
-        var lw4team = $('#lw4team').val();
-        var lw4abbr = $('#lw4abbr').val();
-
-        var c4name = $('#c4name').val();
-        var c4number = $('#c4number').val();
-        var c4team = $('#c4team').val();
-        var c4abbr = $('#c4abbr').val();
-
-        var rw4name = $('#rw4name').val();
-        var rw4number = $('#rw4number').val();
-        var rw4team = $('#rw4team').val();
-        var rw4abbr = $('#rw4abbr').val();
-
-        //First pair
-        var d1name = $('#d1name').val();
-        var d1number = $('#d1number').val();
-        var d1team = $('#d1team').val();
-        var d1abbr = $('#d1abbr').val();
-
-        var d2name = $('#d2name').val();
-        var d2number = $('#d2number').val();
-        var d2team = $('#d2team').val();
-        var d2abbr = $('#d2abbr').val();
-
-        //Second pair
-        var d3name = $('#d3name').val();
-        var d3number = $('#d3number').val();
-        var d3team = $('#d3team').val();
-        var d3abbr = $('#d3abbr').val();
-
-        var d4name = $('#d4name').val();
-        var d4number = $('#d4number').val();
-        var d4team = $('#d4team').val();
-        var d4abbr = $('#d4abbr').val();
-
-        //Third pair
-        var d5name = $('#d5name').val();
-        var d5number = $('#d5number').val();
-        var d5team = $('#d5team').val();
-        var d5abbr = $('#d5abbr').val();
-
-        var d6name = $('#d6name').val();
-        var d6number = $('#d6number').val();
-        var d6team = $('#d6team').val();
-        var d6abbr = $('#d6abbr').val();
-
-        //Tandem
-        var g1name = $('#g1name').val();
-        var g1number = $('#g1number').val();
-        var g1team = $('#g1team').val();
-        var g1abbr = $('#g1abbr').val();
-
-        var g2name = $('#g2name').val();
-        var g2number = $('#g2number').val();
-        var g2team = $('#g2team').val();
-        var g2abbr = $('#g2abbr').val();
-
-
-
         $.ajax( {
             url: nhl_ajax_object.ajax_url,
             method: 'post',
             data: {
                 action: 'get_team_desktop',
 
-                username: username,
-                password: password,
+                username: $('#username').val(),
+                password: $('#password').val(),
 
-                lw1name: lw1name,
-                lw1number: lw1number,
-                lw1team: lw1team,
-                lw1abbr: lw1abbr,
-                c1name: c1name,
-                c1number: c1number,
-                c1team: c1team,
-                c1abbr: c1abbr,
-                rw1name: rw1name,
-                rw1number: rw1number,
-                rw1team: rw1team,
-                rw1abbr: rw1abbr,
+                lw1name: $('#lw1name').val(),
+                lw1number: $('#lw1number').val(),
+                lw1team: $('#lw1team').val(),
+                lw1abbr: $('#lw1abbr').val(),
+                c1name: $('#c1name').val(),
+                c1number: $('#c1number').val(),
+                c1team: $('#c1team').val(),
+                c1abbr: $('#c1abbr').val(),
+                rw1name: $('#rw1name').val(),
+                rw1number: $('#rw1number').val(),
+                rw1team: $('#rw1team').val(),
+                rw1abbr: $('#rw1abbr').val(),
 
-                lw2name: lw2name,
-                lw2number: lw2number,
-                lw2team: lw2team,
-                lw2abbr: lw2abbr,
-                c2name: c2name,
-                c2number: c2number,
-                c2team: c2team,
-                c2abbr: c2abbr,
-                rw2name: rw2name,
-                rw2number: rw2number,
-                rw2team: rw2team,
-                rw2abbr: rw2abbr,
+                lw2name: $('#lw2name').val(),
+                lw2number: $('#lw2number').val(),
+                lw2team: $('#lw2team').val(),
+                lw2abbr: $('#lw2abbr').val(),
+                c2name: $('#c2name').val(),
+                c2number: $('#c2number').val(),
+                c2team: $('#c2team').val(),
+                c2abbr: $('#c2abbr').val(),
+                rw2name: $('#rw2name').val(),
+                rw2number: $('#rw2number').val(),
+                rw2team: $('#rw2team').val(),
+                rw2abbr: $('#rw2abbr').val(),
 
-                lw3name: lw3name,
-                lw3number: lw3number,
-                lw3team: lw3team,
-                lw3abbr: lw3abbr,
-                c3name: c3name,
-                c3number: c3number,
-                c3team: c3team,
-                c3abbr: c3abbr,
-                rw3name: rw3name,
-                rw3number: rw3number,
-                rw3team: rw3team,
-                rw3abbr: rw3abbr,
+                lw3name: $('#lw3name').val(),
+                lw3number: $('#lw3number').val(),
+                lw3team: $('#lw3team').val(),
+                lw3abbr: $('#lw3abbr').val(),
+                c3name: $('#c3name').val(),
+                c3number: $('#c3number').val(),
+                c3team: $('#c3team').val(),
+                c3abbr: $('#c3abbr').val(),
+                rw3name: $('#rw3name').val(),
+                rw3number: $('#rw3number').val(),
+                rw3team: $('#rw3team').val(),
+                rw3abbr: $('#rw3abbr').val(),
 
-                lw4name: lw4name,
-                lw4number: lw4number,
-                lw4team: lw4team,
-                lw4abbr: lw4abbr,
-                c4name: c4name,
-                c4number: c4number,
-                c4team: c4team,
-                c4abbr: c4abbr,
-                rw4name: rw4name,
-                rw4number: rw4number,
-                rw4team: rw4team,
-                rw4abbr: rw4abbr,
+                lw4name: $('#lw4name').val(),
+                lw4number: $('#lw4number').val(),
+                lw4team: $('#lw4team').val(),
+                lw4abbr: $('#lw4abbr').val(),
+                c4name: $('#c4name').val(),
+                c4number: $('#c4number').val(),
+                c4team: $('#c4team').val(),
+                c4abbr: $('#c4abbr').val(),
+                rw4name: $('#rw4name').val(),
+                rw4number: $('#rw4number').val(),
+                rw4team: $('#rw4team').val(),
+                rw4abbr: $('#rw4abbr').val(),
 
-                d1name: d1name,
-                d1number: d1number,
-                d1team: d1team,
-                d1abbr: d1abbr,
-                d2name: d2name,
-                d2number: d2number,
-                d2team: d2team,
-                d2abbr: d2abbr,
+                d1name: $('#d1name').val(),
+                d1number: $('#d1number').val(),
+                d1team: $('#d1team').val(),
+                d1abbr: $('#d1abbr').val(),
+                d2name: $('#d2name').val(),
+                d2number: $('#d2number').val(),
+                d2team: $('#d2team').val(),
+                d2abbr: $('#d2abbr').val(),
 
-                d3name: d3name,
-                d3number: d3number,
-                d3team: d3team,
-                d3abbr: d3abbr,
-                d4name: d4name,
-                d4number: d4number,
-                d4team: d4team,
-                d4abbr: d4abbr,
+                d3name: $('#d3name').val(),
+                d3number: $('#d3number').val(),
+                d3team: $('#d3team').val(),
+                d3abbr: $('#d3abbr').val(),
+                d4name: $('#d4name').val(),
+                d4number: $('#d4number').val(),
+                d4team: $('#d4team').val(),
+                d4abbr: $('#d4abbr').val(),
 
-                d5name: d5name,
-                d5number: d5number,
-                d5team: d5team,
-                d5abbr: d5abbr,
-                d6name: d6name,
-                d6number: d6number,
-                d6team: d6team,
-                d6abbr: d6abbr,
+                d5name: $('#d5name').val(),
+                d5number: $('#d5number').val(),
+                d5team: $('#d5team').val(),
+                d5abbr: $('#d5abbr').val(),
+                d6name: $('#d6name').val(),
+                d6number: $('#d6number').val(),
+                d6team: $('#d6team').val(),
+                d6abbr: $('#d6abbr').val(),
 
-                g1name: g1name,
-                g1number: g1number,
-                g1team: g1team,
-                g1abbr: g1abbr,
-                g2name: g2name,
-                g2number: g2number,
-                g2team: g2team,
-                g2abbr: g2abbr
+                g1name: $('#g1name').val(),
+                g1number: $('#g1number').val(),
+                g1team: $('#g1team').val(),
+                g1abbr: $('#g1abbr').val(),
+                g2name: $('#g2name').val(),
+                g2number: $('#g2number').val(),
+                g2team: $('#g2team').val(),
+                g2abbr: $('#g2abbr').val()
             },
             dataType: "text",
-            success: function(strMessage) {
+            success: function() {
                 window.location='blog';
             },
             error: function() {

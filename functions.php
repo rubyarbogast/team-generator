@@ -32,6 +32,11 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
+add_filter( 'register_url', 'my_register_page' );
+function my_register_page( $register_url ) {
+    return home_url( '/register/' );
+}
+
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
     global $wpdb;
@@ -124,15 +129,18 @@ function get_team_desktop() {
     //TODO: 
     //Finish WPF setup
     //Finish username plugin setup
-    //Add, customize login and registration forms
     //Review accessibility issues? 
-    //When button clicked, show/hide name input and show/hide buttons
     //Add date field to blog submission
-    //Add nonce to ajax-team
-    //Update stylesheet (buttons)
+    //Update stylesheet (buttons, forms)
+    //Refactor AJAX
+    //Refactor post handler
     //In future, possibly use custom post type. For now, assume all posts will be teams
     //Testing
-    //NOTE: will need to change DB name for username when on live site
+    //NOTE: will need to change DB name for username when on live site, also the redirect in page-login
+    //Add registration template
+    //Add logout link
+    //Update menu; add script
+    //Delete files not using
 
     //Refactor post handler below; update mobile function 
 
@@ -384,6 +392,8 @@ function get_team_desktop() {
             echo "
             <div id='loginFromTeamView'>
             <a class='login_button' id='show_login' href='./login'>Login</a>
+            | 
+            <a href='" . wp_registration_url() . "'>Register</a>
             </div>
             ";
 
@@ -855,23 +865,3 @@ function get_team_desktop() {
 }
 add_action('wp_ajax_nopriv_get_team_desktop', 'get_team_desktop');
 add_action('wp_ajax_get_team_desktop', 'get_team_desktop');
-
-function ajax_login_init(){
-
-    wp_register_script('ajax-login-script', get_template_directory_uri() . '/ajax-login-script.js', array('jquery') ); 
-    wp_enqueue_script('ajax-login-script');
-
-    wp_localize_script( 'ajax-login-script', 'ajax_login_object', array( 
-        'ajaxurl' => admin_url( 'admin-ajax.php' ),
-        'redirecturl' => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . ('/page-post-team.php'),
-        'loadingmessage' => __('Sending user info, please wait...')
-    ));
-
-    // Enable the user with no privileges to run ajax_login() in AJAX
-    add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
-}
-
-// Execute the action only if the user isn't logged in
-if (!is_user_logged_in()) {
-    add_action('init', 'ajax_login_init');
-}

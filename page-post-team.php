@@ -2,6 +2,7 @@
 
     <h2>Logged in!</h2>
 
+<!-- TODO: only add form if there's a team in the session -->
 <!-- add form with data from session; hook up to ajax-team; process (add duplicate to functions??) -->
     <?php $lw_result_array = $_SESSION['lw_array']; 
     $c_result_array = $_SESSION['c_array']; 

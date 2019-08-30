@@ -27,11 +27,13 @@ function theme_styles() {
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 
 //Register custom navigation menu
-function register_my_menu() {
-	register_nav_menu( 'primary', __( 'Primary Menu', 'theme-slug' ) );
+function rma_register_menu() {
+    register_nav_menu( 'logged-in-menu', __( 'Logged In Menu' ) );
+    register_nav_menu( 'logged-out-menu', __( 'Logged Out Menu') );
 }
-add_action( 'init', 'register_my_menu' );
+add_action( 'init', 'rma_register_menu' );
 
+//Change the default registration form link
 add_filter( 'register_url', 'my_register_page' );
 function my_register_page( $register_url ) {
     return home_url( '/register/' );

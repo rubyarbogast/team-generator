@@ -14,12 +14,18 @@
 
     <div class="menu">
       <?php 
-            $args = array(
+/*             $args = array(
               'menu'        => 'primary'
             );
-            wp_nav_menu( $args );
+            wp_nav_menu( $args ); */
+          wp_nav_menu( array(
+            'theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu'
+        ) );
       ?> 
+
     </div>
+
+
 
     <div id="pageContainer">
       <h1><?php bloginfo('name'); ?></h1>

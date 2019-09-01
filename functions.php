@@ -134,7 +134,6 @@ function get_team_desktop() {
     //Review accessibility issues? 
     //Add date field to blog submission
     //Update stylesheet (buttons, forms)
-    //Refactor AJAX
     //Refactor post handler
     //In future, possibly use custom post type. For now, assume all posts will be teams
     //Testing
@@ -142,7 +141,6 @@ function get_team_desktop() {
     //Add registration template
     //Add logout link
     //Update menu; add script
-    //Delete files not using
 
     //Refactor post handler below; update mobile function 
 
@@ -381,11 +379,7 @@ function get_team_desktop() {
             };
 
             echo "<button id='submitTeamButton' class='submit-team'>Post!</button>
-            <button id='cancelPost'>Cancel</button>";
-
-            echo "<button id='logInButton'>Log In</button>
-            <button id='registerButton'>Register</button>
-            ";
+            <button id='cancelPostButton'>Cancel</button>";
 
             echo "</form>";
 
@@ -396,6 +390,8 @@ function get_team_desktop() {
             <a class='login_button' id='show_login' href='./login'>Login</a>
             | 
             <a href='" . wp_registration_url() . "'>Register</a>
+            |
+            <button id='cancelPostText'>Cancel</button>
             </div>
             ";
 

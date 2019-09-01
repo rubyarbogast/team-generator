@@ -43,8 +43,7 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
-                        $('#showTeam').hide();
-                        $('#secondaryButton').hide();
+                        $('#showTeam, #secondaryButton').hide();
 
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
@@ -52,20 +51,14 @@
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
 
-                        $('#showTeam').show();
-                        $('#secondaryButton').show();
+                        $('#showTeam, #secondaryButton').show();
 
                         if (!desktop.matches) {$('#key').css("display","flex");}
                         if (desktop.matches) {$('.player-type').css("display", "block");}
 
-                        $('#submitTeamButton').hide();
-                        $('#submittedBy').hide();
-                        $('#cancelPost').hide();
-                        $('#logInButton').hide();
-                        $('#registerButton').hide();
+                        $('#submitTeamButton, #cancelPostButton').hide();
 
-                        $('#loginFromTeamView').hide();
-                        $('#registerFromTeamView').hide();
+                        $('#loginFromTeamView, #registerFromTeamView').hide();
                     }
                 });
             }
@@ -81,28 +74,32 @@
 
         if (loggedIn == 'true'){
             //Show user name field, submit and cancel buttons
-            $('#submitTeamButton').show();
-            $('#submittedBy').show();
-            $('#cancelPost').show();
+            $('#submitTeamButton, #cancelPostButton').show();
 
         } else {
             $('#loginFromTeamView').show();
         }
 
-        $('#secondaryButton').hide();
-        $('#showHideSubmitButton').hide();
+        $('#secondaryButton, #showHideSubmitButton').hide();
 
     });
 
-    $(document).on( 'click', '#cancelPost', function( event ){
+    $(document).on( 'click', '#cancelPostButton', function( event ){
 
         event.preventDefault();
 
-        $('#secondaryButton').show();
-        $('#showHideSubmitButton').show();
+        $('#secondaryButton, #showHideSubmitButton').show();
 
-        $('#submittedBy').hide();
-        $('#submitTeamButton').hide();
+        $('#submitTeamButton, #cancelPostButton').hide();
+    });
+
+    $(document).on( 'click', '#cancelPostText', function( event ){
+
+        event.preventDefault();
+
+        $('#secondaryButton, #showHideSubmitButton').show();
+
+        $('#loginFromTeamView').hide();
     });
 
     $(document).on( 'click', '.submit-team', function( event ) {

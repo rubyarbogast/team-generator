@@ -102,7 +102,7 @@
         $('#loginFromTeamView').hide();
     });
 
-    $(document).on( 'click', '.submit-team', function( event ) {
+    /* $(document).on( 'click', '.submit-team', function( event ) {
 
         event.preventDefault();
 
@@ -213,7 +213,7 @@
         
         });
         
-    });
+    }); */
 
 
 })(jQuery);

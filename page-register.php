@@ -27,13 +27,21 @@
 
 <?php
 if(isset($_POST['wp-submit'])) {
+    //TODO: sanitize
     $user_name = $_POST['username'];
     $password = $_POST['password'];
-        
-    $user_id = username_exists( $user_name );
 
-    if ( !$user_id ) {
-        $user_id = wp_create_user( $user_name, $password );
+    //Insert the user
+    $userdata = array(
+        'user_pass' => $password,
+        'user_login' => $user_name
+    );
+    $user_id = wp_insert_user( $userdata );
+
+    if( is_wp_error( $user_id ) ) {
+        $error_msg = $user_id->get_error_message();
+        echo "<div class='error'>" . $error_msg . "</div>";
+    } else {
 
         //After creating the user, sign them in
         $creds = array();
@@ -42,13 +50,11 @@ if(isset($_POST['wp-submit'])) {
         $creds['remember'] = true;
 
         $user = wp_signon( $creds, false );
-        if ( is_wp_error($user) )
-            echo $user->get_error_message();
-    } else {
-        echo '<div class="error">That username is taken. Please choose a different one.</div>';
+                    
+        wp_redirect( home_url('/post-team/') ); 
+        exit;
     }
 
-    wp_redirect( home_url('/post-team/') ); exit;
 }
 ?>
 

@@ -2,6 +2,17 @@
 
 add_theme_support( 'menus' );
 
+/* add_filter( 'illegal_user_logins', 'rma_login_filter' );
+function rma_login_filter( $usernames ) {
+    return $usernames;
+} */
+
+function my_prefix_illegal_user_logins( $banned ) {
+    $banned = array('johnny');
+    return $banned;
+}
+add_filter( 'illegal_user_logins', 'my_prefix_illegal_user_logins' );
+
 add_action('init', 'start_session', 1);
 function start_session() {
     if(!session_id()) {

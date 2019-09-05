@@ -17,12 +17,7 @@
                 </div>
                 <div id="showTeam">
                 </div>
-                <div class="flex-container" id="optionButtons">
-<!--                     <button id='submitTeamButton' class='submit-team' type='submit' value='submit'>Post Team to Blog</button>
-                    <button class="get-team-button" id="secondaryButton">New Team</button> -->
-                </div>
             </div>
-
         </div>
     </section>
 

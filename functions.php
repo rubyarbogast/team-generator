@@ -37,6 +37,7 @@ add_action( 'wp_enqueue_scripts', 'rma_enqueue_post_team' );
 function rma_scripts() {
     wp_enqueue_script( 'cancelPostLoggedIn', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
     wp_enqueue_script( 'cancelLogin', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
+    wp_enqueue_script( 'loggedInOptions', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
 }
 add_action( 'wp_enqueue_scripts', 'rma_scripts' );
 
@@ -388,7 +389,7 @@ function get_team_desktop() {
             <input id='g2abbr' type='hidden' value='" . $g_result_array[1][teamAbbr] . "' >
             ";
 
-            echo "<button id='showHideSubmitButton' class='secondary-button'>Post Team to Blog</button>
+            echo "<button id='showHideSubmitButton' class='secondary-button' onclick='loggedInOptions(event)'>Post Team to Blog</button>
             <button class='get-team-button secondary-button' id='newTeam'>New Team</button>";
 
             //Use WP function to see if the user is already logged in
@@ -407,9 +408,9 @@ function get_team_desktop() {
 
             echo "
             <div id='loginFromTeamView'>
-            <a href='./login'>Log In</a>
+            <a href='./login' id='logIn'>Log In</a>
             | 
-            <a href='" . wp_registration_url() . "'>Register</a>
+            <a href='" . wp_registration_url() . "' id='register'>Register</a>
             |
             <a href='#' id='cancel' onclick='cancelLogin();return false;'>Cancel</a>
             </div>

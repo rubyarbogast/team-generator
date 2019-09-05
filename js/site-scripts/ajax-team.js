@@ -66,22 +66,4 @@
         } 
     });
 
-    $(document).on( 'click', '#showHideSubmitButton', function( event ) {
-
-        event.preventDefault();
-
-        var loggedIn = $('#loggedIn').val();
-
-        if (loggedIn == 'true'){
-            //Show user name field, submit and cancel buttons
-            $('#submitTeamButton, #cancelPostButton').show();
-
-        } else {
-            $('#loginFromTeamView').show();
-        }
-
-        $('#newTeam, #showHideSubmitButton').hide();
-
-    });
-
 })(jQuery);

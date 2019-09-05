@@ -14,3 +14,15 @@ function cancelPostLoggedIn(event) {
     newTeamButton.style.display = "inline-block";
 }
 
+function cancelLogin() {
+    //event.preventDefault();
+
+    var loginDiv = document.getElementById("loginFromTeamView");
+    var showHideSubmitButton = document.getElementById("showHideSubmitButton");
+    var newTeamButton = document.getElementById("newTeam");
+    
+    loginDiv.style.display = "none";
+
+    showHideSubmitButton.style.display = "inline-block";
+    newTeamButton.style.display = "inline-block";
+}

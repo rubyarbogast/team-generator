@@ -2,13 +2,8 @@
 
 add_theme_support( 'menus' );
 
-/* add_filter( 'illegal_user_logins', 'rma_login_filter' );
-function rma_login_filter( $usernames ) {
-    return $usernames;
-} */
-
 function my_prefix_illegal_user_logins( $banned ) {
-    $banned = array('johnny');
+    $banned = include_once( get_template_directory() . '/banned-words.php' );
     return $banned;
 }
 add_filter( 'illegal_user_logins', 'my_prefix_illegal_user_logins' );
@@ -37,6 +32,11 @@ function rma_enqueue_post_team(){
     wp_localize_script( 'ajax-post', 'post_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'rma_enqueue_post_team' );
+
+function rma_scripts() {
+    wp_enqueue_script( 'cancelPostLoggedIn', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
+}
+add_action( 'wp_enqueue_scripts', 'rma_scripts' );
 
 function theme_styles() {	
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
@@ -385,8 +385,10 @@ function get_team_desktop() {
             <input id='g2abbr' type='hidden' value='" . $g_result_array[1][teamAbbr] . "' >
             ";
 
-            echo "<button id='showHideSubmitButton'>Post Team to Blog</button>
-            <button class='get-team-button' id='secondaryButton'>New Team</button>";
+            echo "<div id='optionButtons'>
+            <button id='showHideSubmitButton' class='secondary-button'>Post Team to Blog</button>
+            <button class='get-team-button secondary-button' id='newTeam'>New Team</button>
+            </div>";
 
             //Use WP function to see if the user is already logged in
             if(is_user_logged_in()){
@@ -395,8 +397,8 @@ function get_team_desktop() {
                 echo "<input id='loggedIn' type='hidden' value='false'>";
             };
 
-            echo "<button id='submitTeamButton' class='submit-team'>Post!</button>
-            <button id='cancelPostButton'>Cancel</button>";
+            echo "<button id='submitTeamButton' class='submit-team secondary-button'>Post!</button>
+            <button id='cancelPostButton' class='secondary-button' onclick='cancelPostLoggedIn(event)'>Cancel</button>";
 
             echo "</form>";
 
@@ -404,11 +406,11 @@ function get_team_desktop() {
 
             echo "
             <div id='loginFromTeamView'>
-            <a class='login_button' id='show_login' href='./login'>Login</a>
+            <a href='./login'>Log In</a>
             | 
             <a href='" . wp_registration_url() . "'>Register</a>
             |
-            <button id='cancelPostText'>Cancel</button>
+            <button id='cancelPostNotLoggedIn' class='secondary-button'>Cancel</button>
             </div>
             ";
 

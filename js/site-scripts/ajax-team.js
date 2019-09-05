@@ -23,14 +23,14 @@
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
                         $('#showTeam').hide();
-                        $('#secondaryButton').hide();
+                        $('#newTeam').hide();
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
                         $('#showTeam').show();
-                        $('#secondaryButton').show();
+                        $('#newTeam').show();
                     }
                 });
             } else {
@@ -43,7 +43,7 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
-                        $('#showTeam, #secondaryButton').hide();
+                        $('#showTeam, #newTeam').hide();
 
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
@@ -51,7 +51,7 @@
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
 
-                        $('#showTeam, #secondaryButton').show();
+                        $('#showTeam, #newTeam, #showHideSubmitButton').show();
 
                         if (!desktop.matches) {$('#key').css("display","flex");}
                         if (desktop.matches) {$('.player-type').css("display", "block");}
@@ -80,26 +80,26 @@
             $('#loginFromTeamView').show();
         }
 
-        $('#secondaryButton, #showHideSubmitButton').hide();
+        $('#newTeam, #showHideSubmitButton').hide();
 
     });
 
-    $(document).on( 'click', '#cancelPostButton', function( event ){
+/*     $(document).on( 'click', '#cancelPostButton', function( event ){
 
         event.preventDefault();
 
-        $('#secondaryButton, #showHideSubmitButton').show();
+        $('#newTeam, #showHideSubmitButton').show();
 
         $('#submitTeamButton, #cancelPostButton').hide();
-    });
+    }); */
 
-    $(document).on( 'click', '#cancelPostText', function( event ){
+    $(document).on( 'click', '#cancelPostNotLoggedIn', function( event ){
 
         event.preventDefault();
 
-        $('#secondaryButton, #showHideSubmitButton').show();
+        $('#newTeam, #showHideSubmitButton').show();
 
-        $('#loginFromTeamView').hide();
+        $('#logIn', '#register', '#cancelPostNotLoggedIn').hide();
     });
 
     /* $(document).on( 'click', '.submit-team', function( event ) {

@@ -88,6 +88,10 @@ a:visited {
     display: table;
 }
 
+.italic {
+    font-style: italic;
+}
+
 /* Ensure footer won't cover up dynamically loaded content by using a flex column with div for dynamic content set to flex: 1*/
 #pageContainer {
     min-height: 86vh;
@@ -177,7 +181,8 @@ a:visited {
 }
 
 .secondary-button:hover,
-#wp-submit:hover {
+#wp-submit:hover,
+#register:hover {
     background-color: #75d5bf;
 }
 
@@ -258,7 +263,8 @@ input[type=password] {
     border: none;
 }
 
-#wp-submit {
+#wp-submit,
+#register {
     background-color: #A2E3D4;
     width: 100px;
     height: 50px;
@@ -478,7 +484,8 @@ input[type=password] {
         width: 200px;
     }
 
-    #wp-submit {
+    #wp-submit,
+    #register {
         width: 100px;
         height: 50px;
         padding: 4px;

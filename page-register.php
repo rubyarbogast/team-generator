@@ -1,17 +1,18 @@
 <?php get_header(); ?> 
 
 <h2>Register</h2>
+<div class='loginFormDiv flex-container'>
     <form class='user-register' action="" method="post">
     <p class="login-username">
         <label for="username">Username</label>
         <input id="username" type="text" name="username">
     </p>
-    <p>
-    Your username will display with your posts.
-    </p>
     <p class="login-password">
         <label for="password">Password</label>
         <input id="password" type="password" name="password">
+    </p>
+    <p class='italic'>
+    Your username will be displayed with your posts.
     </p>
     <p class="login-remember">
         <label>
@@ -22,12 +23,11 @@
         <input type="submit" name="wp-submit" id="register" class="register-user" value="Register" />
     </p>
     <?php wp_nonce_field( 'login-nonce', 'security' ); ?>
-
-</form>
+    </form>
+</div>
 
 <?php
 if(isset($_POST['wp-submit'])) {
-    //TODO: sanitize
     $user_name = $_POST['username'];
     $password = $_POST['password'];
 

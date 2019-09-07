@@ -4,11 +4,6 @@ Author: Ruby Arbogast
 Version: 1.0
 */
 
-/*
-* TODO: Fix footer style on desktop
-* Style submit team button
-*/
-
 * {
     box-sizing: border-box;
 }
@@ -168,7 +163,7 @@ a:visited {
     background-color: #1b2932;
 }
 
-.secondary-button{
+.secondary-button {
     display: none;
     background-color: #A2E3D4;
     width: 100px;
@@ -181,7 +176,8 @@ a:visited {
     margin: 10px 3px 5px 3px;
 }
 
-.secondary-button:hover {
+.secondary-button:hover,
+#wp-submit:hover {
     background-color: #75d5bf;
 }
 
@@ -243,6 +239,35 @@ a:visited {
     background-color: #def5f0;
     margin: 10px;
     padding: 10px;
+}
+
+/*Login form */
+.loginFormDiv {
+    background-color: #def5f0;
+}
+
+#loginFromTeamView {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+input[type=text],
+input[type=password] {
+    margin: 5px;
+    padding: 12px 10px;
+    border: none;
+}
+
+#wp-submit {
+    background-color: #A2E3D4;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    font-size: 0.875em;
+    border-radius: 4px;
+    border: none;
+    padding: 4px;
+    margin: 10px 3px 5px 3px;
 }
 
 /* Loader styles */
@@ -410,7 +435,7 @@ a:visited {
     }
 
     .secondary-button {
-        width: 150px;
+        width: 140px;
         height: 60px;
         padding: 4px;
         margin: 15px 8px 10px 8px;
@@ -428,6 +453,38 @@ a:visited {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
+    /*Login form */
+    .loginFormDiv {
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 275px;
+        width: 375px;
+        border-radius: 8px;
+    }
+
+    .login-username,
+    .login-password {
+        font-size: 1.15em;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    input[type=text],
+    input[type=password] {
+        margin: 5px 5px 3px 5px;
+        padding: 10px 10px;
+        width: 200px;
+    }
+
+    #wp-submit {
+        width: 100px;
+        height: 50px;
+        padding: 4px;
+        margin-top: 15px;
+    }
+
 }
 
 @media only screen and (min-width: 1366px) {
@@ -443,6 +500,10 @@ a:visited {
 
     .menu a {
         font-size: 1.25em;
+    }
+
+    #pageContainer {
+        min-height: 100vh;
     }
 
     #buttonDiv {

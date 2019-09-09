@@ -186,6 +186,11 @@ a:visited {
     background-color: #75d5bf;
 }
 
+button:disabled,
+button[disabled] {
+    background-color: #b9ccc7;
+}
+
 #key {
     display: none;
 }

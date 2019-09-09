@@ -163,10 +163,10 @@ function get_team_desktop() {
     //TODO: 
     //Finish WPF setup
     //Review accessibility issues? 
-    //Add date field to blog submission
     //Update stylesheet -- css for buttons, login template, registration template, logout page
     //Set text input color -- is blue in Chrome
     //add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice
+    //Disable 'post' button after click if user is logged in? 
     //Mobile styles
     //Refactor mobile get team handler
     //Testing
@@ -408,7 +408,7 @@ function get_team_desktop() {
                 echo "<input id='loggedIn' type='hidden' value='false'>";
             };
 
-            echo "<button id='submitTeamButton' class='submit-team secondary-button'>Post!</button>
+            echo "<button id='submitTeamButton' class='submit-team secondary-button' type='submit'>Post!</button>
             <button id='cancelPostButton' class='secondary-button' onclick='cancelPostLoggedIn(event)'>Cancel</button>";
 
             echo "</form>";

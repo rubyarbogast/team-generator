@@ -73,88 +73,254 @@ add_action( 'wp_login_failed', 'rma_login_fail' );
 
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {
-    global $wpdb;
+    if($_SERVER['REQUEST_METHOD'] == 'GET') { 
+        global $wpdb;
 
-    //ARRAY_A outputs numerically indexed array of associative arrays with column names as keys
-    $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4", ARRAY_A );
-    $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4", ARRAY_A );
-    $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4", ARRAY_A );
-    $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
-    $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
+        //ARRAY_A outputs numerically indexed array of associative arrays with column names as keys
+        $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4", ARRAY_A );
+        $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4", ARRAY_A );
+        $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4", ARRAY_A );
+        $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
+        $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
 
-    echo "<div class='team'>";
+        //Save arrays to session to hold data if user wants to post a team and isn't logged in
+        $_SESSION['lw_array'] = $lw_result_array;
+        $_SESSION['c_array'] = $c_result_array;
+        $_SESSION['rw_array'] = $rw_result_array;
+        $_SESSION['d_array'] = $d_result_array;
+        $_SESSION['g_array'] = $g_result_array;
 
-    echo "<h2>Forwards</h2>";
+        //If the data is missing, show an error message. Otherwise, output the team 
+        if(!$lw_result_array || !$c_result_array || !$rw_result_array || !$d_result_array || !$g_result_array) {
+            echo "<h2>Oops! Something went wrong ...</h2>";
+        } else {
 
-    echo "<div class='flex-container row'>";
+            echo "<div class='team'>
+            
+            <h2>Forwards</h2>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[0][name][0] . ". " . strstr(($lw_result_array[0][name]), ' ') . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[0][name][0] . ". " . strstr(($c_result_array[0][name]), ' ') . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[0][name][0] . ". " . strstr(($rw_result_array[0][name]), ' ') . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][teamAbbr] . "</div>";
-    
-    echo "</div>";
+            <div class='flex-container row'>
 
-    echo "<div class='flex-container row'>";
+            <div class='player forward col-4'>" . $lw_result_array[0][name][0] . ". " . strstr(($lw_result_array[0][name]), ' ') . "<p>#" . $lw_result_array[0][number] . " " . $lw_result_array[0][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>" . $c_result_array[0][name][0] . ". " . strstr(($c_result_array[0][name]), ' ') . "<p>#" . $c_result_array[0][number] . " " . $c_result_array[0][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>". $rw_result_array[0][name][0] . ". " . strstr(($rw_result_array[0][name]), ' ') . "<p>#" . $rw_result_array[0][number] . " " . $rw_result_array[0][teamAbbr] . "</div>
+            
+            </div>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[1][name][0] . ". " . strstr(($lw_result_array[1][name]), ' ') . "<p>#" . $lw_result_array[1][number] . " " . $lw_result_array[1][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[1][name][0] . ". " . strstr(($c_result_array[1][name]), ' ') . "<p>#" . $c_result_array[1][number] . " " . $c_result_array[1][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[1][name][0] . ". " . strstr(($rw_result_array[1][name]), ' ') . "<p>#" . $rw_result_array[1][number] . " " . $rw_result_array[1][teamAbbr] . "</div>";
+            <div class='flex-container row'>
 
-    echo "</div>";
+            <div class='player forward col-4'>" . $lw_result_array[1][name][0] . ". " . strstr(($lw_result_array[1][name]), ' ') . "<p>#" . $lw_result_array[1][number] . " " . $lw_result_array[1][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>" . $c_result_array[1][name][0] . ". " . strstr(($c_result_array[1][name]), ' ') . "<p>#" . $c_result_array[1][number] . " " . $c_result_array[1][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>". $rw_result_array[1][name][0] . ". " . strstr(($rw_result_array[1][name]), ' ') . "<p>#" . $rw_result_array[1][number] . " " . $rw_result_array[1][teamAbbr] . "</div>
 
-    echo "<div class='flex-container row'>";
+            </div>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[2][name][0] . ". " . strstr(($lw_result_array[2][name]), ' ') . "<p>#" . $lw_result_array[2][number] . " " . $lw_result_array[2][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[2][name][0] . ". " . strstr(($c_result_array[2][name]), ' ') . "<p>#" . $c_result_array[2][number] . " " . $c_result_array[2][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[2][name][0] . ". " . strstr(($rw_result_array[2][name]), ' ') . "<p>#" . $rw_result_array[2][number] . " " . $rw_result_array[2][teamAbbr] . "</div>";
+            <div class='flex-container row'>
 
-    echo "</div>";
+            <div class='player forward col-4'>" . $lw_result_array[2][name][0] . ". " . strstr(($lw_result_array[2][name]), ' ') . "<p>#" . $lw_result_array[2][number] . " " . $lw_result_array[2][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>" . $c_result_array[2][name][0] . ". " . strstr(($c_result_array[2][name]), ' ') . "<p>#" . $c_result_array[2][number] . " " . $c_result_array[2][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>". $rw_result_array[2][name][0] . ". " . strstr(($rw_result_array[2][name]), ' ') . "<p>#" . $rw_result_array[2][number] . " " . $rw_result_array[2][teamAbbr] . "</div>
 
-    echo "<div class='flex-container row'>";
+            </div>
 
-    echo "<div class='player forward col-4'>" . $lw_result_array[3][name][0] . ". " . strstr(($lw_result_array[3][name]), ' ') . "<p>#" . $lw_result_array[3][number] . " " . $lw_result_array[3][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>" . $c_result_array[3][name][0] . ". " . strstr(($c_result_array[3][name]), ' ') . "<p>#" . $c_result_array[3][number] . " " . $c_result_array[3][teamAbbr] . " " . "</div>";
-    echo "<div class='player forward col-4'>". $rw_result_array[3][name][0] . ". " . strstr(($rw_result_array[3][name]), ' ') . "<p>#" . $rw_result_array[3][number] . " " . $rw_result_array[3][teamAbbr] . "</div>";
-    
-    echo "</div>";
+            <div class='flex-container row'>
 
-    echo "<h2>Defensemen</h2>";
+            <div class='player forward col-4'>" . $lw_result_array[3][name][0] . ". " . strstr(($lw_result_array[3][name]), ' ') . "<p>#" . $lw_result_array[3][number] . " " . $lw_result_array[3][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>" . $c_result_array[3][name][0] . ". " . strstr(($c_result_array[3][name]), ' ') . "<p>#" . $c_result_array[3][number] . " " . $c_result_array[3][teamAbbr] . " " . "</div>
+            <div class='player forward col-4'>". $rw_result_array[3][name][0] . ". " . strstr(($rw_result_array[3][name]), ' ') . "<p>#" . $rw_result_array[3][number] . " " . $rw_result_array[3][teamAbbr] . "</div>
+            
+            </div>
 
-    echo "<div class='flex-container row'>";
+            <h2>Defensemen</h2>
 
-    echo "<div class='player dman col-6'>" . $d_result_array[0][name][0] . ". " . strstr(($d_result_array[0][name]), ' ') . "<p>#" . $d_result_array[0][number] . " " . $d_result_array[0][teamAbbr] . " ". "</div>";
-    echo "<div class='player dman col-6'>" . $d_result_array[1][name][0] . ". " . strstr(($d_result_array[1][name]), ' ') . "<p>#" . $d_result_array[1][number] . " " . $d_result_array[1][teamAbbr] . "</div>";
+            <div class='flex-container row'>
 
-    echo "</div>";
+            <div class='player dman col-6'>" . $d_result_array[0][name][0] . ". " . strstr(($d_result_array[0][name]), ' ') . "<p>#" . $d_result_array[0][number] . " " . $d_result_array[0][teamAbbr] . " ". "</div>
+            <div class='player dman col-6'>" . $d_result_array[1][name][0] . ". " . strstr(($d_result_array[1][name]), ' ') . "<p>#" . $d_result_array[1][number] . " " . $d_result_array[1][teamAbbr] . "</div>
 
-    echo "<div class='flex-container row'>";
+            </div>
 
-    echo "<div class='player dman col-6'>" . $d_result_array[2][name][0] . ". " . strstr(($d_result_array[2][name]), ' ') . "<p>#" . $d_result_array[2][number] . " " . $d_result_array[2][teamAbbr] . " ". "</div>";
-    echo "<div class='player dman col-6'>" . $d_result_array[3][name][0] . ". " . strstr(($d_result_array[3][name]), ' ') . "<p>#" . $d_result_array[3][number] . " " . $d_result_array[3][teamAbbr] . "</div>";
+            <div class='flex-container row'>
 
-    echo "</div>";
+            <div class='player dman col-6'>" . $d_result_array[2][name][0] . ". " . strstr(($d_result_array[2][name]), ' ') . "<p>#" . $d_result_array[2][number] . " " . $d_result_array[2][teamAbbr] . " ". "</div>
+            <div class='player dman col-6'>" . $d_result_array[3][name][0] . ". " . strstr(($d_result_array[3][name]), ' ') . "<p>#" . $d_result_array[3][number] . " " . $d_result_array[3][teamAbbr] . "</div>
 
-    echo "<div class='flex-container row'>";
+            </div>
 
-    echo "<div class='player dman col-6'>" . $d_result_array[4][name][0] . ". " . strstr(($d_result_array[4][name]), ' ') . "<p>#" . $d_result_array[4][number] . " " . $d_result_array[4][teamAbbr] . " ". "</div>";
-    echo "<div class='player dman col-6'>" . $d_result_array[5][name][0] . ". " . strstr(($d_result_array[5][name]), ' ') . "<p>#" . $d_result_array[5][number] . " " . $d_result_array[5][teamAbbr] . "</div>";
+            <div class='flex-container row'>
 
-    echo "</div>";
+            <div class='player dman col-6'>" . $d_result_array[4][name][0] . ". " . strstr(($d_result_array[4][name]), ' ') . "<p>#" . $d_result_array[4][number] . " " . $d_result_array[4][teamAbbr] . " ". "</div>
+            <div class='player dman col-6'>" . $d_result_array[5][name][0] . ". " . strstr(($d_result_array[5][name]), ' ') . "<p>#" . $d_result_array[5][number] . " " . $d_result_array[5][teamAbbr] . "</div>
 
-    echo "<h2>Goalies</h2>";
+            </div>
 
-    echo "<div class='flex-container row'>";
+            <h2>Goalies</h2>
 
-    echo "<div class='player goalie col-6'>" . $g_result_array[0][name][0] . ". " . strstr(($g_result_array[0][name]), ' ') . "<p>#" . $g_result_array[0][number] . " " . $g_result_array[0][teamAbbr] . " " . "</div>";
-    echo "<div class='player goalie col-6'>" . $g_result_array[1][name][0] . ". " . strstr(($g_result_array[1][name]), ' ') . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][teamAbbr] . " " . "</div>";
+            <div class='flex-container row'>
 
-    echo "</div>";
-    echo "<p class='link-address'>http://rubyarbogast.com/oneforone</p>";
-    echo "</div>";
+            <div class='player goalie col-6'>" . $g_result_array[0][name][0] . ". " . strstr(($g_result_array[0][name]), ' ') . "<p>#" . $g_result_array[0][number] . " " . $g_result_array[0][teamAbbr] . " " . "</div>
+            <div class='player goalie col-6'>" . $g_result_array[1][name][0] . ". " . strstr(($g_result_array[1][name]), ' ') . "<p>#" . $g_result_array[1][number] . " " . $g_result_array[1][teamAbbr] . " " . "</div>
 
+            </div>
+            <p class='link-address'>http://rubyarbogast.com/oneforone</p>
+            </div>";
+
+            echo "<div class='flex-container' id='optionButtons'>";
+
+            //Form to submit team
+            echo "<form action='' id='postTeam' method='post'>";
+
+            //First line
+            echo "<input id='lw1name' type='hidden' value='" . $lw_result_array[0][name] . "' >
+            <input id='lw1number' type='hidden' value='" . $lw_result_array[0][number] . "' >
+            <input id='lw1team' type='hidden' value='" . $lw_result_array[0][currentTeam] . "' >
+            <input id='lw1abbr' type='hidden' value='" . $lw_result_array[0][teamAbbr] . "' >
+
+            <input id='c1name' type='hidden' value='" . $c_result_array[0][name] . "' >
+            <input id='c1number' type='hidden' value='" . $c_result_array[0][number] . "' >
+            <input id='c1team' type='hidden' value='" . $c_result_array[0][currentTeam] . "' >
+            <input id='c1abbr' type='hidden' value='" . $c_result_array[0][teamAbbr] . "' >
+
+            <input id='rw1name' type='hidden' value='" . $rw_result_array[0][name] . "' >
+            <input id='rw1number' type='hidden' value='" . $rw_result_array[0][number] . "' >
+            <input id='rw1team' type='hidden' value='" . $rw_result_array[0][currentTeam] . "' >
+            <input id='rw1abbr' type='hidden' value='" . $rw_result_array[0][teamAbbr] . "' >
+            
+            ";
+
+            //Second line
+            echo "<input id='lw2name' type='hidden' value='" . $lw_result_array[1][name] . "' >
+            <input id='lw2number' type='hidden' value='" . $lw_result_array[1][number] . "' >
+            <input id='lw2team' type='hidden' value='" . $lw_result_array[1][currentTeam] . "' >
+            <input id='lw2abbr' type='hidden' value='" . $lw_result_array[1][teamAbbr] . "' >
+
+            <input id='c2name' type='hidden' value='" . $c_result_array[1][name] . "' >
+            <input id='c2number' type='hidden' value='" . $c_result_array[1][number] . "' >
+            <input id='c2team' type='hidden' value='" . $c_result_array[1][currentTeam] . "' >
+            <input id='c2abbr' type='hidden' value='" . $c_result_array[1][teamAbbr] . "' >
+
+            <input id='rw2name' type='hidden' value='" . $rw_result_array[1][name] . "' >
+            <input id='rw2number' type='hidden' value='" . $rw_result_array[1][number] . "' >
+            <input id='rw2team' type='hidden' value='" . $rw_result_array[1][currentTeam] . "' >
+            <input id='rw2abbr' type='hidden' value='" . $rw_result_array[1][teamAbbr] . "' >
+
+            ";
+
+            //Third line
+            echo "<input id='lw3name' type='hidden' value='" . $lw_result_array[2][name] . "' >
+            <input id='lw3number' type='hidden' value='" . $lw_result_array[2][number] . "' >
+            <input id='lw3team' type='hidden' value='" . $lw_result_array[2][currentTeam] . "' >
+            <input id='lw3abbr' type='hidden' value='" . $lw_result_array[2][teamAbbr] . "' >
+
+            <input id='c3name' type='hidden' value='" . $c_result_array[2][name] . "' >
+            <input id='c3number' type='hidden' value='" . $c_result_array[2][number] . "' >
+            <input id='c3team' type='hidden' value='" . $c_result_array[2][currentTeam] . "' >
+            <input id='c3abbr' type='hidden' value='" . $c_result_array[2][teamAbbr] . "' >
+
+            <input id='rw3name' type='hidden' value='" . $rw_result_array[2][name] . "' >
+            <input id='rw3number' type='hidden' value='" . $rw_result_array[2][number] . "' >
+            <input id='rw3team' type='hidden' value='" . $rw_result_array[2][currentTeam] . "' >
+            <input id='rw3abbr' type='hidden' value='" . $rw_result_array[2][teamAbbr] . "' >
+
+            ";
+
+            //Fourth line
+            echo "<input id='lw4name' type='hidden' value='" . $lw_result_array[3][name] . "' >
+            <input id='lw4number' type='hidden' value='" . $lw_result_array[3][number] . "' >
+            <input id='lw4team' type='hidden' value='" . $lw_result_array[3][currentTeam] . "' >
+            <input id='lw4abbr' type='hidden' value='" . $lw_result_array[3][teamAbbr] . "' >
+
+            <input id='c4name' type='hidden' value='" . $c_result_array[3][name] . "' >
+            <input id='c4number' type='hidden' value='" . $c_result_array[3][number] . "' >
+            <input id='c4team' type='hidden' value='" . $c_result_array[3][currentTeam] . "' >
+            <input id='c4abbr' type='hidden' value='" . $c_result_array[3][teamAbbr] . "' >
+
+            <input id='rw4name' type='hidden' value='" . $rw_result_array[3][name] . "' >
+            <input id='rw4number' type='hidden' value='" . $rw_result_array[3][number] . "' >
+            <input id='rw4team' type='hidden' value='" . $rw_result_array[3][currentTeam] . "' >
+            <input id='rw4abbr' type='hidden' value='" . $rw_result_array[3][teamAbbr] . "' >
+            ";
+            
+            //First pair
+            echo "<input id='d1name' type='hidden' value='" . $d_result_array[0][name] . "' >
+            <input id='d1number' type='hidden' value='" . $d_result_array[0][number] . "' >
+            <input id='d1team' type='hidden' value='" . $d_result_array[0][currentTeam] . "' >
+            <input id='d1abbr' type='hidden' value='" . $d_result_array[0][teamAbbr] . "' >
+
+            <input id='d2name' type='hidden' value='" . $d_result_array[1][name] . "' >
+            <input id='d2number' type='hidden' value='" . $d_result_array[1][number] . "' >
+            <input id='d2team' type='hidden' value='" . $d_result_array[1][currentTeam] . "' >
+            <input id='d2abbr' type='hidden' value='" . $d_result_array[1][teamAbbr] . "' >
+            ";
+
+            //Second pair
+            echo "<input id='d3name' type='hidden' value='" . $d_result_array[2][name] . "' >
+            <input id='d3number' type='hidden' value='" . $d_result_array[2][number] . "' >
+            <input id='d3team' type='hidden' value='" . $d_result_array[2][currentTeam] . "' >
+            <input id='d3abbr' type='hidden' value='" . $d_result_array[2][teamAbbr] . "' >
+
+            <input id='d4name' type='hidden' value='" . $d_result_array[3][name] . "' >
+            <input id='d4number' type='hidden' value='" . $d_result_array[3][number] . "' >
+            <input id='d4team' type='hidden' value='" . $d_result_array[3][currentTeam] . "' >
+            <input id='d4abbr' type='hidden' value='" . $d_result_array[3][teamAbbr] . "' >
+            ";
+
+            //Third pair
+            echo "<input id='d5name' type='hidden' value='" . $d_result_array[4][name] . "' >
+            <input id='d5number' type='hidden' value='" . $d_result_array[4][number] . "' >
+            <input id='d5team' type='hidden' value='" . $d_result_array[4][currentTeam] . "' >
+            <input id='d5abbr' type='hidden' value='" . $d_result_array[4][teamAbbr] . "' >
+
+            <input id='d6name' type='hidden' value='" . $d_result_array[5][name] . "' >
+            <input id='d6number' type='hidden' value='" . $d_result_array[5][number] . "' >
+            <input id='d6team' type='hidden' value='" . $d_result_array[5][currentTeam] . "' >
+            <input id='d6abbr' type='hidden' value='" . $d_result_array[5][teamAbbr] . "' >
+            ";
+
+            //Tandem
+            echo "<input id='g1name' type='hidden' value='" . $g_result_array[0][name] . "' >
+            <input id='g1number' type='hidden' value='" . $g_result_array[0][number] . "' >
+            <input id='g1team' type='hidden' value='" . $g_result_array[0][currentTeam] . "' >
+            <input id='g1abbr' type='hidden' value='" . $g_result_array[0][teamAbbr] . "' >
+
+            <input id='g2name' type='hidden' value='" . $g_result_array[1][name] . "' >
+            <input id='g2number' type='hidden' value='" . $g_result_array[1][number] . "' >
+            <input id='g2team' type='hidden' value='" . $g_result_array[1][currentTeam] . "' >
+            <input id='g2abbr' type='hidden' value='" . $g_result_array[1][teamAbbr] . "' >
+            ";
+
+            echo "<button id='showHideSubmitButton' class='secondary-button' onclick='loggedInOptions(event)'>Post Team to Blog</button>
+            <button class='get-team-button secondary-button' id='newTeam'>New Team</button>";
+
+            //Use WP function to see if the user is already logged in
+            if(is_user_logged_in()){
+                echo "<input id='loggedIn' type='hidden' value='true'>";
+            } else {
+                echo "<input id='loggedIn' type='hidden' value='false'>";
+            };
+
+            echo "<button id='submitTeamButton' class='submit-team secondary-button' type='submit'>Post!</button>
+            <button id='cancelPostButton' class='secondary-button' onclick='cancelPostLoggedIn(event)'>Cancel</button>";
+
+            echo "</form>";
+
+            //If the user is not logged in, show either the login or register form (depending on what button they cick; handled in ajax-team)
+
+            echo "
+            <div id='loginFromTeamView'>
+            <a href='./login' id='logIn'>Log In</a>
+            | 
+            <a href='" . wp_registration_url() . "' id='register'>Register</a>
+            |
+            <a href='#' id='cancel' onclick='cancelLogin();return false;'>Cancel</a>
+            </div>
+            ";
+
+            echo "</div>";
+        }
+    }
     wp_die(); 
 }
-
 add_action('wp_ajax_nopriv_get_team', 'get_team');
 add_action('wp_ajax_get_team', 'get_team');
 
@@ -165,14 +331,13 @@ function get_team_desktop() {
     //Review accessibility issues? 
     //Update stylesheet -- css for buttons, login template, registration template, logout page
     //Set text input color -- is blue in Chrome
-    //add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice
-    //Disable 'post' button after click if user is logged in? 
+    //Add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice
     //Mobile styles
     //Refactor mobile get team handler
     //Testing
     //Update menu; add script
     //Add if statement to post-team. if there's a team in session, add form + post button. otherwise just do "logged in" message
-    
+    //Make sure button in post-team is disabled once team is submitted
 
     if($_SERVER['REQUEST_METHOD'] == 'GET') { 
         global $wpdb;

@@ -165,10 +165,8 @@ function get_team_desktop() {
     //Review accessibility issues? 
     //Add date field to blog submission
     //Update stylesheet -- css for buttons, login template, registration template, logout page
-    //Set default login page
-    //CSS for error messages
     //Set text input color -- is blue in Chrome
-    //Gray out buttons/change text? when submitting
+    //add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice
     //Mobile styles
     //Refactor mobile get team handler
     //Testing

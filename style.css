@@ -493,7 +493,7 @@ input[type=password] {
 
     #wp-submit,
     #registerUser {
-        width: 100px;
+        width: 110px;
         height: 50px;
         padding: 4px;
         margin-top: 15px;
@@ -579,7 +579,7 @@ input[type=password] {
         margin-bottom: 15px;
     }
 
-    /*Login and register forms*/
+    /* Login and register forms */
     #loginFromTeamView {
         margin-top: 15px;
         margin-bottom: 15px;

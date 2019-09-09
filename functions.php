@@ -440,12 +440,17 @@ function rma_post_team() {
 
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
+
+        //Get date and time
+        date_default_timezone_set("America/Los_Angeles");
+        $time = date('Y.d.m h:i:sa');
     
         //Insert submitted team
         $wpdb->insert( 
             'rma_team',
             array(
-                'user' => $current_user_id
+                'user' => $current_user_id,
+                'date' => $time,
             ),
             array ('%s')
         );

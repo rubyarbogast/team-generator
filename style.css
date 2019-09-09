@@ -182,7 +182,7 @@ a:visited {
 
 .secondary-button:hover,
 #wp-submit:hover,
-#registerUser {
+#registerUser:hover {
     background-color: #75d5bf;
 }
 
@@ -266,7 +266,7 @@ input[type=password] {
 #wp-submit,
 #registerUser {
     background-color: #A2E3D4;
-    width: 100px;
+    width: 110px;
     height: 50px;
     text-align: center;
     font-size: 0.875em;

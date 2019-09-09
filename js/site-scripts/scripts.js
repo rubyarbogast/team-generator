@@ -53,3 +53,9 @@ function cancelLogin() {
     showHideSubmitButton.style.display = "inline-block";
     newTeamButton.style.display = "inline-block";
 }
+
+//Change the text after the button is clicked so user knows the form is being submitted
+function changeText() {
+    button = document.getElementById("registerUser");
+    button.value = "Please wait ...";
+}

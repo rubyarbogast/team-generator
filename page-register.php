@@ -20,14 +20,14 @@
         </label>
     </p>
     <p class="login-submit">
-        <input type="submit" name="wp-submit" id="registerUser" class="register-user" value="Register" />
+        <input type="submit" onclick="changeText()" name="wp-submit" id="registerUser" class="register-user" value="Register" />
     </p>
-    <?php wp_nonce_field( 'login-nonce', 'security' ); ?>
     </form>
 </div>
 
 <?php
 if(isset($_POST['wp-submit'])) {
+
     $user_name = $_POST['username'];
     $password = $_POST['password'];
 
@@ -54,6 +54,7 @@ if(isset($_POST['wp-submit'])) {
         wp_redirect( home_url('/post-team/') ); 
         exit;
     }
+    
 
 }
 ?>

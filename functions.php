@@ -38,6 +38,7 @@ function rma_scripts() {
     wp_enqueue_script( 'cancelPostLoggedIn', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
     wp_enqueue_script( 'cancelLogin', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
     wp_enqueue_script( 'loggedInOptions', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
+    wp_enqueue_script( 'changeText', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
 }
 add_action( 'wp_enqueue_scripts', 'rma_scripts' );
 
@@ -166,6 +167,7 @@ function get_team_desktop() {
     //Update stylesheet -- css for buttons, login template, registration template, logout page
     //Set default login page
     //CSS for error messages
+    //Set text input color -- is blue in Chrome
     //Gray out buttons/change text? when submitting
     //Mobile styles
     //Refactor mobile get team handler

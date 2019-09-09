@@ -42,10 +42,10 @@ function rma_scripts() {
 add_action( 'wp_enqueue_scripts', 'rma_scripts' );
 
 //Enqueue styles
-function theme_styles() {	
+function rma_theme_styles() {	
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
 }
-add_action( 'wp_enqueue_scripts', 'theme_styles' );
+add_action( 'wp_enqueue_scripts', 'rma_theme_styles' );
 
 //Register custom navigation menus
 function rma_register_menu() {
@@ -151,16 +151,15 @@ function get_team_desktop() {
 
     //TODO: 
     //Finish WPF setup
-    //Finish username plugin setup
     //Review accessibility issues? 
     //Add date field to blog submission
     //Update stylesheet -- css for buttons, login template, registration template, logout page
+    //Set default login page
+    //CSS for error messages
     //Gray out buttons/change text? when submitting
     //Mobile styles
-    //Would it be possible to move the POST handler into its own function so don't have to repeat the whole thing for mobile? Do a different AJAX script, etc
-    //Refactor mobile post handler
+    //Refactor mobile get team handler
     //Testing
-    //Add logout link
     //Update menu; add script
     //Add if statement to post-team. if there's a team in session, add form + post button. otherwise just do "logged in" message
     

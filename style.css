@@ -182,7 +182,7 @@ a:visited {
 
 .secondary-button:hover,
 #wp-submit:hover,
-#register:hover {
+#registerUser {
     background-color: #75d5bf;
 }
 
@@ -246,7 +246,7 @@ a:visited {
     padding: 10px;
 }
 
-/*Login form */
+/* Login form */
 .loginFormDiv {
     background-color: #def5f0;
 }
@@ -264,7 +264,7 @@ input[type=password] {
 }
 
 #wp-submit,
-#register {
+#registerUser {
     background-color: #A2E3D4;
     width: 100px;
     height: 50px;
@@ -274,6 +274,13 @@ input[type=password] {
     border: none;
     padding: 4px;
     margin: 10px 3px 5px 3px;
+}
+
+/* Login and registration error messages */
+.error {
+    color: #8b0000;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 /* Loader styles */
@@ -485,7 +492,7 @@ input[type=password] {
     }
 
     #wp-submit,
-    #register {
+    #registerUser {
         width: 100px;
         height: 50px;
         padding: 4px;
@@ -572,6 +579,7 @@ input[type=password] {
         margin-bottom: 15px;
     }
 
+    /*Login and register forms*/
     #loginFromTeamView {
         margin-top: 15px;
         margin-bottom: 15px;

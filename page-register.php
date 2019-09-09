@@ -20,7 +20,7 @@
         </label>
     </p>
     <p class="login-submit">
-        <input type="submit" name="wp-submit" id="register" class="register-user" value="Register" />
+        <input type="submit" name="wp-submit" id="registerUser" class="register-user" value="Register" />
     </p>
     <?php wp_nonce_field( 'login-nonce', 'security' ); ?>
     </form>
@@ -40,7 +40,7 @@ if(isset($_POST['wp-submit'])) {
 
     if( is_wp_error( $user_id ) ) {
         $error_msg = $user_id->get_error_message();
-        echo "<div class='error'>" . $error_msg . "</div>";
+        echo "<p class='error'>" . $error_msg . "</p>"; 
     } else {
 
         //After creating the user, sign them in

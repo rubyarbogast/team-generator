@@ -1,25 +1,25 @@
 <?php
-
 add_theme_support( 'menus' );
 
-function my_prefix_illegal_user_logins( $banned ) {
+//Prevent offensive words from being used in usernames
+function rma_illegal_user_logins( $banned ) {
     $banned = include_once( get_template_directory() . '/banned-words.php' );
     return $banned;
 }
-add_filter( 'illegal_user_logins', 'my_prefix_illegal_user_logins' );
+add_filter( 'illegal_user_logins', 'rma_illegal_user_logins' );
 
-add_action('init', 'start_session', 1);
 function start_session() {
     if(!session_id()) {
         session_start();
     }
 }
+add_action('init', 'start_session', 1);
 
-add_action('wp_logout','end_session');
-add_action('end_session_action','end_session');
 function end_session() {
     session_destroy ();
 }
+add_action('wp_logout','end_session');
+add_action('end_session_action','end_session');
 
 //Enqueue scripts
 function rma_enqueue_get_team() {
@@ -55,10 +55,20 @@ function rma_register_menu() {
 add_action( 'init', 'rma_register_menu' );
 
 //Change the default registration form link
-add_filter( 'register_url', 'my_register_page' );
 function my_register_page( $register_url ) {
     return home_url( '/register/' );
 }
+add_filter( 'register_url', 'my_register_page' );
+
+function rma_login_fail( $username ) {
+     $referrer = $_SERVER['HTTP_REFERER'];
+     //If the referrer is valid and is not the default log-in screen
+     if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+          wp_redirect(home_url( '/login' ) . '?login=failed' );
+          exit;
+     }
+}
+add_action( 'wp_login_failed', 'rma_login_fail' ); 
 
 //Send an AJAX query to the DB; save and output the results to the browser
 function get_team() {

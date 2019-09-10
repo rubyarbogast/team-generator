@@ -289,7 +289,7 @@ function get_team() {
             <input id='g2abbr' type='hidden' value='" . $g_result_array[1][teamAbbr] . "' >
             ";
 
-            echo "<button id='showHideSubmitButton' class='secondary-button' onclick='loggedInOptions(event)'>Post Team to Blog</button>
+            echo "<button id='showHideSubmitButton' class='secondary-button' onclick='loggedInOptions(event)'>Post to Blog</button>
             <button class='get-team-button secondary-button' id='newTeam'>New Team</button>";
 
             //Use WP function to see if the user is already logged in

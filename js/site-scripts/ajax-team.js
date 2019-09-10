@@ -22,15 +22,21 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
+
                         $('#showTeam').hide();
                         $('#newTeam').hide();
+
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
+
                         document.getElementById('showTeam').innerHTML = html;
-                        $('#showTeam').show();
-                        $('#newTeam').show();
+
+                        $('#showTeam, #newTeam, #showHideSubmitButton').show();
+
+                        $('#submitTeamButton, #cancelPostButton').hide();
+                        $('#loginFromTeamView, #registerFromTeamView').hide();
                     }
                 });
             } else {
@@ -57,7 +63,6 @@
                         if (desktop.matches) {$('.player-type').css("display", "block");}
 
                         $('#submitTeamButton, #cancelPostButton').hide();
-
                         $('#loginFromTeamView, #registerFromTeamView').hide();
                     }
                 });

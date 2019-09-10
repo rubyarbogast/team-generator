@@ -254,9 +254,22 @@ button[disabled] {
 /* Login form */
 .loginFormDiv {
     background-color: #def5f0;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 275px;
+    width: 320px;
+    border-radius: 8px;
 }
 
 #loginFromTeamView {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.login-username,
+.login-password {
+    font-size: 1em;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -266,6 +279,8 @@ input[type=password] {
     margin: 5px;
     padding: 12px 10px;
     border: none;
+    width: 200px;
+    background-color: white;
 }
 
 #wp-submit,
@@ -474,12 +489,8 @@ input[type=password] {
 
     /*Login form */
     .loginFormDiv {
-        margin: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
         height: 275px;
         width: 375px;
-        border-radius: 8px;
     }
 
     .login-username,

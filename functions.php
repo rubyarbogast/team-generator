@@ -8,7 +8,9 @@ function rma_illegal_user_logins( $banned ) {
 }
 add_filter( 'illegal_user_logins', 'rma_illegal_user_logins' );
 
+//Session use
 function start_session() {
+    //If the user clicks "post" and there's no session ID
     if(!session_id()) {
         session_start();
     }
@@ -305,7 +307,6 @@ function get_team() {
             echo "</form>";
 
             //If the user is not logged in, show either the login or register form (depending on what button they cick; handled in ajax-team)
-
             echo "
             <div id='loginFromTeamView'>
             <a href='./login' id='logIn'>Log In</a>
@@ -335,7 +336,6 @@ function get_team_desktop() {
         //Limit to three teams per page; add pagination 
 
     //POST:
-        //Add if statement to post-team. if there's a team in session, add form + post button. otherwise just do "logged in" message
         //Make sure button in post-team is disabled once team is submitted
         //Try only starting a session if the link is clicked to post? if there's a post in session, echo blah blah
 
@@ -351,7 +351,7 @@ function get_team_desktop() {
         //All browsers possible
 
     //INSTALLATION:
-        //Add pages: register, log in, post team
+        //Add pages: register, log in, post team, log out
         //Site preview?
         //Site down when updating?
         //Finish WPF setup

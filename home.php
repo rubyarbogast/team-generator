@@ -91,46 +91,46 @@ $newest_first_team_list = array_reverse($team_id_list);
                     <?php echo $lw1['name'][0] . ". " . substr($lw1['name'], strpos($lw1['name'], " ") + 1); ?><p> #<?php echo $lw1['number'] ?>  <?php echo $lw1['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $c1['name'] ?><p> #<?php echo $c1['number'] ?>  <?php echo $c1['team_abbr'] ?></p>
+                    <?php echo $c1['name'][0] . ". " . substr($c1['name'], strpos($c1['name'], " ") + 1); ?><p> #<?php echo $c1['number'] ?>  <?php echo $c1['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $rw1['name'] ?><p> #<?php echo $rw1['number'] ?>  <?php echo $rw1['team_abbr'] ?></p>
+                    <?php echo $rw1['name'][0] . ". " . substr($rw1['name'], strpos($rw1['name'], " ") + 1); ?><p> #<?php echo $rw1['number'] ?>  <?php echo $rw1['team_abbr'] ?></p>
                 </div>
             </div>
             <!-- Second line -->
             <div class='flex-container row'>
                 <div class='player forward col-4'>
-                    <?php echo $lw2['name'] ?><p> #<?php echo $lw2['number'] ?>  <?php echo $lw2['team_abbr'] ?></p>
+                    <?php echo $lw2['name'][0] . ". " . substr($lw2['name'], strpos($lw2['name'], " ") + 1); ?><p> #<?php echo $lw2['number'] ?>  <?php echo $lw2['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $c2['name'] ?><p> #<?php echo $c2['number'] ?>  <?php echo $c2['team_abbr'] ?></p>
+                    <?php echo $c2['name'][0] . ". " . substr($c2['name'], strpos($c2['name'], " ") + 1); ?><p> #<?php echo $c2['number'] ?>  <?php echo $c2['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $rw2['name'] ?><p> #<?php echo $rw2['number'] ?>  <?php echo $rw2['team_abbr'] ?></p>
+                    <?php echo $rw2['name'][0] . ". " . substr($rw2['name'], strpos($rw2['name'], " ") + 1); ?><p> #<?php echo $rw2['number'] ?>  <?php echo $rw2['team_abbr'] ?></p>
                 </div>
             </div>
             <!-- Third line -->
             <div class='flex-container row'>
                 <div class='player forward col-4'>
-                    <?php echo $lw3['name'] ?><p> #<?php echo $lw3['number'] ?>  <?php echo $lw3['team_abbr'] ?></p>
+                    <?php echo $lw3['name'][0] . ". " . substr($lw3['name'], strpos($lw3['name'], " ") + 1); ?><p> #<?php echo $lw3['number'] ?>  <?php echo $lw3['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $c3['name'] ?><p> #<?php echo $c3['number'] ?>  <?php echo $c3['team_abbr'] ?></p>
+                    <?php echo $c3['name'][0] . ". " . substr($c3['name'], strpos($c3['name'], " ") + 1); ?><p> #<?php echo $c3['number'] ?>  <?php echo $c3['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $rw3['name'] ?><p> #<?php echo $rw3['number'] ?>  <?php echo $rw3['team_abbr'] ?></p>
+                    <?php echo $rw3['name'][0] . ". " . substr($rw3['name'], strpos($rw3['name'], " ") + 1); ?><p> #<?php echo $rw3['number'] ?>  <?php echo $rw3['team_abbr'] ?></p>
                 </div>
             </div>
             <!-- Fourth line -->
             <div class='flex-container row'>
                 <div class='player forward col-4'>
-                    <?php echo $lw4['name'] ?><p> #<?php echo $lw4['number'] ?>  <?php echo $lw4['team_abbr'] ?></p>
+                    <?php echo $lw4['name'][0] . ". " . substr($lw4['name'], strpos($lw4['name'], " ") + 1); ?><p> #<?php echo $lw4['number'] ?>  <?php echo $lw4['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $c4['name'] ?><p> #<?php echo $c4['number'] ?>  <?php echo $c4['team_abbr'] ?></p>
+                    <?php echo $c4['name'][0] . ". " . substr($c4['name'], strpos($c4['name'], " ") + 1); ?><p> #<?php echo $c4['number'] ?>  <?php echo $c4['team_abbr'] ?></p>
                 </div>
                 <div class='player forward col-4'>
-                    <?php echo $rw4['name'] ?><p> #<?php echo $rw4['number'] ?>  <?php echo $rw4['team_abbr'] ?></p>
+                    <?php echo $rw4['name'][0] . ". " . substr($rw4['name'], strpos($rw4['name'], " ") + 1); ?><p> #<?php echo $rw4['number'] ?>  <?php echo $rw4['team_abbr'] ?></p>
                 </div>
             </div>
         </div>
@@ -141,28 +141,28 @@ $newest_first_team_list = array_reverse($team_id_list);
         <!-- First pair -->
         <div class='flex-container row'>
             <div class='player dman col-6'>
-                <?php echo $ld1['name'] ?><p> #<?php echo $ld1['number'] ?>  <?php echo $ld1['team_abbr'] ?></p>
+                <?php echo $ld1['name'][0] . ". " . substr($ld1['name'], strpos($ld1['name'], " ") + 1); ?><p> #<?php echo $ld1['number'] ?>  <?php echo $ld1['team_abbr'] ?></p>
             </div>
             <div class='player dman col-6'>
-                <?php echo $rd1['name'] ?><p> #<?php echo $rd1['number'] ?>  <?php echo $rd1['team_abbr'] ?></p>
+                <?php echo $rd1['name'][0] . ". " . substr($rd1['name'], strpos($rd1['name'], " ") + 1); ?><p> #<?php echo $rd1['number'] ?>  <?php echo $rd1['team_abbr'] ?></p>
             </div>
         </div>
         <!-- Second pair -->
         <div class='flex-container row'>
             <div class='player dman col-6'>
-                <?php echo $ld2['name'] ?><p> #<?php echo $ld2['number'] ?>  <?php echo $ld2['team_abbr'] ?></p>
+                <?php echo $ld2['name'][0] . ". " . substr($ld2['name'], strpos($ld2['name'], " ") + 1); ?><p> #<?php echo $ld2['number'] ?>  <?php echo $ld2['team_abbr'] ?></p>
             </div>
             <div class='player dman col-6'>
-                <?php echo $rd2['name'] ?><p> #<?php echo $rd2['number'] ?>  <?php echo $rd2['team_abbr'] ?></p>
+                <?php echo $rd2['name'][0] . ". " . substr($rd2['name'], strpos($rd2['name'], " ") + 1); ?><p> #<?php echo $rd2['number'] ?>  <?php echo $rd2['team_abbr'] ?></p>
             </div>
         </div>
         <!-- Third pair -->
         <div class='flex-container row'>
             <div class='player dman col-6'>
-                <?php echo $ld3['name'] ?><p> #<?php echo $ld3['number'] ?>  <?php echo $ld3['team_abbr'] ?></p>
+                <?php echo $ld3['name'][0] . ". " . substr($ld3['name'], strpos($ld3['name'], " ") + 1); ?><p> #<?php echo $ld3['number'] ?>  <?php echo $ld3['team_abbr'] ?></p>
             </div>
             <div class='player dman col-6'>
-                <?php echo $rd3['name'] ?><p> #<?php echo $rd3['number'] ?>  <?php echo $rd3['team_abbr'] ?></p>
+                <?php echo $rd3['name'][0] . ". " . substr($rd3['name'], strpos($rd3['name'], " ") + 1); ?><p> #<?php echo $rd3['number'] ?>  <?php echo $rd3['team_abbr'] ?></p>
             </div>
         </div>
         
@@ -172,10 +172,10 @@ $newest_first_team_list = array_reverse($team_id_list);
         <h3>Goalies</h3>
         <div class='flex-container row'>
             <div class='player goalie col-6'>
-                <?php echo $g1['name'] ?><p> #<?php echo $g1['number'] ?>  <?php echo $g1['team_abbr'] ?></p>
+                <?php echo $g1['name'][0] . ". " . substr($g1['name'], strpos($g1['name'], " ") + 1); ?><p> #<?php echo $g1['number'] ?>  <?php echo $g1['team_abbr'] ?></p>
             </div>
             <div class='player goalie col-6'>
-                <?php echo $g2['name'] ?><p> #<?php echo $g2['number'] ?>  <?php echo $g2['team_abbr'] ?></p>
+                <?php echo $g2['name'][0] . ". " . substr($g2['name'], strpos($g2['name'], " ") + 1); ?><p> #<?php echo $g2['number'] ?>  <?php echo $g2['team_abbr'] ?></p>
             </div>
         </div>
         <p>Submitted by <?php echo $submitted_by; ?></p>

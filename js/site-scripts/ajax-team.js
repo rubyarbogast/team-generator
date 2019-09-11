@@ -22,9 +22,7 @@
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
-
-                        $('#showTeam').hide();
-                        $('#newTeam').hide();
+                        $('#showTeam, #newTeam').hide();
 
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },

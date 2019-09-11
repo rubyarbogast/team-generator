@@ -337,6 +337,7 @@ function get_team_desktop() {
     //POST:
         //Add if statement to post-team. if there's a team in session, add form + post button. otherwise just do "logged in" message
         //Make sure button in post-team is disabled once team is submitted
+        //Try only starting a session if the link is clicked to post? if there's a post in session, echo blah blah
 
     //MENUS:
         //Make responsive

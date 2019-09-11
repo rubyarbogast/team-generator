@@ -327,17 +327,42 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
-    //Finish WPF setup
-    //Review accessibility issues? 
-    //Update stylesheet -- css for buttons, login template, registration template, logout page
-    //Set text input color -- is blue in Chrome
-    //Add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice
-    //Mobile styles
-    //Refactor mobile get team handler
-    //Testing
-    //Update menu; add script
-    //Add if statement to post-team. if there's a team in session, add form + post button. otherwise just do "logged in" message
-    //Make sure button in post-team is disabled once team is submitted
+    //OTHER: 
+        //Accessibility issues/ARIA?
+
+    //BLOG:
+        //Add dates to posts
+        //Limit to three teams per page; add pagination 
+
+    //POST:
+        //Add if statement to post-team. if there's a team in session, add form + post button. otherwise just do "logged in" message
+        //Make sure button in post-team is disabled once team is submitted
+
+    //MENUS:
+        //Make responsive
+    
+    //STYLE:
+        //Update stylesheet -- css for buttons, login template, registration template, logout page
+        //Larger screen styles for blog posts
+        //Consistency/organization
+
+    //TESTING:
+        //All browsers possible
+
+    //INSTALLATION:
+        //Add pages: register, log in, post team
+        //Site preview?
+        //Site down when updating?
+        //Finish WPF setup
+        //Set up menus
+        //Update rosters and upload
+        //Update names for databases; redirect in code -- current paths won't work 
+        //FTP files
+        //Set up DB
+
+    //FUTURE CONSIDERATIONS: 
+        //Every player == constant ID in database. Then get by ID instead of writing players to DB over and over again. Would have to be one DB, not the way it's set up now. Also would have to do that update code instead of dropping and recreating
+        //Use custom post types? 
 
     if($_SERVER['REQUEST_METHOD'] == 'GET') { 
         global $wpdb;

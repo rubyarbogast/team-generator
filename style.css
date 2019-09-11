@@ -245,12 +245,6 @@ button[disabled] {
     margin: 5px;
 }
 
-.entries {
-    background-color: #def5f0;
-    margin: 10px;
-    padding: 10px;
-}
-
 /* Login form */
 .loginFormDiv {
     background-color: #def5f0;
@@ -301,6 +295,22 @@ input[type=password] {
     color: #8b0000;
     font-weight: bold;
     font-size: 1.1em;
+}
+
+/* Blog styles */
+/* Hide desktop view and show mobile view by default */
+.show-desktop {
+    display: none;
+}
+
+.show-mobile {
+    display: block;
+}
+
+.entries {
+    background-color: #def5f0;
+    margin: 10px;
+    padding: 10px;
 }
 
 /* Loader styles */
@@ -474,14 +484,6 @@ input[type=password] {
         margin: 15px 8px 10px 8px;
     }
 
-    .entries {
-        width: 610px;
-        padding: 10px;
-        margin: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
     #loginFromTeamView {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -513,6 +515,23 @@ input[type=password] {
         height: 50px;
         padding: 4px;
         margin-top: 15px;
+    }
+
+    /* Blog styles */
+    .show-desktop {
+        display: flex;
+    }
+    
+    .show-mobile {
+        display: none;
+    }
+
+    .entries {
+        width: 610px;
+        padding: 10px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
 }
@@ -600,4 +619,5 @@ input[type=password] {
         margin-top: 15px;
         margin-bottom: 15px;
     }
+
 }

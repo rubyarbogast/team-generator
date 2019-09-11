@@ -1,6 +1,5 @@
 (function($) {
 
-    //$("#postTeam").submit(function (event) {
     $(document).on( 'click', '.submit-team', function( event ) {
         $(document).find(':input[type=submit]').prop('disabled', true);
         event.preventDefault();

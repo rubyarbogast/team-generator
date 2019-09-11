@@ -2,7 +2,6 @@
 
     <h2>Logged in!</h2>
 
-<!-- TODO: only add form if there's a team in the session -->
     <?php if($_SESSION['lw_array']): ?>
 
         <?php $lw_result_array = $_SESSION['lw_array']; 
@@ -12,6 +11,7 @@
         $g_result_array = $_SESSION['g_array']; 
         ?>
 
+    <div class='centered'> 
         <form action='' id='postTeam' method='post'>
             <!-- First line -->
             <input id='lw1name' type='hidden' value='<?php echo $lw_result_array[0][name]; ?>' >
@@ -119,12 +119,15 @@
             <input id='g2team' type='hidden' value='<?php echo $g_result_array[1][currentTeam]; ?>' >
             <input id='g2abbr' type='hidden' value='<?php echo $g_result_array[1][teamAbbr]; ?>' >
 
-            <button id='submitTeamButton' class='submit-team'>Submit Your Team!</button>
+            <div class='button-container flex-container'>
+                <button id='submitTeamButton' class='submit-team post-from-login-button' type='submit'>Submit Your Team!</button>
+            </div>
         </form>
 
-    <?php else: ?>
-        <?php $url = home_url( '/' ); ?>
-        <h3>No teams saved yet. Generate one <a href='<?php echo esc_url( $url ); ?>'>here</a>.</h3>
-    <?php endif; ?>
+        <?php else: ?>
+            <?php $url = home_url( '/' ); ?>
+            <h3>No teams saved yet. Generate one <a href='<?php echo esc_url( $url ); ?>'>here</a>.</h3>
+        <?php endif; ?>
+    </div>
 
 <?php get_footer(); ?>

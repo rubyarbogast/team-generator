@@ -534,7 +534,7 @@ input[type=password] {
 
     /* Blog styles */
     .show-desktop {
-        display: flex;
+        display: block;
     }
     
     .show-mobile {

@@ -41,6 +41,8 @@ function rma_scripts() {
     wp_enqueue_script( 'cancelLogin', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
     wp_enqueue_script( 'loggedInOptions', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
     wp_enqueue_script( 'changeText', get_stylesheet_directory_uri() . '/js/site-scripts/scripts.js', array(), true );
+    wp_enqueue_script( 'openNav', get_stylesheet_directory_uri() . '/js/site-scripts/nav-menu.js', array(), true );
+    wp_enqueue_script( 'closeNav', get_stylesheet_directory_uri() . '/js/site-scripts/nav-menu.js', array(), true );
 }
 add_action( 'wp_enqueue_scripts', 'rma_scripts' );
 

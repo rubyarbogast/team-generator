@@ -12,19 +12,25 @@
   
   <body <?php body_class(); ?>>
 
-    <div class="menu">
-      <?php 
-/*             $args = array(
-              'menu'        => 'primary'
-            );
-            wp_nav_menu( $args ); */
-          wp_nav_menu( array(
-            'theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu'
-        ) );
-      ?> 
+<!--TODO: add div for mobile menu and div for desktop; show/hide with media queries in CSS -->
+<!--TODO: figure out how to get each link on one line -->
+<!--TODO: styles -->
 
+<div class='mobile-menu'>
+  <div class="menu">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
     </div>
+    <span onclick="openNav()">open</span>
+</div>
+</div>
 
+<div class='desktop-menu'>
+<div class="menu">
+      <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
+    </div>
+</div>
 
 
     <div id="pageContainer">

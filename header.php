@@ -16,21 +16,25 @@
 <!--TODO: figure out how to get each link on one line -->
 <!--TODO: styles -->
 
-<div class='mobile-menu'>
-  <div class="menu">
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
+    <div class='mobile-menu'>
+      <div class='menu'>
+        <div id="mySidenav" class="sidenav">
+          <?php if(is_user_logged_in()): ?>
+            <a href="javascript:void(0)" class="closebtn-logged-in" onclick="closeNav()">&times;</a>
+          <?php else: ?>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <?php endif; ?>
+          <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
+        </div>
+        <span class="menu-icon" onclick="openNav()">&#9776;</span>
+      </div>
     </div>
-    <span onclick="openNav()">open</span>
-</div>
-</div>
 
-<div class='desktop-menu'>
-<div class="menu">
-      <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
+    <div class='desktop-menu'>
+      <div class="menu">
+          <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
+        </div>
     </div>
-</div>
 
 
     <div id="pageContainer">

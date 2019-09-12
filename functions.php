@@ -337,10 +337,6 @@ function get_team_desktop() {
         //Add dates to posts
         //Limit to three teams per page; add pagination 
 
-    //POST:
-        //Make sure button in post-team is disabled once team is submitted
-        //Try only starting a session if the link is clicked to post? if there's a post in session, echo blah blah
-
     //MENUS:
         //Make responsive
     
@@ -362,6 +358,7 @@ function get_team_desktop() {
         //Update names for databases; redirect in code -- current paths won't work 
         //FTP files
         //Set up DB
+        //Install SeedProd and set up
 
     //FUTURE CONSIDERATIONS: 
         //Every player == constant ID in database. Then get by ID instead of writing players to DB over and over again. Would have to be one DB, not the way it's set up now. Also would have to do that update code instead of dropping and recreating

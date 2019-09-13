@@ -173,6 +173,7 @@ function writeArrayToDB(playersArray, positionTable) {
 
 writeArrayToDB(allPlayers, "rmaAllPlayers");
 
+//Write the IDs of the players currently on rosters to a table for comparison
 function temporary(data) {
     let insertQuery = 'INSERT INTO ?? (??) VALUES (?)';
     let query = mysql.format(insertQuery,["tempids","nhlId",data.nhlId]);
@@ -199,12 +200,21 @@ function writeToTempTable(playersArray) {
 
 writeToTempTable(allPlayers);
 
-//TODO: function for temporary table
-function temporaryTable(ids){
-
-    //Compare the IDs in the temporary table to those in the permanent table
+//Compare the IDs in the temporary table to those in the table of all players
+function temporaryTable(){
     //If the ID is not in the temporary table, set the status to "inactive"
+    let compareQuery = "UPDATE rmaallplayers SET active = 0 WHERE NOT EXISTS (SELECT nhlId FROM tempids WHERE rmaallplayers.nhlId = tempids.nhlId)"
+
+    pool.query(compareQuery,(err, response) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+    });
 }
+
+temporaryTable();
+console.log("Finished");
 
 /* writeArrayToDB(lWings, "lwing");
 writeArrayToDB(centers, "center");

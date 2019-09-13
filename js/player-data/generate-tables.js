@@ -34,7 +34,7 @@ con.connect(function(err) {
   createTable(defenseman);
   createTable(goalie); */
 
-  var players = "CREATE TABLE rmaAllPlayers (nhlId INT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255), active BOOLEAN)";
+  var players = "CREATE TABLE rma_all_players (nhlId INT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255), active BOOLEAN)";
 
   createTable(players);
 });

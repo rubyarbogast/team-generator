@@ -73,14 +73,8 @@ for (let i = 0; i < allTeams.length; i++) {
     allRosters.push(allTeams[i]['teams'][0]['roster']['roster']);
 }
 
-//Instantiate arrays to hold player objects
-/* var centers = [];
-var lWings = [];
-var rWings = [];
-var defensemen = [];
-var goalies = []; */
+//Instantiate arrays to hold player objects/IDs
 var allPlayers = [];
-
 var ids = [];
 
 //Loop through rosters to sort players into arrays according to position 
@@ -118,12 +112,6 @@ for (let i = 0; i < allRosters.length; i++){
         }   */
     } 
 }
-
-/* changeName(lWings);
-changeName(rWings);
-changeName(centers);
-changeName(defensemen);
-changeName(goalies); */
 
 changeName(allPlayers);
 
@@ -171,12 +159,12 @@ function writeArrayToDB(playersArray, positionTable) {
         });
 }
 
-writeArrayToDB(allPlayers, "rmaAllPlayers");
+writeArrayToDB(allPlayers, "rma_all_players");
 
 //Write the IDs of the players currently on rosters to a table for comparison
 function temporary(data) {
     let insertQuery = 'INSERT INTO ?? (??) VALUES (?)';
-    let query = mysql.format(insertQuery,["tempids","nhlId",data.nhlId]);
+    let query = mysql.format(insertQuery,["temp_ids","nhlId",data.nhlId]);
 
     pool.query(query,(err, response) => {
         if(err) {
@@ -203,7 +191,7 @@ writeToTempTable(allPlayers);
 //Compare the IDs in the temporary table to those in the table of all players
 function temporaryTable(){
     //If the ID is not in the temporary table, set the status to "inactive"
-    let compareQuery = "UPDATE rmaallplayers SET active = 0 WHERE NOT EXISTS (SELECT nhlId FROM tempids WHERE rmaallplayers.nhlId = tempids.nhlId)"
+    let compareQuery = "UPDATE rma_all_players SET active = 0 WHERE NOT EXISTS (SELECT nhlId FROM temp_ids WHERE rma_all_players.nhlId = temp_ids.nhlId)"
 
     pool.query(compareQuery,(err, response) => {
         if(err) {

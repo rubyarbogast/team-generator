@@ -74,23 +74,33 @@ for (let i = 0; i < allTeams.length; i++) {
 }
 
 //Instantiate arrays to hold player objects
-var centers = [];
+/* var centers = [];
 var lWings = [];
 var rWings = [];
 var defensemen = [];
-var goalies = [];
+var goalies = []; */
+var allPlayers = [];
+
+var ids = [];
 
 //Loop through rosters to sort players into arrays according to position 
 for (let i = 0; i < allRosters.length; i++){
     for (let j = 0; j < allRosters[i].length; j++){
         
+        let nhlId = allRosters[i][j]['person']['id'];
         let playerName = allRosters[i][j]['person']['fullName'];
         let playerNumber = allRosters[i][j]['jerseyNumber'];
         let playerPosition = allRosters[i][j]['position']['name'];
         let playerCurrentTeam = allTeams[i]['teams'][0]['name'];
         let playerTeamAbbr = allTeams[i]['teams'][0]['abbreviation'];
+        let playerActiveStatus = true;
 
-        if (allRosters[i][j]['position']['name'] == 'Left Wing') {
+        let currentPlayer = new Player(nhlId, playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr, playerActiveStatus);
+        allPlayers.push(currentPlayer);
+
+        ids.push(nhlId);
+
+/*         if (allRosters[i][j]['position']['name'] == 'Left Wing') {
             let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             lWings.push(currentPlayer); 
         } else if (allRosters[i][j]['position']['name'] == 'Center') {
@@ -105,15 +115,17 @@ for (let i = 0; i < allRosters.length; i++){
         } else if (allRosters[i][j]['position']['name'] == 'Goalie') {
             let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
             goalies.push(currentPlayer);
-        }  
+        }   */
     } 
 }
 
-changeName(lWings);
+/* changeName(lWings);
 changeName(rWings);
 changeName(centers);
 changeName(defensemen);
-changeName(goalies);
+changeName(goalies); */
+
+changeName(allPlayers);
 
 //Create new connection pool to DB
 var pool  = mysql.createPool({
@@ -124,13 +136,13 @@ var pool  = mysql.createPool({
   database: config.database
 });
 
-//Write players to the database, sorting them into tables according to position
+//Function to add or update player values
 var tableName = "";
+function addOrUpdate(data) {
 
-function addRow(data) {
     //Escape MySQL so that names with apostrophes can be written to the DB
-    let insertQuery = 'INSERT INTO ?? (??,??,??,??,??) VALUES (?,?,?,?,?)';
-    let query = mysql.format(insertQuery,[tableName,"name","number","position","currentTeam","teamAbbr",data.playerName,data.playerNumber,data.playerPosition,data.playerCurrentTeam,data.playerTeamAbbr]);
+    let insertQuery = 'INSERT INTO ?? (??,??,??,??,??,??,??) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE ?? = ?, ?? = ?, ?? = ?, ?? = ?, ?? = ?, ?? = ?';
+    let query = mysql.format(insertQuery,[tableName,"nhlId","name","number","position","currentTeam","teamAbbr","active",data.nhlId,data.playerName,data.playerNumber,data.playerPosition,data.playerCurrentTeam,data.playerTeamAbbr,data.playerActiveStatus,"name",data.playerName,"number",data.playerNumber,"position",data.playerPosition,"currentTeam",data.playerCurrentTeam,"teamAbbr",data.playerTeamAbbr,"active",data.playerActiveStatus]);
 
     pool.query(query,(err, response) => {
         if(err) {
@@ -142,22 +154,60 @@ function addRow(data) {
 
 function writeArrayToDB(playersArray, positionTable) {
     playersArray.forEach(function(Player) {
+        
         //Set a timeout to avoid sending query before connection is made
             setTimeout(() => {
                 tableName = positionTable;
-                addRow({
+                addOrUpdate({
+                    "nhlId": Player.nhlId,
                     "playerName": Player.name,
                     "playerNumber": Player.number,
                     "playerPosition": Player.position,
                     "playerCurrentTeam": Player.currentTeam,
-                    "playerTeamAbbr": Player.teamAbbr
+                    "playerTeamAbbr": Player.teamAbbr,
+                    "playerActiveStatus": Player.active
                 });
             },5000);
         });
 }
 
-writeArrayToDB(lWings, "lwing");
+writeArrayToDB(allPlayers, "rmaAllPlayers");
+
+function temporary(data) {
+    let insertQuery = 'INSERT INTO ?? (??) VALUES (?)';
+    let query = mysql.format(insertQuery,["tempids","nhlId",data.nhlId]);
+
+    pool.query(query,(err, response) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+    });
+}
+
+function writeToTempTable(playersArray) {
+    playersArray.forEach(function(Player) {
+        
+        //Set a timeout to avoid sending query before connection is made
+            setTimeout(() => {
+                temporary({
+                    "nhlId": Player.nhlId
+                });
+            },5000);
+        });
+}
+
+writeToTempTable(allPlayers);
+
+//TODO: function for temporary table
+function temporaryTable(ids){
+
+    //Compare the IDs in the temporary table to those in the permanent table
+    //If the ID is not in the temporary table, set the status to "inactive"
+}
+
+/* writeArrayToDB(lWings, "lwing");
 writeArrayToDB(centers, "center");
 writeArrayToDB(rWings, "rwing");
 writeArrayToDB(defensemen, "defenseman");
-writeArrayToDB(goalies, "goalie");
+writeArrayToDB(goalies, "goalie"); */

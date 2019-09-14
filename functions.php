@@ -330,15 +330,17 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
-    //OTHER: 
-        //Accessibility issues/ARIA?
+    //GENERATE TEAM:
+        //Import team table
+        //Update player table to just hold player ID
+        //Update get_team and get_team_desktop functions to use position field and get players that way 
+        //Just use ID in forms
+        //Update post-team to include the ID
+        //In blog, query DB to get players by ID (add function)
 
     //BLOG:
         //Add dates to posts
         //Limit to three teams per page; add pagination 
-
-    //MENUS:
-        //Make responsive
     
     //STYLE:
         //Update stylesheet -- css for buttons, login template, registration template, logout page
@@ -360,19 +362,15 @@ function get_team_desktop() {
         //Set up DB
         //Install SeedProd and set up
 
-    //FUTURE CONSIDERATIONS: 
-        //Every player == constant ID in database. Then get by ID instead of writing players to DB over and over again. Would have to be one DB, not the way it's set up now. Also would have to do that update code instead of dropping and recreating
-        //Use custom post types? 
-
     if($_SERVER['REQUEST_METHOD'] == 'GET') { 
         global $wpdb;
 
         //ARRAY_A outputs numerically indexed array of associative arrays with column names as keys
-        $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM lwing AS lw ORDER BY rand() LIMIT 4", ARRAY_A );
-        $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM center AS c ORDER BY rand() LIMIT 4", ARRAY_A );
-        $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rwing AS rw ORDER BY rand() LIMIT 4", ARRAY_A );
-        $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM defenseman AS d ORDER BY rand() LIMIT 6", ARRAY_A );
-        $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM goalie AS g ORDER BY rand() LIMIT 2", ARRAY_A );
+        $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM rma_all_players AS lw WHERE position = 'Left Wing' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
+        $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM rma_all_players AS c WHERE position = 'Center' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
+        $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rma_all_players AS rw WHERE position = 'Right Wing' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
+        $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM rma_all_players AS d WHERE position = 'Defenseman' AND active = 1 ORDER BY rand() LIMIT 6", ARRAY_A );
+        $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM rma_all_players AS g WHERE position = 'Goalie' AND active = 1 ORDER BY rand() LIMIT 2", ARRAY_A );
 
         //Save arrays to session to hold data if user wants to post a team and isn't logged in
         $_SESSION['lw_array'] = $lw_result_array;

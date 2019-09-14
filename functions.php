@@ -682,8 +682,7 @@ function rma_post_team() {
         $wpdb->insert( 
             'rma_team',
             array(
-                'user' => $current_user_id,
-                'date' => $time,
+                'user' => $current_user_id
             ),
             array ('%s')
         );

@@ -13,7 +13,35 @@
                 username: $('#username').val(),
                 password: $('#password').val(),
 
-                lw1name: $('#lw1name').val(),
+                lw1Id: $('#lw1Id').val(),
+                c1Id: $('#c1Id').val(),
+                rw1Id: $('#rw1Id').val(),
+
+                lw2Id: $('#lw2Id').val(),
+                c2Id: $('#c2Id').val(),
+                rw2Id: $('#rw2Id').val(),
+
+                lw3Id: $('#lw3Id').val(),
+                c3Id: $('#c3Id').val(),
+                rw3Id: $('#rw3Id').val(),
+
+                lw4Id: $('#lw4Id').val(),
+                c4Id: $('#c4Id').val(),
+                rw4Id: $('#rw4Id').val(),
+
+                d1Id: $('#d1Id').val(),
+                d2Id: $('#d2Id').val(),
+
+                d3Id: $('#d3Id').val(),
+                d4Id: $('#d4Id').val(),
+
+                d5Id: $('#d5Id').val(),
+                d6Id: $('#d6Id').val(),
+
+                g1Id: $('#g1Id').val(),
+                g2Id: $('#g2Id').val(),
+
+                /* lw1name: $('#lw1name').val(),
                 lw1number: $('#lw1number').val(),
                 lw1team: $('#lw1team').val(),
                 lw1abbr: $('#lw1abbr').val(),
@@ -99,7 +127,7 @@
                 g2name: $('#g2name').val(),
                 g2number: $('#g2number').val(),
                 g2team: $('#g2team').val(),
-                g2abbr: $('#g2abbr').val()
+                g2abbr: $('#g2abbr').val() */
             },
             dataType: "text",
             success: function() {

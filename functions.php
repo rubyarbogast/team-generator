@@ -366,11 +366,11 @@ function get_team_desktop() {
         global $wpdb;
 
         //ARRAY_A outputs numerically indexed array of associative arrays with column names as keys
-        $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM rma_all_players AS lw WHERE position = 'Left Wing' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
-        $c_result_array = $wpdb->get_results( "SELECT c.name, c.number, c.currentTeam, c.position, c.teamAbbr FROM rma_all_players AS c WHERE position = 'Center' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
-        $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rma_all_players AS rw WHERE position = 'Right Wing' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
-        $d_result_array = $wpdb->get_results( "SELECT d.name, d.number, d.currentTeam, d.position, d.teamAbbr FROM rma_all_players AS d WHERE position = 'Defenseman' AND active = 1 ORDER BY rand() LIMIT 6", ARRAY_A );
-        $g_result_array = $wpdb->get_results( "SELECT g.name, g.number, g.currentTeam, g.position, g.teamAbbr FROM rma_all_players AS g WHERE position = 'Goalie' AND active = 1 ORDER BY rand() LIMIT 2", ARRAY_A );
+        $lw_result_array = $wpdb->get_results( "SELECT lw.name, lw.nhlId, lw.number, lw.currentTeam, lw.position, lw.teamAbbr FROM rma_all_players AS lw WHERE position = 'Left Wing' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
+        $c_result_array = $wpdb->get_results( "SELECT c.name, c.nhlId, c.number, c.currentTeam, c.position, c.teamAbbr FROM rma_all_players AS c WHERE position = 'Center' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
+        $rw_result_array = $wpdb->get_results( "SELECT rw.name, rw.nhlId, rw.number, rw.currentTeam, rw.position, rw.teamAbbr FROM rma_all_players AS rw WHERE position = 'Right Wing' AND active = 1 ORDER BY rand() LIMIT 4", ARRAY_A );
+        $d_result_array = $wpdb->get_results( "SELECT d.name, d.nhlId, d.number, d.currentTeam, d.position, d.teamAbbr FROM rma_all_players AS d WHERE position = 'Defenseman' AND active = 1 ORDER BY rand() LIMIT 6", ARRAY_A );
+        $g_result_array = $wpdb->get_results( "SELECT g.name, g.nhlId, g.number, g.currentTeam, g.position, g.teamAbbr FROM rma_all_players AS g WHERE position = 'Goalie' AND active = 1 ORDER BY rand() LIMIT 2", ARRAY_A );
 
         //Save arrays to session to hold data if user wants to post a team and isn't logged in
         $_SESSION['lw_array'] = $lw_result_array;
@@ -468,7 +468,13 @@ function get_team_desktop() {
             echo "<form action='' id='postTeam' method='post'>";
 
             //First line
-            echo "<input id='lw1name' type='hidden' value='" . $lw_result_array[0][name] . "' >
+            echo "
+            <input id='lw1Id' type='hidden' value='" . $lw_result_array[0][nhlId] . "' >
+            <input id='c1Id' type='hidden' value='" . $c_result_array[0][nhlId] . "' >
+            <input id='rw1Id' type='hidden' value='" . $rw_result_array[0][nhlId] . "' >
+
+
+            <input id='lw1name' type='hidden' value='" . $lw_result_array[0][name] . "' >
             <input id='lw1number' type='hidden' value='" . $lw_result_array[0][number] . "' >
             <input id='lw1team' type='hidden' value='" . $lw_result_array[0][currentTeam] . "' >
             <input id='lw1abbr' type='hidden' value='" . $lw_result_array[0][teamAbbr] . "' >
@@ -481,12 +487,18 @@ function get_team_desktop() {
             <input id='rw1name' type='hidden' value='" . $rw_result_array[0][name] . "' >
             <input id='rw1number' type='hidden' value='" . $rw_result_array[0][number] . "' >
             <input id='rw1team' type='hidden' value='" . $rw_result_array[0][currentTeam] . "' >
-            <input id='rw1abbr' type='hidden' value='" . $rw_result_array[0][teamAbbr] . "' >
+            <input id='rw1abbr' type='hidden' value='" . $rw_result_array[0][teamAbbr] . "' > 
             
             ";
 
             //Second line
-            echo "<input id='lw2name' type='hidden' value='" . $lw_result_array[1][name] . "' >
+            echo "
+            <input id='lw2Id' type='hidden' value='" . $lw_result_array[1][nhlId] . "' >
+            <input id='c2Id' type='hidden' value='" . $c_result_array[1][nhlId] . "' >
+            <input id='rw2Id' type='hidden' value='" . $rw_result_array[1][nhlId] . "' >
+            
+            
+            <input id='lw2name' type='hidden' value='" . $lw_result_array[1][name] . "' >
             <input id='lw2number' type='hidden' value='" . $lw_result_array[1][number] . "' >
             <input id='lw2team' type='hidden' value='" . $lw_result_array[1][currentTeam] . "' >
             <input id='lw2abbr' type='hidden' value='" . $lw_result_array[1][teamAbbr] . "' >
@@ -504,7 +516,13 @@ function get_team_desktop() {
             ";
 
             //Third line
-            echo "<input id='lw3name' type='hidden' value='" . $lw_result_array[2][name] . "' >
+            echo "
+            <input id='lw3Id' type='hidden' value='" . $lw_result_array[2][nhlId] . "' >
+            <input id='c3Id' type='hidden' value='" . $c_result_array[2][nhlId] . "' >
+            <input id='rw3Id' type='hidden' value='" . $rw_result_array[2][nhlId] . "' >
+            
+
+            <input id='lw3name' type='hidden' value='" . $lw_result_array[2][name] . "' >
             <input id='lw3number' type='hidden' value='" . $lw_result_array[2][number] . "' >
             <input id='lw3team' type='hidden' value='" . $lw_result_array[2][currentTeam] . "' >
             <input id='lw3abbr' type='hidden' value='" . $lw_result_array[2][teamAbbr] . "' >
@@ -522,7 +540,13 @@ function get_team_desktop() {
             ";
 
             //Fourth line
-            echo "<input id='lw4name' type='hidden' value='" . $lw_result_array[3][name] . "' >
+            echo "
+            <input id='lw4Id' type='hidden' value='" . $lw_result_array[3][nhlId] . "' >
+            <input id='c4Id' type='hidden' value='" . $c_result_array[3][nhlId] . "' >
+            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "'
+            
+            
+            <input id='lw4name' type='hidden' value='" . $lw_result_array[3][name] . "' >
             <input id='lw4number' type='hidden' value='" . $lw_result_array[3][number] . "' >
             <input id='lw4team' type='hidden' value='" . $lw_result_array[3][currentTeam] . "' >
             <input id='lw4abbr' type='hidden' value='" . $lw_result_array[3][teamAbbr] . "' >
@@ -539,7 +563,13 @@ function get_team_desktop() {
             ";
             
             //First pair
-            echo "<input id='d1name' type='hidden' value='" . $d_result_array[0][name] . "' >
+            echo "
+            <input id='d1Id' type='hidden' value='" . $d_result_array[0][nhlId] . "' >
+            <input id='d2Id' type='hidden' value='" . $d_result_array[1][nhlId] . "' >
+
+
+            
+            <input id='d1name' type='hidden' value='" . $d_result_array[0][name] . "' >
             <input id='d1number' type='hidden' value='" . $d_result_array[0][number] . "' >
             <input id='d1team' type='hidden' value='" . $d_result_array[0][currentTeam] . "' >
             <input id='d1abbr' type='hidden' value='" . $d_result_array[0][teamAbbr] . "' >
@@ -551,7 +581,12 @@ function get_team_desktop() {
             ";
 
             //Second pair
-            echo "<input id='d3name' type='hidden' value='" . $d_result_array[2][name] . "' >
+            echo "
+            <input id='d3Id' type='hidden' value='" . $d_result_array[2][nhlId] . "' >
+            <input id='d4Id' type='hidden' value='" . $d_result_array[3][nhlId] . "' >
+
+            
+            <input id='d3name' type='hidden' value='" . $d_result_array[2][name] . "' >
             <input id='d3number' type='hidden' value='" . $d_result_array[2][number] . "' >
             <input id='d3team' type='hidden' value='" . $d_result_array[2][currentTeam] . "' >
             <input id='d3abbr' type='hidden' value='" . $d_result_array[2][teamAbbr] . "' >
@@ -563,7 +598,12 @@ function get_team_desktop() {
             ";
 
             //Third pair
-            echo "<input id='d5name' type='hidden' value='" . $d_result_array[4][name] . "' >
+            echo "
+            <input id='d5Id' type='hidden' value='" . $d_result_array[4][nhlId] . "' >
+            <input id='d6Id' type='hidden' value='" . $d_result_array[5][nhlId] . "' >
+
+            
+            <input id='d5name' type='hidden' value='" . $d_result_array[4][name] . "' >
             <input id='d5number' type='hidden' value='" . $d_result_array[4][number] . "' >
             <input id='d5team' type='hidden' value='" . $d_result_array[4][currentTeam] . "' >
             <input id='d5abbr' type='hidden' value='" . $d_result_array[4][teamAbbr] . "' >
@@ -575,7 +615,12 @@ function get_team_desktop() {
             ";
 
             //Tandem
-            echo "<input id='g1name' type='hidden' value='" . $g_result_array[0][name] . "' >
+            echo "
+            <input id='g1Id' type='hidden' value='" . $g_result_array[0][nhlId] . "' >
+            <input id='g2Id' type='hidden' value='" . $g_result_array[1][nhlId] . "' >
+
+            
+            <input id='g1name' type='hidden' value='" . $g_result_array[0][name] . "' >
             <input id='g1number' type='hidden' value='" . $g_result_array[0][number] . "' >
             <input id='g1team' type='hidden' value='" . $g_result_array[0][currentTeam] . "' >
             <input id='g1abbr' type='hidden' value='" . $g_result_array[0][teamAbbr] . "' >
@@ -644,9 +689,10 @@ function rma_post_team() {
         );
         //Get ID for team 
         $team_id = $wpdb->insert_id;
+        
         //Insert players and save IDs to variables
         //Insert line 1 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['lw1name'], 'number' => $_POST['lw1number'], 'current_team' => $_POST['lw1team'], 'team_abbr' => $_POST['lw1abbr']),
             array('%s', '%d', '%s', '%s')
@@ -663,10 +709,10 @@ function rma_post_team() {
             array('name' => $_POST['rw1name'], 'number' => $_POST['rw1number'], 'current_team' => $_POST['rw1team'], 'team_abbr' => $_POST['rw1abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $rw1id = $wpdb->insert_id;
+        $rw1id = $wpdb->insert_id; */
 
         //Insert line 2 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['lw2name'], 'number' => $_POST['lw2number'], 'current_team' => $_POST['lw2team'], 'team_abbr' => $_POST['lw2abbr']),
             array('%s', '%d', '%s', '%s')
@@ -683,10 +729,10 @@ function rma_post_team() {
             array('name' => $_POST['rw2name'], 'number' => $_POST['rw2number'],'current_team' => $_POST['rw2team'], 'team_abbr' => $_POST['rw2abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $rw2id = $wpdb->insert_id;
+        $rw2id = $wpdb->insert_id; */
 
         //Insert line 3 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['lw3name'], 'number' => $_POST['lw3number'], 'current_team' => $_POST['lw3team'], 'team_abbr' => $_POST['lw3abbr']),
             array('%s', '%d', '%s', '%s')
@@ -703,10 +749,10 @@ function rma_post_team() {
             array('name' => $_POST['rw3name'], 'number' => $_POST['rw3number'], 'current_team' => $_POST['rw3team'], 'team_abbr' => $_POST['rw3abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $rw3id = $wpdb->insert_id;
+        $rw3id = $wpdb->insert_id; */
 
         //Insert line 4 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['lw4name'], 'number' => $_POST['lw4number'], 'current_team' => $_POST['lw4team'], 'team_abbr' => $_POST['lw4abbr']),
             array('%s', '%d', '%s', '%s')
@@ -723,10 +769,10 @@ function rma_post_team() {
             array('name' => $_POST['rw4name'], 'number' => $_POST['rw4number'], 'current_team' => $_POST['rw4team'], 'team_abbr' => $_POST['rw4abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $rw4id = $wpdb->insert_id;
+        $rw4id = $wpdb->insert_id; */
 
         //Insert pair 1 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['d1name'], 'number' => $_POST['d1number'], 'current_team' => $_POST['d1team'], 'team_abbr' => $_POST['d1abbr']),
             array('%s', '%d', '%s', '%s')
@@ -737,10 +783,10 @@ function rma_post_team() {
             array('name' => $_POST['d2name'], 'number' => $_POST['d2number'], 'current_team' => $_POST['d2team'], 'team_abbr' => $_POST['d2abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $d2id = $wpdb->insert_id;
+        $d2id = $wpdb->insert_id; */
 
         //Insert pair 2 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['d3name'], 'number' => $_POST['d3number'], 'current_team' => $_POST['d3team'], 'team_abbr' => $_POST['d3abbr']),
             array('%s', '%d', '%s', '%s')
@@ -751,10 +797,10 @@ function rma_post_team() {
             array('name' => $_POST['d4name'], 'number' => $_POST['d4number'], 'current_team' => $_POST['d4team'], 'team_abbr' => $_POST['d4abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $d4id = $wpdb->insert_id;
+        $d4id = $wpdb->insert_id; */
 
         //Insert pair 3 players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['d5name'], 'number' => $_POST['d5number'], 'current_team' => $_POST['d5team'], 'team_abbr' => $_POST['d5abbr']),
             array('%s', '%d', '%s', '%s')
@@ -765,10 +811,10 @@ function rma_post_team() {
             array('name' => $_POST['d6name'], 'number' => $_POST['d6number'], 'current_team' => $_POST['d6team'], 'team_abbr' => $_POST['d6abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $d6id = $wpdb->insert_id;
+        $d6id = $wpdb->insert_id; */
 
         //Insert tandem players
-        $wpdb->insert(
+/*         $wpdb->insert(
             'rma_player',
             array('name' => $_POST['g1name'], 'number' => $_POST['g1number'], 'current_team' => $_POST['g1team'], 'team_abbr' => $_POST['g1abbr']),
             array('%s', '%d', '%s', '%s')
@@ -779,48 +825,48 @@ function rma_post_team() {
             array('name' => $_POST['g2name'], 'number' => $_POST['g2number'], 'current_team' => $_POST['g2team'], 'team_abbr' => $_POST['g2abbr']),
             array('%s', '%d', '%s', '%s')
         );
-        $g2id = $wpdb->insert_id;
+        $g2id = $wpdb->insert_id; */
 
-        //Add IDs (saved in variables) to line, pair, tandem tables
+        //Add IDs to line, pair, tandem tables
         $wpdb->insert(
             'rma_line',
-            array('team_id' => $team_id, 'lw_id' => $lw1id, 'c_id' => $c1id, 'rw_id' => $rw1id),
+            array('team_id' => $team_id, 'lw_id' => $_POST['lw1Id'], 'c_id' => $_POST['c1Id'], 'rw_id' => $_POST['rw1Id']),
             array('%d', '%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_line',
-            array('team_id' => $team_id, 'lw_id' => $lw2id, 'c_id' => $c2id, 'rw_id' => $rw2id),
+            array('team_id' => $team_id, 'lw_id' => $_POST['lw2Id'], 'c_id' => $_POST['c2Id'], 'rw_id' => $_POST['rw2Id']),
             array('%d', '%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_line',
-            array('team_id' => $team_id, 'lw_id' => $lw3id, 'c_id' => $c3id, 'rw_id' => $rw3id),
+            array('team_id' => $team_id, 'lw_id' => $_POST['lw3Id'], 'c_id' => $_POST['c3Id'], 'rw_id' => $_POST['rw3Id']),
             array('%d', '%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_line',
-            array('team_id' => $team_id, 'lw_id' => $lw4id, 'c_id' => $c4id, 'rw_id' => $rw4id),
+            array('team_id' => $team_id, 'lw_id' => $_POST['lw4Id'], 'c_id' => $_POST['c4Id'], 'rw_id' => $_POST['rw4Id']),
             array('%d', '%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_pair',
-            array('team_id' => $team_id, 'ld_id' => $d1id, 'rd_id' => $d2id),
+            array('team_id' => $team_id, 'ld_id' => $_POST['d1Id'], 'rd_id' => $_POST['d2Id']),
             array('%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_pair',
-            array('team_id' => $team_id, 'ld_id' => $d3id, 'rd_id' => $d4id),
+            array('team_id' => $team_id, 'ld_id' => $_POST['d3Id'], 'rd_id' => $_POST['d4Id']),
             array('%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_pair',
-            array('team_id' => $team_id, 'ld_id' => $d5id, 'rd_id' => $d6id),
+            array('team_id' => $team_id, 'ld_id' => $_POST['d5Id'], 'rd_id' => $_POST['d6Id']),
             array('%d', '%d', '%d')
         );
         $wpdb->insert(
             'rma_tandem',
             array(
-                'team_id' => $team_id, 'g1_id' => $g1id, 'g2_id' => $g2id),
+                'team_id' => $team_id, 'g1_id' => $_POST['g1Id'], 'g2_id' => $_POST['g2Id']),
             array('%d', '%d', '%d')
         );
         

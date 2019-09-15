@@ -178,8 +178,7 @@ $newest_first_team_list = array_reverse($team_id_list);
                 <?php echo $g2['name'][0] . ". " . substr($g2['name'], strpos($g2['name'], " ") + 1); ?><p> #<?php echo $g2['number'] ?>  <?php echo $g2['teamAbbr'] ?></p>
             </div>
         </div>
-        <p>Submitted by <?php echo $submitted_by; ?></p>
-        <p><?php echo date('F d, Y',strtotime($date)); ?></p>
+        <p>Submitted by <?php echo $submitted_by; ?> | <?php echo date('F d, Y',strtotime($date)); ?></p>
         <p class='link-address'>http://rubyarbogast.com/oneforone</p>
     </div>
 </div>

@@ -6,11 +6,7 @@
                 <button class="main-button" onclick="makeTeam()">Create a Random Team!</button>
             </div>
         </div>
-        <div id="showTeam"></div>
-        <div class="flex-container" id="optionButtons">
-            <button class="secondary-button" onclick="makeTeam()">New Team</button>
-            <button class="secondary-button">Post Team to Blog</button>
-            <button class="secondary-button">Save Team as Image</button>
+        <div id="showTeam">
         </div>
 </section>
   

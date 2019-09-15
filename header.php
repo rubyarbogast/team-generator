@@ -7,14 +7,9 @@
     <title><?php wp_title('|', true, 'right'); ?><?php echo get_bloginfo('name'); ?></title> 
 
     <?php wp_head(); ?>
-
   </head>
   
   <body <?php body_class(); ?>>
-
-<!--TODO: add div for mobile menu and div for desktop; show/hide with media queries in CSS -->
-<!--TODO: figure out how to get each link on one line -->
-<!--TODO: styles -->
 
     <div class='mobile-menu'>
       <div class='menu'>
@@ -35,7 +30,6 @@
           <?php wp_nav_menu( array('theme_location' => is_user_logged_in() ? 'logged-in-menu' : 'logged-out-menu') ); ?> 
         </div>
     </div>
-
 
     <div id="pageContainer">
       <h1><?php bloginfo('name'); ?></h1>

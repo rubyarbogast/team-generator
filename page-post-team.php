@@ -126,7 +126,7 @@
 
         <?php else: ?>
             <?php $url = home_url( '/' ); ?>
-            <h3>No teams saved yet. Generate one <a href='<?php echo esc_url( $url ); ?>'>here</a>.</h3>
+            <h3>No team to post yet. Generate one <a href='<?php echo esc_url( $url ); ?>'>here</a>.</h3>
         <?php endif; ?>
     </div>
 

@@ -54,8 +54,6 @@ if(isset($_POST['wp-submit'])) {
         wp_redirect( home_url('/post-team/') ); 
         exit;
     }
-    
-
 }
 ?>
 

@@ -263,16 +263,7 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
-    //GENERATE TEAM:
-        //Import team table
-        //Update player table to just hold player ID
-        //Update get_team and get_team_desktop functions to use position field and get players that way 
-        //Just use ID in forms
-        //Update post-team to include the ID
-        //In blog, query DB to get players by ID (add function)
-
     //BLOG:
-        //Add dates to posts
         //Limit to three teams per page; add pagination 
     
     //STYLE:
@@ -291,7 +282,7 @@ function get_team_desktop() {
         //Set up menus
         //Update rosters and upload
         //Update names for databases; redirect in code -- current paths won't work 
-        //FTP files
+        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts
         //Set up DB
         //Install SeedProd and set up
 

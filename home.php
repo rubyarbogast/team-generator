@@ -20,10 +20,9 @@ $newest_first_team_list = array_reverse($team_id_list);
     $rd_id_array = $wpdb->get_col( "SELECT rd_id FROM rma_pair WHERE team_id = $team_id" );
     $g1_str_id = $wpdb->get_col( "SELECT g1_id FROM rma_tandem WHERE team_id = $team_id" );
     $g2_str_id = $wpdb->get_col( "SELECT g2_id FROM rma_tandem WHERE team_id = $team_id" );
-    $user_id_array = $wpdb->get_col( "SELECT user FROM rma_team WHERE id = $team_id" );
+    $user_id = $wpdb->get_var( "SELECT user FROM rma_team WHERE id = $team_id" );
     $date = $wpdb->get_var( "SELECT date_posted FROM rma_team WHERE id = $team_id" );
 
-    $user_id = (int)$user_id_array[0];
     $user_info = get_userdata($user_id);
     $submitted_by = $user_info->display_name;
 

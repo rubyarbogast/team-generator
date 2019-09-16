@@ -281,6 +281,7 @@ function get_team_desktop() {
         //Upload updated player table
         //Set up DB constraints, new tables
         //Update names for databases; redirect in code -- current paths won't work 
+        //Update path to config file
         //Finish WPF setup
 
         //Activate SeedProd

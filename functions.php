@@ -265,26 +265,32 @@ function get_team_desktop() {
     //TODO: 
     //BLOG:
         //Limit to three teams per page; add pagination 
+        //Fix page-post-team
     
     //STYLE:
-        //Update stylesheet -- css for buttons, login template, registration template, logout page
-        //Larger screen styles for blog posts
-        //Consistency/organization
+        //Preview image, etc
+        //Larger screen styles for blog posts, logins, etc
 
     //TESTING:
         //All browsers possible
 
     //INSTALLATION:
-        //Add pages: register, log in, post team, log out
-        //Site preview?
-        //Site down when updating?
-        //Finish WPF setup
-        //Set up menus
-        //Update rosters and upload
-        //Update names for databases; redirect in code -- current paths won't work 
-        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts
-        //Set up DB
+        //Merge blog branch to master
+        //Merge get-rosters branch to master 
         //Install SeedProd and set up
+        //Upload updated player table
+        //Set up DB constraints, new tables
+        //Update names for databases; redirect in code -- current paths won't work 
+        //Finish WPF setup
+
+        //Activate SeedProd
+
+        //Add pages: register, log in, post team, log out
+        //Set up menus
+        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts
+        //Test everything works
+
+        //Deactivate SeedProd; share
 
     if($_SERVER['REQUEST_METHOD'] == 'GET') { 
         global $wpdb;

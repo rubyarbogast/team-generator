@@ -1,10 +1,23 @@
 <?php get_header(); ?> 
 
-<!--TODO: add div classes for showing/hiding based on screen size -- but within the loop; don't query DB twice -->
 <?php 
 global $wpdb;
 $team_id_list = $wpdb->get_col( "SELECT id FROM rma_team" );
 $newest_first_team_list = array_reverse($team_id_list);
+
+$limit = 3;
+
+$total = count($newest_first_team_list);
+$pages = ceil($total / $limit);
+$result = ceil($total / $limit);
+
+$current = isset($_GET['blog']) ? $_GET['blog'] : 1;
+$next = $current < $pages ? $current + 1 : null;
+$previous = $current > 1 ? $current - 1 : null;
+
+$offset = ($current - 1) * $limit;
+$newest_first_team_list = array_slice($newest_first_team_list, $offset, $limit);
+
 ?>
 
 <h2 class='blog-header'>User-Submitted Teams</h2>
@@ -285,5 +298,12 @@ $newest_first_team_list = array_reverse($team_id_list);
     </div>
 
 <?php endforeach; ?>
+
+<? if($previous): ?>
+    <a href="<?php bloginfo('url'); ?>/blog?paged=<?= $previous ?>">Previous</a>
+<? endif ?>
+<? if($next) : ?>
+    <a href="<?php bloginfo('url'); ?>/blog?paged=<?= $next ?>">Next</a>
+<?php endif; ?>
 
 <?php get_footer(); ?>

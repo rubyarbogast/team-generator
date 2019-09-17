@@ -45,7 +45,7 @@
             <input id='g1Id' type='hidden' value='<?php echo $g_result_array[0][nhlId]; ?>' >
             <input id='g2Id' type='hidden' value='<?php echo $g_result_array[1][nhlId]; ?>' >
 
-            <div class='button-container flex-container'>
+            <div>
                 <button id='submitTeamButton' class='submit-team post-from-login-button' type='submit'>Submit Your Team!</button>
             </div>
         </form>

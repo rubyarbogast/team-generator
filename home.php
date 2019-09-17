@@ -18,18 +18,7 @@ $previous = $current > 1 ? $current - 1 : null;
 $offset = ($current - 1) * $limit;
 $newest_first_team_list = array_slice($newest_first_team_list, $offset, $limit);
 
-$customPagHTML     = "";
-
-/* $customPagHTML     = "";
-$query             = "SELECT id FROM rma_team";
-$total_query     = "SELECT COUNT(3) FROM (${query}) AS combined_table";
-$total             = $wpdb->get_var( $total_query );
-$items_per_page = 3;
-$page             = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
-$offset         = ( $page * $items_per_page ) - $items_per_page;
-$result         = $wpdb->get_results( $query . " ORDER BY field DESC LIMIT ${offset}, ${items_per_page}" );
-$totalPage         = ceil($total / $items_per_page); */
-
+$customPagHTML = "";
 
 ?>
 
@@ -312,23 +301,16 @@ $totalPage         = ceil($total / $items_per_page); */
 
 <?php endforeach; ?>
 
-<!-- <? if($previous): ?>
-    <a href="<?php bloginfo('url'); ?>/blog?paged=<?= $previous ?>">Previous</a>
-<? endif ?>
-<? if($next) : ?>
-    <a href="<?php bloginfo('url'); ?>/blog?paged=<?= $next ?>">Next</a>
-<?php endif; ?> -->
-
 <?php 
 if($pages > 1){
-    $customPagHTML     =  '<div><span>Page '.$page.' of '.$pages.'</span>'.paginate_links( array(
+    $customPagHTML     =  '<div><p>' . paginate_links( array(
     'base' => add_query_arg( 'cpage', '%#%' ),
     'format' => '',
-    'prev_text' => __('&laquo;'),
-    'next_text' => __('&raquo;'),
+    'prev_text' => __('Newer'),
+    'next_text' => __('Older'),
     'total' => $pages,
     'current' => $current
-    )).'</div>';
+    )).'</p></div>';
     }
 
 echo $customPagHTML;

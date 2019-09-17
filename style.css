@@ -200,6 +200,8 @@ ul#menu-logged-in-menu{
 .menu-icon {
     color: white;
     font-size: 2em;
+    margin-left: 8px;
+    font-weight: 900;
 }
 
 /* Button styles */
@@ -711,6 +713,31 @@ input[type=password] {
     #loginFromTeamView {
         margin-top: 15px;
         margin-bottom: 15px;
+    }
+
+    .loginFormDiv {
+        height: 300px;
+        width: 400px;
+    }
+
+    .login-username,
+    .login-password {
+        font-size: 1.25em;
+    }
+
+    input[type=text],
+    input[type=password] {
+        margin: 5px 5px 3px 5px;
+        padding: 10px 10px;
+        width: 225px;
+    }
+
+    #wp-submit,
+    #registerUser {
+        width: 120px;
+        height: 55px;
+        padding: 4px;
+        margin-top: 15px;
     }
 
 }

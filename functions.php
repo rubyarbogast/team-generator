@@ -263,16 +263,9 @@ add_action('wp_ajax_get_team', 'get_team');
 function get_team_desktop() {
 
     //TODO: 
-    //BLOG:
-        //Limit to three teams per page; add pagination 
-        //Fix page-post-team
     
     //STYLE:
         //Preview image, etc
-        //Larger screen styles for blog posts, logins, etc
-
-    //TESTING:
-        //All browsers possible
 
     //INSTALLATION:
         //Merge blog branch to master

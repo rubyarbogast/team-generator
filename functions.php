@@ -281,7 +281,8 @@ function get_team_desktop() {
 
         //Add pages: register, log in, post team, log out
         //Set up menus
-        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts
+        //Add "images" folder
+        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts, preview.JPG
         //Test everything works
 
         //Deactivate SeedProd; share

@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:site_name" content="<?php echo get_bloginfo('name'); ?>"/>
+    <meta property="og:title" content="Generate a team of random hockey players."/>
+    <meta property="og:image" content="http://localhost/wp-hockey-laptop-2/wp-content/themes/team-generator/images/preview.JPG">
+    <meta property="og:url" content="http://rubyarbogast.com/oneforone/">
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
     <title><?php wp_title('|', true, 'right'); ?><?php echo get_bloginfo('name'); ?></title> 
 
@@ -10,7 +16,6 @@
   </head>
   
   <body <?php body_class(); ?>>
-
     <div class='mobile-menu'>
       <div class='menu'>
         <div id="mySidenav" class="sidenav">

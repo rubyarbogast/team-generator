@@ -22,7 +22,7 @@ con.connect(function(err) {
   console.log("Connected!");
 
   //Create tables for each player position
-  var lWing = "CREATE TABLE lwing (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255))";
+/*   var lWing = "CREATE TABLE lwing (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255))";
   var center = "CREATE TABLE center (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255))";
   var rWing = "CREATE TABLE rwing (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255))";
   var defenseman = "CREATE TABLE defenseman (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255))";
@@ -32,7 +32,11 @@ con.connect(function(err) {
   createTable(center);
   createTable(rWing);
   createTable(defenseman);
-  createTable(goalie);
+  createTable(goalie); */
+
+  var players = "CREATE TABLE rma_all_players (nhlId INT PRIMARY KEY, name VARCHAR(255), number INT(2), position VARCHAR(255), currentTeam VARCHAR(255), teamAbbr VARCHAR(255), active BOOLEAN)";
+
+  createTable(players);
 });
 
 

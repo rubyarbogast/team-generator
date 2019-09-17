@@ -1,10 +1,16 @@
 class Player {
-    constructor(name, number, position, currentTeam, teamAbbr) {
+    constructor(nhlId, name, number, position, currentTeam, teamAbbr, active) {
+        this.nhlId = nhlId;
         this.name = name;
         this.number = number;
         this.position = position;
         this.currentTeam = currentTeam;
         this.teamAbbr = teamAbbr;
+        this.active = active;
+    }
+
+    getNhlId() {
+        return this.nhlId;
     }
 
     getName() {
@@ -27,6 +33,14 @@ class Player {
         return this.teamAbbr;
     }
 
+    getActive( ){
+        return this.active;
+    }
+
+    setNhlId(value) {
+        this.nhlId = value;
+    }
+
     setName(value) {
         this.name = value;
     }
@@ -45,6 +59,10 @@ class Player {
 
     setTeamAbbr(value) {
         this.teamAbbr = value;
+    }
+
+    setActive(value) {
+        this.active = value;
     }
 }
 

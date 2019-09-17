@@ -2,6 +2,7 @@
 
     $(document).on( 'click', '.get-team-button', function( event ) {
 
+        //Stop the page from loading the default view
         event.preventDefault();
 
         //Depending on size of window, call either get_team or get_team_desktop functions in functions.php
@@ -14,51 +15,58 @@
             if (windowSize.matches) {
                 $.ajax({
                     url: nhl_ajax_object.ajax_url,
-                    type: 'post',
+                    type: 'get',
                     data: {
                         action: 'get_team'
                     },
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
-                        $('#showTeam').hide();
-                        $('#secondaryButton').hide();
+                        $('#showTeam, #newTeam').hide();
+
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
+
                         document.getElementById('showTeam').innerHTML = html;
-                        $('#showTeam').show();
-                        $('#secondaryButton').show();
+
+                        $('#showTeam, #newTeam, #showHideSubmitButton').show();
+
+                        $('#submitTeamButton, #cancelPostButton').hide();
+                        $('#loginFromTeamView, #registerFromTeamView').hide();
                     }
                 });
             } else {
                 $.ajax({
                     url: nhl_ajax_object.ajax_url,
-                    type: 'post',
+                    type: 'get',
                     data: {
                         action: 'get_team_desktop'
                     },
                     beforeSend: function() {
                         $('#main').find( 'article' ).remove();
                         $('#main #buttonDiv').remove();
-                        $('#showTeam').hide();
-                        $('#secondaryButton').hide();
+                        $('#showTeam, #newTeam').hide();
+
                         $('#main').append( '<div class="flex-container"><div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' );
                     },
                     success: function( html ) {
                         $('#main #loader').remove();
                         document.getElementById('showTeam').innerHTML = html;
-                        $('#showTeam').show();
+
+                        $('#showTeam, #newTeam, #showHideSubmitButton').show();
+
                         if (!desktop.matches) {$('#key').css("display","flex");}
                         if (desktop.matches) {$('.player-type').css("display", "block");}
-                        $('#secondaryButton').show();
+
+                        $('#submitTeamButton, #cancelPostButton').hide();
+                        $('#loginFromTeamView, #registerFromTeamView').hide();
                     }
                 });
             }
 
         } 
     });
-
 
 })(jQuery);

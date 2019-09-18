@@ -199,7 +199,7 @@ function get_team() {
             echo "
             <input id='lw4Id' type='hidden' value='" . $lw_result_array[3][nhlId] . "' >
             <input id='c4Id' type='hidden' value='" . $c_result_array[3][nhlId] . "' >
-            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "'
+            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "' >
             ";
             
             //First pair
@@ -261,23 +261,6 @@ add_action('wp_ajax_nopriv_get_team', 'get_team');
 add_action('wp_ajax_get_team', 'get_team');
 
 function get_team_desktop() {
-
-    //TODO: 
-    //INSTALLATION:
-        //Set up DB constraints, new tables
-        //Update names for databases; redirect in code -- current paths won't work 
-
-        //Activate SeedProd
-
-        //Add pages: register, log in, post team, log out
-        //Set up menus
-        //Add "images" folder
-        //Remove these to-dos before uploading files
-        //Remove config file since not using it
-        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts, preview.JPG
-        //Test everything works
-
-        //Deactivate SeedProd; share
 
     if($_SERVER['REQUEST_METHOD'] == 'GET') { 
         global $wpdb;
@@ -409,7 +392,7 @@ function get_team_desktop() {
             echo "
             <input id='lw4Id' type='hidden' value='" . $lw_result_array[3][nhlId] . "' >
             <input id='c4Id' type='hidden' value='" . $c_result_array[3][nhlId] . "' >
-            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "'
+            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "' >
             ";
             
             //First pair

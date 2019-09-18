@@ -6,7 +6,7 @@
 
     <meta property="og:site_name" content="<?php echo get_bloginfo('name'); ?>"/>
     <meta property="og:title" content="Generate a team of random hockey players."/>
-    <meta property="og:image" content="http://localhost/wp-hockey-laptop-2/wp-content/themes/team-generator/images/preview.JPG">
+    <meta property="og:image" content="https://rubyarbogast.com/oneforone/wp-content/themes/team-generator/images/preview.JPG">
     <meta property="og:url" content="http://rubyarbogast.com/oneforone/">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 

@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:site_name" content="<?php echo get_bloginfo('name'); ?>"/>
-    <meta property="og:title" content="Generate a team of random hockey players."/>
-    <meta property="og:image" content="https://rubyarbogast.com/oneforone/wp-content/themes/team-generator/images/preview.JPG">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="One for One">
+    <meta name="twitter:description" content="Generate a team of random men's hockey players.">
+    <meta name="twitter:image" content="https://rubyarbogast.com/oneforone/wp-content/themes/team-generator/images/preview.JPG">
     <meta property="og:url" content="http://rubyarbogast.com/oneforone/">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 

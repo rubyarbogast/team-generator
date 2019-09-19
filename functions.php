@@ -65,6 +65,41 @@ function my_register_page( $register_url ) {
 }
 add_filter( 'register_url', 'my_register_page' );
 
+function rma_register_user() {
+    if( is_page('register') && isset($_POST['wp-submit'])) {
+
+        $user_name = $_POST['log'];
+        $password = $_POST['pwd'];
+        $remember = $_POST['rememberme'];
+    
+        //Insert the user
+        $userdata = array(
+            'user_pass' => $password,
+            'user_login' => $user_name
+        );
+        $user_id = wp_insert_user( $userdata );
+    
+        if( is_wp_error( $user_id ) ) {
+            $error_msg = $user_id->get_error_message();
+            echo "<p class='error'>" . $error_msg . "</p>"; 
+        } else {
+    
+            //After creating the user, sign them in
+            $creds = array();
+            $creds['user_login'] = $user_name;
+            $creds['user_password'] = $password;
+    
+            wp_signon($creds);
+                        
+            $redirect_to = '/oneforone/post-team/';
+            wp_safe_redirect($redirect_to);
+    
+            exit;
+        }
+    }
+}
+add_action( 'template_redirect', 'rma_register_user' );
+
 function rma_login_fail( $username ) {
      $referrer = $_SERVER['HTTP_REFERER'];
      //If the referrer is valid and is not the default log-in screen
@@ -245,7 +280,7 @@ function get_team() {
             echo "
             <div id='loginFromTeamView'>
             <a href='./login' id='logIn'>Log In</a>
-            | 
+            |
             <a href='" . wp_registration_url() . "' id='register'>Register</a>
             |
             <a href='#' id='cancel' onclick='cancelLogin();return false;'>Cancel</a>
@@ -438,7 +473,7 @@ function get_team_desktop() {
             echo "
             <div id='loginFromTeamView'>
             <a href='./login' id='logIn'>Log In</a>
-            | 
+            |
             <a href='" . wp_registration_url() . "' id='register'>Register</a>
             |
             <a href='#' id='cancel' onclick='cancelLogin();return false;'>Cancel</a>

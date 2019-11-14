@@ -93,23 +93,6 @@ for (let i = 0; i < allRosters.length; i++){
         allPlayers.push(currentPlayer);
 
         ids.push(nhlId);
-
-/*         if (allRosters[i][j]['position']['name'] == 'Left Wing') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
-            lWings.push(currentPlayer); 
-        } else if (allRosters[i][j]['position']['name'] == 'Center') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
-            centers.push(currentPlayer);
-        } else if (allRosters[i][j]['position']['name'] == 'Right Wing') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
-            rWings.push(currentPlayer);
-        } else if (allRosters[i][j]['position']['name'] == 'Defenseman') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
-            defensemen.push(currentPlayer);
-        } else if (allRosters[i][j]['position']['name'] == 'Goalie') {
-            let currentPlayer = new Player(playerName, playerNumber, playerPosition, playerCurrentTeam, playerTeamAbbr);
-            goalies.push(currentPlayer);
-        }   */
     } 
 }
 
@@ -130,7 +113,7 @@ function addOrUpdate(data) {
 
     //Escape MySQL so that names with apostrophes can be written to the DB
     let insertQuery = 'INSERT INTO ?? (??,??,??,??,??,??,??) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE ?? = ?, ?? = ?, ?? = ?, ?? = ?, ?? = ?, ?? = ?';
-    let query = mysql.format(insertQuery,[tableName,"nhlId","name","number","position","currentTeam","teamAbbr","active",data.nhlId,data.playerName,data.playerNumber,data.playerPosition,data.playerCurrentTeam,data.playerTeamAbbr,data.playerActiveStatus,"name",data.playerName,"number",data.playerNumber,"position",data.playerPosition,"currentTeam",data.playerCurrentTeam,"teamAbbr",data.playerTeamAbbr,"active",data.playerActiveStatus]);
+    let query = mysql.format(insertQuery,[tableName,"nhl_id","name","number","position","current_team","team_abbr","active",data.nhlId,data.playerName,data.playerNumber,data.playerPosition,data.playerCurrentTeam,data.playerTeamAbbr,data.playerActiveStatus,"name",data.playerName,"number",data.playerNumber,"position",data.playerPosition,"current_team",data.playerCurrentTeam,"team_abbr",data.playerTeamAbbr,"active",data.playerActiveStatus]);
 
     pool.query(query,(err, response) => {
         if(err) {
@@ -164,7 +147,7 @@ writeArrayToDB(allPlayers, "rma_all_players");
 //Write the IDs of the players currently on rosters to a table for comparison
 function temporary(data) {
     let insertQuery = 'INSERT INTO ?? (??) VALUES (?)';
-    let query = mysql.format(insertQuery,["temp_ids","nhlId",data.nhlId]);
+    let query = mysql.format(insertQuery,["temp_ids","nhl_id",data.nhlId]);
 
     pool.query(query,(err, response) => {
         if(err) {
@@ -191,7 +174,7 @@ writeToTempTable(allPlayers);
 //Compare the IDs in the temporary table to those in the table of all players
 function temporaryTable(){
     //If the ID is not in the temporary table, set the status to "inactive"
-    let compareQuery = "UPDATE rma_all_players SET active = 0 WHERE NOT EXISTS (SELECT nhlId FROM temp_ids WHERE rma_all_players.nhlId = temp_ids.nhlId)"
+    let compareQuery = "UPDATE rma_all_players SET active = 0 WHERE NOT EXISTS (SELECT nhl_id FROM temp_ids WHERE rma_all_players.nhl_id = temp_ids.nhl_id)"
 
     pool.query(compareQuery,(err, response) => {
         if(err) {
@@ -203,9 +186,3 @@ function temporaryTable(){
 
 temporaryTable();
 console.log("Finished");
-
-/* writeArrayToDB(lWings, "lwing");
-writeArrayToDB(centers, "center");
-writeArrayToDB(rWings, "rwing");
-writeArrayToDB(defensemen, "defenseman");
-writeArrayToDB(goalies, "goalie"); */

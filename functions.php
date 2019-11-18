@@ -65,6 +65,41 @@ function my_register_page( $register_url ) {
 }
 add_filter( 'register_url', 'my_register_page' );
 
+function rma_register_user() {
+    if( is_page('register') && isset($_POST['wp-submit'])) {
+
+        $user_name = $_POST['log'];
+        $password = $_POST['pwd'];
+        $remember = $_POST['rememberme'];
+    
+        //Insert the user
+        $userdata = array(
+            'user_pass' => $password,
+            'user_login' => $user_name
+        );
+        $user_id = wp_insert_user( $userdata );
+    
+        if( is_wp_error( $user_id ) ) {
+            $error_msg = $user_id->get_error_message();
+            echo "<p class='error'>" . $error_msg . "</p>"; 
+        } else {
+    
+            //After creating the user, sign them in
+            $creds = array();
+            $creds['user_login'] = $user_name;
+            $creds['user_password'] = $password;
+    
+            wp_signon($creds);
+                        
+            $redirect_to = '/oneforone/post-team/';
+            wp_safe_redirect($redirect_to);
+    
+            exit;
+        }
+    }
+}
+add_action( 'template_redirect', 'rma_register_user' );
+
 function rma_login_fail( $username ) {
      $referrer = $_SERVER['HTTP_REFERER'];
      //If the referrer is valid and is not the default log-in screen
@@ -199,7 +234,7 @@ function get_team() {
             echo "
             <input id='lw4Id' type='hidden' value='" . $lw_result_array[3][nhlId] . "' >
             <input id='c4Id' type='hidden' value='" . $c_result_array[3][nhlId] . "' >
-            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "'
+            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "' >
             ";
             
             //First pair
@@ -245,7 +280,7 @@ function get_team() {
             echo "
             <div id='loginFromTeamView'>
             <a href='./login' id='logIn'>Log In</a>
-            | 
+            |
             <a href='" . wp_registration_url() . "' id='register'>Register</a>
             |
             <a href='#' id='cancel' onclick='cancelLogin();return false;'>Cancel</a>
@@ -261,31 +296,6 @@ add_action('wp_ajax_nopriv_get_team', 'get_team');
 add_action('wp_ajax_get_team', 'get_team');
 
 function get_team_desktop() {
-
-    //TODO: 
-    
-    //STYLE:
-        //Preview image, etc
-
-    //INSTALLATION:
-        //Merge blog branch to master
-        //Merge get-rosters branch to master 
-        //Install SeedProd and set up
-        //Upload updated player table
-        //Set up DB constraints, new tables
-        //Update names for databases; redirect in code -- current paths won't work 
-        //Update path to config file
-        //Finish WPF setup
-
-        //Activate SeedProd
-
-        //Add pages: register, log in, post team, log out
-        //Set up menus
-        //Add "images" folder
-        //FTP files: front-page, header, home, index, page-login, page-logout, page-post-team, page-register, banned-words, style.css, ajax-post, ajax-team, nav-menu, scripts, preview.JPG
-        //Test everything works
-
-        //Deactivate SeedProd; share
 
     if($_SERVER['REQUEST_METHOD'] == 'GET') { 
         global $wpdb;
@@ -417,7 +427,7 @@ function get_team_desktop() {
             echo "
             <input id='lw4Id' type='hidden' value='" . $lw_result_array[3][nhlId] . "' >
             <input id='c4Id' type='hidden' value='" . $c_result_array[3][nhlId] . "' >
-            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "'
+            <input id='rw4Id' type='hidden' value='" . $rw_result_array[3][nhlId] . "' >
             ";
             
             //First pair
@@ -463,7 +473,7 @@ function get_team_desktop() {
             echo "
             <div id='loginFromTeamView'>
             <a href='./login' id='logIn'>Log In</a>
-            | 
+            |
             <a href='" . wp_registration_url() . "' id='register'>Register</a>
             |
             <a href='#' id='cancel' onclick='cancelLogin();return false;'>Cancel</a>

@@ -14,36 +14,36 @@
     <div class='centered'> 
         <form action='' id='postTeam' method='post'>
             <!-- First line -->
-            <input id='lw1Id' type='hidden' value='<?php echo $lw_result_array[0][nhlId]; ?>' >
-            <input id='c1Id' type='hidden' value='<?php echo $c_result_array[0][nhlId]; ?> ' >
-            <input id='rw1Id' type='hidden' value='<?php echo $rw_result_array[0][nhlId]; ?>' >
+            <input id='lw1Id' type='hidden' value='<?php echo $lw_result_array[0][nhl_id]; ?>' >
+            <input id='c1Id' type='hidden' value='<?php echo $c_result_array[0][nhl_id]; ?> ' >
+            <input id='rw1Id' type='hidden' value='<?php echo $rw_result_array[0][nhl_id]; ?>' >
 
             <!-- Second line -->
-            <input id='lw2Id' type='hidden' value='<?php echo $lw_result_array[1][nhlId]; ?>' >
-            <input id='c2Id' type='hidden' value='<?php echo $c_result_array[1][nhlId]; ?>' >
-            <input id='rw2Id' type='hidden' value='<?php echo $rw_result_array[1][nhlId]; ?>' >
+            <input id='lw2Id' type='hidden' value='<?php echo $lw_result_array[1][nhl_id]; ?>' >
+            <input id='c2Id' type='hidden' value='<?php echo $c_result_array[1][nhl_id]; ?>' >
+            <input id='rw2Id' type='hidden' value='<?php echo $rw_result_array[1][nhl_id]; ?>' >
 
             <!-- Third line -->
-            <input id='lw3Id' type='hidden' value='<?php echo $lw_result_array[2][nhlId]; ?>' >
-            <input id='c3Id' type='hidden' value='<?php echo $c_result_array[2][nhlId]; ?>' >
-            <input id='rw3Id' type='hidden' value='<?php echo $rw_result_array[2][nhlId]; ?>' >
+            <input id='lw3Id' type='hidden' value='<?php echo $lw_result_array[2][nhl_id]; ?>' >
+            <input id='c3Id' type='hidden' value='<?php echo $c_result_array[2][nhl_id]; ?>' >
+            <input id='rw3Id' type='hidden' value='<?php echo $rw_result_array[2][nhl_id]; ?>' >
 
             <!-- Fourth line --> 
-            <input id='lw4Id' type='hidden' value='<?php echo $lw_result_array[3][nhlId]; ?>' >
-            <input id='c4Id' type='hidden' value='<?php echo $c_result_array[3][nhlId]; ?>' >
-            <input id='rw4Id' type='hidden' value='<?php echo $rw_result_array[3][nhlId]; ?>' >
+            <input id='lw4Id' type='hidden' value='<?php echo $lw_result_array[3][nhl_id]; ?>' >
+            <input id='c4Id' type='hidden' value='<?php echo $c_result_array[3][nhl_id]; ?>' >
+            <input id='rw4Id' type='hidden' value='<?php echo $rw_result_array[3][nhl_id]; ?>' >
 
             <!-- Defense --> 
-            <input id='d1Id' type='hidden' value='<?php echo $d_result_array[0][nhlId]; ?>' >
-            <input id='d2Id' type='hidden' value='<?php echo $d_result_array[1][nhlId]; ?>' >
-            <input id='d3Id' type='hidden' value='<?php echo $d_result_array[2][nhlId]; ?>' >
-            <input id='d4Id' type='hidden' value='<?php echo $d_result_array[3][nhlId]; ?>' >
-            <input id='d5Id' type='hidden' value='<?php echo $d_result_array[4][nhlId]; ?>' >
-            <input id='d6Id' type='hidden' value='<?php echo $d_result_array[5][nhlId]; ?>' >
+            <input id='d1Id' type='hidden' value='<?php echo $d_result_array[0][nhl_id]; ?>' >
+            <input id='d2Id' type='hidden' value='<?php echo $d_result_array[1][nhl_id]; ?>' >
+            <input id='d3Id' type='hidden' value='<?php echo $d_result_array[2][nhl_id]; ?>' >
+            <input id='d4Id' type='hidden' value='<?php echo $d_result_array[3][nhl_id]; ?>' >
+            <input id='d5Id' type='hidden' value='<?php echo $d_result_array[4][nhl_id]; ?>' >
+            <input id='d6Id' type='hidden' value='<?php echo $d_result_array[5][nhl_id]; ?>' >
 
             <!-- Goalkeepers -->
-            <input id='g1Id' type='hidden' value='<?php echo $g_result_array[0][nhlId]; ?>' >
-            <input id='g2Id' type='hidden' value='<?php echo $g_result_array[1][nhlId]; ?>' >
+            <input id='g1Id' type='hidden' value='<?php echo $g_result_array[0][nhl_id]; ?>' >
+            <input id='g2Id' type='hidden' value='<?php echo $g_result_array[1][nhl_id]; ?>' >
 
             <div>
                 <button id='submitTeamButton' class='submit-team post-from-login-button' type='submit'>Submit Your Team!</button>
